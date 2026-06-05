@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>路境行旅・花蓮文化館｜住宿常見問題</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif; background: #f4f8f8; color: #1a1a1a; min-height: 100vh; }
+.page { max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+.qa-header { margin-bottom: 1.5rem; }
+.qa-title { font-size: 22px; font-weight: 500; color: #00656E; margin-bottom: 4px; }
+.qa-sub { font-size: 13px; color: #888; }
+.search-wrap { position: relative; margin-bottom: 1rem; }
+.search-wrap .ico { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #aaa; pointer-events: none; }
+#search-input { width: 100%; padding: 11px 14px 11px 38px; font-size: 14px; border-radius: 12px; border: 1px solid #b8d8da; background: #fff; color: #1a1a1a; outline: none; -webkit-appearance: none; }
+#search-input:focus { border-color: #00656E; box-shadow: 0 0 0 3px rgba(0,101,110,0.12); }
+.cats { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.cat-btn { font-size: 12px; padding: 6px 14px; border-radius: 999px; border: 1px solid #b8d8da; background: #fff; color: #00656E; cursor: pointer; transition: all 0.15s; white-space: nowrap; font-family: inherit; }
+.cat-btn:hover { background: #e8f4f5; }
+.cat-btn.active { background: #00656E; color: #fff; border-color: #00656E; }
+.sec-label { font-size: 11px; font-weight: 500; color: #bbb; letter-spacing: 0.07em; text-transform: uppercase; margin: 1.5rem 0 8px; padding-left: 2px; }
+.qa-item { border: 1px solid #d6eced; border-radius: 12px; margin-bottom: 6px; background: #fff; overflow: hidden; }
+.qa-q { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; cursor: pointer; gap: 12px; }
+.qa-q:hover { background: #f4f8f8; }
+.q-left { display: flex; align-items: center; gap: 10px; }
+.cat-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.q-text { font-size: 14px; color: #1a1a1a; font-weight: 500; line-height: 1.45; }
+.chevron { font-size: 18px; color: #00656E; transition: transform 0.2s; flex-shrink: 0; line-height: 1; opacity: 0.5; }
+.chevron.open { transform: rotate(180deg); opacity: 1; }
+.qa-a { font-size: 13px; color: #555; line-height: 1.8; padding: 0 16px 14px 33px; display: none; }
+.qa-a.open { display: block; }
+.qa-a p { margin: 0 0 4px 0; }
+.qa-a p:last-child { margin-bottom: 0; }
+.qa-a .grp { margin-bottom: 10px; }
+.qa-a .grp:last-child { margin-bottom: 0; }
+.qa-a .grp-title { font-weight: 500; color: #00656E; margin-bottom: 3px; font-size: 13px; }
+.no-results { text-align: center; padding: 3rem 0; color: #aaa; font-size: 14px; }
+.highlight { background: #fff3cc; border-radius: 2px; color: #7a5800; }
+.footer-note { margin-top: 1.5rem; background: #fff; border-radius: 12px; border: 1px solid #d6eced; padding: 1rem 1.25rem; font-size: 13px; color: #777; line-height: 1.75; }
+.footer-note strong { color: #00656E; font-weight: 500; }
+.accent-bar { height: 3px; background: linear-gradient(90deg, #00656E, #ffc72c); border-radius: 999px; margin-bottom: 1.5rem; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="accent-bar"></div>
+  <div class="qa-header">
+    <div class="qa-title">路境行旅・花蓮文化館</div>
+    <div class="qa-sub">住宿常見問題｜點選分類或搜尋關鍵字快速找到答案</div>
+  </div>
+  <div class="search-wrap">
+    <span class="ico">&#128269;</span>
+    <input type="text" id="search-input" placeholder="例如：停車、早餐、退房、寵物…">
+  </div>
+  <div class="cats">
+    <button class="cat-btn active" data-cat="all">全部</button>
+    <button class="cat-btn" data-cat="booking">訂房與付款</button>
+    <button class="cat-btn" data-cat="arrival">入住前準備</button>
+    <button class="cat-btn" data-cat="policy">館內規定</button>
+    <button class="cat-btn" data-cat="facilities">設備與備品</button>
+    <button class="cat-btn" data-cat="checkout">退房與後續</button>
+  </div>
+  <div id="qa-list"></div>
+  <div class="footer-note">
+    找不到答案？直接在聊天室留言，<strong>櫃台專員看到訊息後會盡快回覆您</strong>，請耐心等待。
+  </div>
+</div>
+
+<script>
+const CAT = {
+  booking:   { label: '訂房與付款', color: '#00656E' },
+  arrival:   { label: '入住前準備', color: '#00656E' },
+  policy:    { label: '館內規定',   color: '#ffc72c' },
+  facilities:{ label: '設備與備品', color: '#ffc72c' },
+  checkout:  { label: '退房與後續', color: '#00656E' },
+};
+
+const QA = [
+  { cat:'booking', q:'如何訂房？可以在哪裡預訂？', a:[{lines:[
+    '可至官網 <a href="https://www.finders-wh.com/" target="_blank" style="color:#00656E;">finders-wh.com</a> 訂房，或透過各大訂房平台預訂。',
+    '直接透過 LINE 洽詢亦可（LINE 官方 ID：@386vsmlv，要加 @ 搜尋哦！）。',
+    '網路訂房需以信用卡進行預先授權。'
+  ]}]},
+  { cat:'booking', q:'什麼是預先授權？我的信用卡被扣款了嗎？', a:[{lines:[
+    '預先授權是「暫時圈存該房費額度」，並非實際扣款。收到銀行通知請勿緊張，您仍可於入住當天選擇用信用卡或現金付款。',
+    '暫押額度將於 2–3 週後自動解除。'
+  ]}]},
+  { cat:'booking', q:'免費取消的期限是什麼時候？', a:[{lines:[
+    '入住日三天前（不含入住日當日）取消或更改，不收任何費用。',
+    '例如預計7/1入住，最晚取消期限為：6/27 23：59以前來電或是訊息取消為免費。',
+    '超過免費期限取消，將按房間數量收取第一晚房費作為取消費。若有疑問歡迎洽詢櫃台專員。'
+  ]}]},
+  { cat:'booking', q:'颱風來了可以免費取消嗎？', a:[{lines:[
+    '花蓮市尚未發布陸上颱風警報時，仍依一般取消政策處理。',
+    '若已發佈陸警，我們會協助處理，在政府發布相關訊息之前，請勿直接取消訂單，否則將依各平台訂房之規定收費'
+  ]}]},
+  { cat:'booking', q:'訂房後可以更改房型嗎？', a:[{lines:[
+    '如需更改房型，請在免費取消期限內至原訂房平台後台自行修改。若入住當天才要更換，需視現場房況及差額補繳。',
+    '注意：官網預訂無法修改單一房型或取消單一房間，須整筆取消後自行重新預訂，費用以最新房價報價。'
+  ]}]},
+  { cat:'booking', q:'可以使用旅展票券訂房嗎？', a:[{lines:[
+    '可以。請提供完整禮券編號、信託序號讓專員確認，確認可使用後才算訂房成立。(可洽票券預訂專區)',
+    '入住當天須攜帶紙本票券或出示有效電子票券，否則將以當日房價收費。',
+    '票券預訂須直接聯繫飯店專員，無法從網路上預訂使用，與官網優惠專案只能擇一使用。'
+  ]}]},
+  { cat:'booking', q:'匯款訂金後想取消退款需要多久？怎麼處理？', a:[{lines:[
+    '請加入 LINE（ID：@386vsmlv，要加 @ 搜尋哦！）由專人處理。',
+    '退款需提供訂房人本人的存摺封面，非本人帳戶需填寫退款切結書。',
+    '處理時間約 21–31 個工作天，會扣除 NT$30 匯費。'
+  ]}]},
+
+  { cat:'arrival', q:'幾點可以入住？幾點最晚要退房？', a:[{lines:[
+    '入住時間：下午 15:00 至晚間 23:00，由於結帳換日問題，若會超過晚間11點後抵達，請務必提前主動聯繫我們並提前結清帳款。',
+    '退房時間：中午 11:00 前，若需延遲退房，依據相關政策收費。',
+    '櫃台 24 小時服務。'
+  ]}]},
+  { cat:'arrival', q:'可以提早入住或延遲退房嗎？費用怎麼算？', a:[{lines:[
+    '可以，但需視當日房況，無法保證。',
+    '提早入住或延遲退房每小時收 NT$200（超過 10 分鐘即算一小時）。',
+    '延遲退房最多不超過兩小時，請提前至櫃台結清費用。'
+  ]}]},
+  { cat:'arrival', q:'超過晚間 11 點才能抵達怎麼辦？', a:[{lines:[
+    '由於結帳換日問題，請務必提前主動聯繫我們事先結清帳款。',
+    '請加 LINE（ID：@386vsmlv，要加 @ 搜尋哦！）並告知訂單編號或訂房姓名，櫃台專員會協助您辦理。'
+  ]}]},
+  { cat:'arrival', q:'可以提早到館寄放行李嗎？', a:[{lines:[
+    '可以，於房間準備好之前可先到櫃台寄放行李。貴重物品請隨身攜帶。'
+  ]}]},
+  { cat:'arrival', q:'怎麼到達飯店？有交通建議嗎？', a:[{lines:[
+    '地址：花蓮市福建街 512 號。',
+    '從花蓮火車站搭計程車約 10–15 分鐘，車資約 NT$150–180（跳表計價，此為預估車資）。',
+    '從花蓮機場約 25–30 分鐘，車資約 NT$300–350（跳表計價，此為預估車資）。',
+    '也可搭 301 號公車至「東大門夜市」站。',
+    '東大門夜市步行約 5 分鐘可抵達本館。'
+  ]}]},
+  { cat:'arrival', q:'有提供停車位嗎？附近可以停哪裡？', a:[{lines:[
+    '本館無提供停車位，請勿停放於騎樓。',
+    '附近可利用路邊收費停車格（NT$20/小時，22:00–10:00 免費），或步行約 5 分鐘的東大門夜市免費廣場（車位有限，若逢活動可能關閉）。'
+  ]}]},
+  { cat:'arrival', q:'需要帶哪些東西來入住？', a:[{lines:[
+    '請攜帶有效身份證件（身份證、駕照、健保卡、護照或居留證）。依觀光旅館業管理規則辦理入住登記，可確保交易安全並保障旅客住宿安全。',
+    '若使用旅展票券訂房，須攜帶紙本票券或電子票券。',
+    '建議自備盥洗用品與毛巾（本館為環保旅店，不提供拋棄式盥洗用品、小毛巾及瓶裝水）。'
+  ]}]},
+
+  { cat:'policy', q:'可以吸菸嗎？有吸菸房嗎？', a:[{lines:[
+    '全館（包含室內、騎樓、客房）全面禁菸及禁毒，依菸害防制法規定執行。',
+    '本館無吸菸房。違規者將收取清潔費 NT$6,000。'
+  ]}]},
+  { cat:'policy', q:'可以帶寵物入住嗎？', a:[{lines:[
+    '恕不接受攜帶寵物入住，導盲犬除外，以維護館內衛生環境。'
+  ]}]},
+  { cat:'policy', q:'我可以帶小孩入住嗎？怎麼收費？', a:[
+    { title:'孩童入住說明', lines:[
+      '每間客房僅限一位 12 歲以下孩童可免費入住（不佔床），且不另提供枕頭、棉被及其他備品。',
+      '若同行孩童人數超過一位，或孩童需要獨立床位，建議以成人計算或增加房間數，以確保足夠空間與床位。'
+    ]},
+    { title:'加床與入住人數限制', lines:[
+      '全館不提供加床服務。超過房型基本可容納人數，將收取人頭費 NT$500／人／晚。'
+    ]}
+  ]},
+  { cat:'policy', q:'可以帶訪客進房間嗎？', a:[{lines:[
+    '恕不接受外來訪客進入客房，以維護住宿品質及其他房客安全。'
+  ]}]},
+  { cat:'policy', q:'連續住宿有提供清潔服務嗎？', a:[{lines:[
+    '連續住宿不提供免費房間清潔服務。如需更換床單、毛巾等，每次收取 NT$100。'
+  ]}]},
+  { cat:'policy', q:'可以指定鄰近的房間或特定樓層嗎？', a:[{lines:[
+    '我們會盡力配合您的需求進行調整和安排，但每層樓房型配置不同，實際仍以現場房況為主，如無法達成期待，敬請見諒。'
+  ]}]},
+  { cat:'policy', q:'房間的隔音如何？', a:[{lines:[
+    '本館由老建築改建，部分房間可能會有管線聲或環境音，隔音效果無法與新建案相比。',
+    '對聲音較敏感的旅客，建議您在訂房前納入考量。'
+  ]}]},
+  { cat:'policy', q:'早餐是什麼時間？可以外帶嗎？', a:[{lines:[
+    '早餐供應時間為 07:00–10:00，憑早餐券至 1 樓使用。',
+    '不提供外帶服務。選擇含早餐方案後，若因個人因素無法用餐，恕不退款。',
+    '若預訂時未選擇含早方案，可現場加價購。'
+  ]}]},
+  { cat:'policy', q:'有浴缸或是陽台房嗎？', a:[{lines:[
+    '全館皆無浴缸及陽台設施。'
+  ]}]},
+  { cat:'policy', q:'館內是否提供電梯？', a:[{lines:[
+    '館內提供電梯便於抵達各樓層。',
+    '但本館房間非無障礙空間，浴室均有門檻，輪椅進出較為困難，建議行動不便之旅客另尋符合無障礙需求之旅店入住。'
+  ]}]},
+  { cat:'policy', q:'每間房間都有窗戶嗎？', a:[{lines:[
+    '全館房間均設有窗戶，但因位於市區內，部分房間面對民宅或防火巷，無法避免，敬請理解。'
+  ]}]},
+
+  { cat:'facilities', q:'高級及菁英房有什麼不同？', a:[{lines:[
+    '菁英系列空間感較佳。建議依旅遊預算選擇：菁英 ＞ 高級 ＞ 標準。'
+  ]}]},
+  { cat:'facilities', q:'本館提供哪些備品？需要自備什麼？', a:[{lines:[
+    '客房提供：洗髮精、沐浴乳、浴巾。',
+    '不提供：拋棄式牙刷、牙膏、梳子、刮鬍刀、沐浴帽、小毛巾、瓶裝水。',
+    '建議旅客自行攜帶。'
+  ]}]},
+  { cat:'facilities', q:'房間的枕頭和棉被是標準配置幾個？', a:[
+    { lines:[
+      '• 單人房：單人床 ×1、枕頭 ×1、棉被 ×1',
+      '• 雙人房：雙人床 ×1、枕頭 ×2、棉被 ×1',
+      '• 雙床房：單人床 ×2、枕頭 ×2、棉被 ×2',
+      '• 三人房：雙人床 ×1、單人床 ×1、枕頭 ×3、棉被 ×2',
+      '• 四人房：雙人床 ×2、枕頭 ×4、棉被 ×2'
+    ]},
+    { title:'加購備品說明', lines:[
+      '如需額外枕頭或棉被等備品，每項酌收清潔費 NT$50。',
+      '有需求請提前告知，費用於入住當天至櫃台結清。',
+      '因館內備品數量有限，實際供應依現場狀況為準，敬請見諒。'
+    ]},
+    { title:'環保提醒', lines:[
+      '本館不提供拋棄式盥洗用品、小毛巾及瓶裝水，敬請自行攜帶。'
+    ]}
+  ]},
+  { cat:'facilities', q:'可以幫我把兩張床並在一起或靠牆嗎？', a:[{lines:[
+    '本館不主動幫客人移床，因移動後可能影響床架穩定性，且床頭附近有插座及開關，移位後使用不便。',
+    '如您自行評估安全後想移動，歡迎自行處理，但請留意相關風險。'
+  ]}]},
+  { cat:'facilities', q:'有提供嬰兒用品嗎？', a:[{lines:[
+    '可提供澡盆與小椅凳（數量有限，無法提前預留，以現場庫存為準）。',
+    '本館目前不提供嬰兒床及消毒鍋。'
+  ]}]},
+  { cat:'facilities', q:'附近有洗衣店嗎？', a:[{lines:[
+    '最近的自助洗衣店「笑洗洗 1 號店」就在對面，地址：花蓮市福建街 501 號，步行約 1 分鐘即可抵達。',
+    'Google 地圖：<a href="https://g.co/kgs/tDFMp2X" target="_blank" style="color:#00656E;">https://g.co/kgs/tDFMp2X</a>'
+  ]}]},
+  { cat:'facilities', q:'有飲水機嗎？房間有提供瓶裝水嗎？', a:[{lines:[
+    '各樓層電梯出來右轉均設有飲水機，房間內也備有快煮壺及馬克杯可使用。',
+    '瓶裝水已不再提供，請多加利用飲水機。若需要瓶裝水可至一樓大廳洽詢服務人員。'
+  ]}]},
+
+  { cat:'checkout', q:'退房後如果忘記帶走東西怎麼辦？', a:[{lines:[
+    '遺留物品保管至多三個月（生鮮物品不保留）。',
+    '請來電 03-832-0021 或 LINE 告知物品、入住日期及房號，確認後可安排黑貓宅急便寄送（費用到付，週末不寄送），或自行回館領取。'
+  ]}]},
+  { cat:'checkout', q:'可以開立統一發票嗎？', a:[{lines:[
+    '到店付款之訂單均在入住時現場開立發票，若有統編需求請於訂房時或入住當天告知工作人員並提供統編。',
+    '若經由其他訂房平台預訂，部分平台採預先付款機制，將由訂房平台開立收據或發票，恕現場無法配合開立，請事先確認自己的報銷需求。'
+  ]}]},
+  { cat:'checkout', q:'退房後還可以寄存行李嗎？', a:[{lines:[
+    '退房後仍可以寄存行李，貴重物品請自行隨身攜帶。',
+    '行李請當日取走，無寄放過夜之服務，若有需求請洽火車站行李房。'
+  ]}]},
+];
+
+let activeCat='all', searchTerm='';
+
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function hlRaw(text,term){
+  if(/<[a-z]/i.test(text)){
+    if(!term) return text;
+    const re=new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+    return text.replace(re,m=>'<span class="highlight">'+m+'</span>');
+  }
+  return hl(text,term);
+}
+function hl(text,term){
+  if(!term) return esc(text);
+  const re=new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  return esc(text).replace(re,m=>'<span class="highlight">'+m+'</span>');
+}
+function renderA(blocks,term){
+  return blocks.map(b=>{
+    const lines=b.lines.map(l=>'<p>'+hlRaw(l,term)+'</p>').join('');
+    if(b.title) return '<div class="grp"><div class="grp-title">【'+hl(b.title,term)+'】</div>'+lines+'</div>';
+    return '<div class="grp">'+lines+'</div>';
+  }).join('');
+}
+function flatText(blocks){ return blocks.map(b=>(b.title||'')+' '+b.lines.join(' ')).join(' '); }
+
+function render(){
+  const list=document.getElementById('qa-list');
+  const term=searchTerm.trim(), tl=term.toLowerCase();
+  const filtered=QA.filter(item=>{
+    const catOk=activeCat==='all'||item.cat===activeCat;
+    const full=(item.q+' '+flatText(item.a)).toLowerCase();
+    return catOk&&(!tl||full.includes(tl));
+  });
+  if(!filtered.length){
+    list.innerHTML='<div class="no-results">找不到相關問題，試試其他關鍵字</div>';
+    return;
+  }
+  const groups={};
+  filtered.forEach(item=>{ if(!groups[item.cat]) groups[item.cat]=[]; groups[item.cat].push(item); });
+  const order=['booking','arrival','policy','facilities','checkout'];
+  let html='';
+  order.forEach(cat=>{
+    if(!groups[cat]) return;
+    if(activeCat==='all') html+='<div class="sec-label">'+CAT[cat].label+'</div>';
+    groups[cat].forEach((item,idx)=>{
+      const id=cat+idx;
+      html+='<div class="qa-item"><div class="qa-q" onclick="tog(\''+id+'\')"><div class="q-left"><div class="cat-dot" style="background:'+CAT[cat].color+'"></div><div class="q-text">'+hl(item.q,term)+'</div></div><span class="chevron" id="chev-'+id+'">&#8964;</span></div><div class="qa-a" id="ans-'+id+'">'+renderA(item.a,term)+'</div></div>';
+    });
+  });
+  list.innerHTML=html;
+  if(tl){
+    filtered.forEach(item=>{
+      const cat=item.cat,idx=groups[cat].indexOf(item),id=cat+idx;
+      const a=document.getElementById('ans-'+id),c=document.getElementById('chev-'+id);
+      if(a){a.classList.add('open');c.classList.add('open');}
+    });
+  }
+}
+function tog(id){
+  const a=document.getElementById('ans-'+id),c=document.getElementById('chev-'+id);
+  c.classList.toggle('open',a.classList.toggle('open'));
+}
+document.querySelectorAll('.cat-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active'); activeCat=btn.dataset.cat; render();
+  });
+});
+document.getElementById('search-input').addEventListener('input',e=>{
+  searchTerm=e.target.value;
+  if(searchTerm.trim()){
+    document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector('[data-cat="all"]').classList.add('active');
+    activeCat='all';
+  }
+  render();
+});
+render();
+</script>
+</body>
+</html>
