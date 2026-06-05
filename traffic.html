@@ -310,29 +310,6 @@ body {
   to   { opacity:1; transform:translateY(0); }
 }
 </style>
-<script>
-function openMap(lat, lng, name) {
-  var ua = navigator.userAgent.toLowerCase();
-  var isIOS = /iphone|ipad|ipod/.test(ua);
-  if (isIOS) {
-    // 先試開 Google Maps APP，若未安裝自動 fallback 到 Apple Maps
-    var gMapApp = "comgooglemaps://?q=" + encodeURIComponent(name) + "&center=" + lat + "," + lng;
-    var appleMap = "maps://?q=" + encodeURIComponent(name) + "&ll=" + lat + "," + lng;
-    var fallback = "https://maps.google.com/?q=" + encodeURIComponent(name) + "&ll=" + lat + "," + lng;
-    var start = Date.now();
-    var timer = setTimeout(function() {
-      // Google Maps APP 沒開成功，改開 Apple Maps
-      window.location.href = appleMap;
-    }, 800);
-    window.addEventListener("pagehide", function() { clearTimeout(timer); });
-    window.location.href = gMapApp;
-  } else {
-    // Android 直接開 Google Maps
-    window.location.href = "https://maps.google.com/?q=" + encodeURIComponent(name) + "&ll=" + lat + "," + lng;
-  }
-}
-</script>
-
 </head>
 <body>
 
@@ -341,7 +318,7 @@ function openMap(lat, lng, name) {
   <div class="header-eyebrow">Finders Hotel · Traffic Info</div>
   <div class="header-title">路境行旅<br>花蓮文化館<br><span class="gold">交通資訊</span></div>
   <div class="header-addr-label">旅店地址</div>
-  <a class="header-nav-btn" href="#" onclick="openMap(23.9755989,121.6109726,'路境行旅花蓮文化館');return false;" target="_blank">
+  <a class="header-nav-btn" href="https://maps.google.com/?q=路境行旅花蓮文化館&ll=23.9755989,121.6109726" target="_blank">
     <div class="nav-btn-left">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a1628" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
     </div>
@@ -385,7 +362,7 @@ function openMap(lat, lng, name) {
   </div>
 
   <div class="card">
-    <a class="card-item" href="#" onclick="openMap(23.9755603,121.609563,'PP停車場');return false;" target="_blank">
+    <a class="card-item" href="https://maps.google.com/?q=PP+Parking+花蓮&ll=23.9755603,121.609563" target="_blank">
       <div class="icon-box ic-teal">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M9 16V8h4a2 2 0 0 1 0 4H9"/></svg>
       </div>
@@ -395,7 +372,7 @@ function openMap(lat, lng, name) {
       </div>
       <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </a>
-    <a class="card-item" href="#" onclick="openMap(23.9758974,121.6092131,'花蓮福町停車場');return false;" target="_blank">
+    <a class="card-item" href="https://share.google/1GrRzmGS5JcLdasoP" target="_blank">
       <div class="icon-box ic-teal">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M9 16V8h4a2 2 0 0 1 0 4H9"/></svg>
       </div>
@@ -405,17 +382,17 @@ function openMap(lat, lng, name) {
       </div>
       <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </a>
-    <a class="card-item" href="#" onclick="openMap(23.9742022,121.6107777,'石來運轉停車場');return false;" target="_blank">
+    <a class="card-item" href="https://maps.app.goo.gl/i3qrztppNkFh4gYZ8" target="_blank">
       <div class="icon-box ic-green">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M9 16V8h4a2 2 0 0 1 0 4H9"/></svg>
       </div>
       <div class="it">
-        <div class="it-title">石來運轉停車場</div>
+        <div class="it-title">停車場(石來運轉噴水池)</div>
         <div class="it-desc">免費／先到先得 · 點擊開啟 Google 導航</div>
       </div>
       <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </a>
-    <a class="card-item" href="#" onclick="openMap(23.9706442,121.6094477,'東大門夜市重慶市場免費停車場');return false;" target="_blank">
+    <a class="card-item" href="https://maps.app.goo.gl/32Xq4CD6kGKXSDtk6" target="_blank">
       <div class="icon-box ic-green">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M9 16V8h4a2 2 0 0 1 0 4H9"/></svg>
       </div>
