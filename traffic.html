@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>路境行旅花蓮文化館 — 交通資訊</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #00656E;
+  --teal-dark: #004d54;
+  --teal-mid: #00818c;
+  --teal-light: #dff0f1;
+  --teal-pale: #f0fafa;
+  --gold: #ffc72c;
+  --gold-dark: #c49000;
+  --gold-pale: #fff8e0;
+  --gold-border: #ffd97a;
+  --text-dark: #1a2c2d;
+  --text-mid: #3a5c5e;
+  --text-muted: #7aabae;
+  --border: #c5e5e7;
+  --bg: #f4f9f9;
+  --white: #ffffff;
+  --red-soft: #fff1f0;
+  --red-border: #f5c0c0;
+  --red-text: #b83030;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  background: var(--bg);
+  color: var(--text-dark);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 15px;
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.page-header {
+  background: var(--teal);
+  padding: 30px 22px 26px;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(255,199,44,0.08);
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: 30px;
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+.header-eyebrow {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.header-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+.header-title .gold { color: var(--gold); }
+.header-addr {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-decoration: none;
+}
+.header-addr span { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.5; }
+
+.section { padding: 22px 16px 6px; }
+
+.sec-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 700;
+  margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: var(--teal-light);
+}
+
+.card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.card-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 16px;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid var(--teal-light);
+}
+.card-item:last-child { border-bottom: none; }
+.card-item:active { background: var(--teal-pale); }
+
+.icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ic-teal  { background: var(--teal-light); color: var(--teal); }
+.ic-gold  { background: var(--gold-pale);  color: #a07000; }
+.ic-blue  { background: #edf1ff; color: #3a6fd8; }
+.ic-green { background: #edfaf3; color: #1a8a50; }
+.ic-red   { background: var(--red-soft);   color: var(--red-text); }
+.ic-green { background: #edfaf3; color: #1a8a50; }
+
+.it { flex: 1; min-width: 0; }
+.it-title { font-size: 16px; font-weight: 500; color: var(--text-dark); line-height: 1.3; }
+.it-desc  { font-size: 13px; color: var(--text-mid); margin-top: 4px; line-height: 1.6; font-weight: 300; }
+.it-phone { font-size: 18px; font-weight: 700; color: var(--teal); letter-spacing: 0.5px; margin-top: 3px; }
+
+.arr { color: var(--teal-light); flex-shrink: 0; }
+
+.notice {
+  border-radius: 12px;
+  padding: 14px 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.n-warn { background: var(--gold-pale);  border: 1.5px solid var(--gold-border); }
+.n-info { background: var(--teal-pale);  border: 1.5px solid var(--teal-light); }
+.n-red  { background: var(--red-soft);   border: 1.5px solid var(--red-border); }
+.notice svg { flex-shrink: 0; margin-top: 1px; }
+.n-title { font-size: 14px; font-weight: 500; line-height: 1.4; }
+.n-desc  { font-size: 13px; margin-top: 5px; line-height: 1.7; font-weight: 300; }
+.n-warn .n-title { color: #7a5200; }
+.n-warn .n-desc  { color: #8a6418; }
+.n-info .n-title { color: var(--teal-dark); }
+.n-info .n-desc  { color: var(--text-mid); }
+.n-red  .n-title { color: var(--red-text); }
+.n-red  .n-desc  { color: #8a3030; }
+
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-top: 6px;
+}
+.tag-teal { background: var(--teal-light); color: var(--teal-dark); }
+.tag-gold { background: var(--gold-pale);  color: #8a6000; }
+
+/* 計程車 2欄 */
+.taxi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.taxi-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 15px 14px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: background 0.12s;
+}
+.taxi-card:active { background: var(--teal-pale); }
+.tx-name  { font-size: 14px; font-weight: 500; color: var(--text-dark); }
+.tx-phone { font-size: 17px; font-weight: 700; color: var(--teal); letter-spacing: 0.3px; margin-top: 2px; }
+.tx-hint  { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+/* APP 叫車 2欄 */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.app-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 14px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.12s;
+}
+.app-card:active { background: var(--teal-pale); }
+.app-ico { width: 38px; height: 38px; border-radius: 10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.app-name { font-size: 15px; font-weight: 500; color: var(--text-dark); }
+.app-sub  { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+/* 公車步驟 */
+.bus-step {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.bus-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--teal-light);
+}
+.bus-row:last-child { border-bottom: none; }
+.bus-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.bus-body { flex: 1; }
+.bus-title { font-size: 15px; font-weight: 500; color: var(--text-dark); line-height: 1.35; }
+.bus-desc  { font-size: 13px; color: var(--text-mid); margin-top: 4px; line-height: 1.65; font-weight: 300; }
+.bus-tag   { display:inline-flex; align-items:center; gap:5px; background: var(--teal); color:#fff; font-size:13px; font-weight:500; padding:4px 11px; border-radius:20px; margin-top:6px; }
+
+.footer {
+  padding: 24px 16px 40px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.8;
+  border-top: 1.5px solid var(--teal-light);
+  margin-top: 10px;
+}
+.footer strong { color: var(--teal); font-weight: 500; }
+
+.header-addr-label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  margin: 14px 0 6px;
+}
+.header-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--gold);
+  border-radius: 12px;
+  padding: 13px 16px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.header-nav-btn:active { opacity: 0.85; }
+.nav-btn-left {
+  width: 40px; height: 40px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.nav-btn-body { flex: 1; }
+.nav-btn-title { font-size: 15px; font-weight: 700; color: #0a1628; line-height: 1.3; }
+.nav-btn-addr  { font-size: 12px; color: rgba(10,22,40,0.65); margin-top: 2px; }
+.nav-btn-arrow { flex-shrink: 0; }
+.fade-in { animation: fadeUp 0.35s ease both; }
+.s1{animation-delay:.05s}.s2{animation-delay:.1s}.s3{animation-delay:.15s}.s4{animation-delay:.2s}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+</style>
+<script>
+function openMap(lat, lng, name) {
+  var ua = navigator.userAgent.toLowerCase();
+  var isIOS = /iphone|ipad|ipod/.test(ua);
+  if (isIOS) {
+    // 先試開 Google Maps APP，若未安裝自動 fallback 到 Apple Maps
+    var gMapApp = "comgooglemaps://?q=" + encodeURIComponent(name) + "&center=" + lat + "," + lng;
+    var appleMap = "maps://?q=" + encodeURIComponent(name) + "&ll=" + lat + "," + lng;
+    var fallback = "https://maps.google.com/?q=" + encodeURIComponent(name) + "&ll=" + lat + "," + lng;
+    var start = Date.now();
+    var timer = setTimeout(function() {
+      // Google Maps APP 沒開成功，改開 Apple Maps
+      window.location.href = appleMap;
+    }, 800);
+    window.addEventListener("pagehide", function() { clearTimeout(timer); });
+    window.location.href = gMapApp;
+  } else {
+    // Android 直接開 Google Maps
+    window.location.href = "https://maps.google.com/?q=" + encodeURIComponent(name) + "&ll=" + lat + "," + lng;
+  }
+}
+</script>
+
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="header-eyebrow">Finders Hotel · Traffic Info</div>
+  <div class="header-title">路境行旅<br>花蓮文化館<br><span class="gold">交通資訊</span></div>
+  <div class="header-addr-label">旅店地址</div>
+  <a class="header-nav-btn" href="#" onclick="openMap(23.9755989,121.6109726,'路境行旅花蓮文化館');return false;" target="_blank">
+    <div class="nav-btn-left">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a1628" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    </div>
+    <div class="nav-btn-body">
+      <div class="nav-btn-title">開啟 Google 導航前往旅店</div>
+      <div class="nav-btn-addr">花蓮市福建街 512 號</div>
+    </div>
+    <div class="nav-btn-arrow">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a1628" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+  </a>
+</div>
+
+<!-- 停車資訊 -->
+<div class="section fade-in s1">
+  <div class="sec-label">停車資訊</div>
+
+  <div class="notice n-red">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b83030" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <div>
+      <div class="n-title">本館無提供停車位，請旅客自理</div>
+      <div class="n-desc">路邊收費停車格 <strong>1小時 NT$20</strong><br>晚上 10 點 至 隔日早上 10 點 免費停車</div>
+    </div>
+  </div>
+
+  <div class="notice n-info">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00656E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div>
+      <div class="n-title">東大門福町夜市旁免費停車位</div>
+      <div class="n-desc">先到先得，縣政府所有土地。<br>若縣府辦理活動，該區域可能暫停使用，請留意。</div>
+    </div>
+  </div>
+
+  <div class="sec-label" style="margin-top:6px">附近停車場資訊</div>
+
+  <div class="notice n-warn" style="margin-bottom:10px">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a07000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div>
+      <div class="n-desc">私人停車場收費標準請進場前自行確認，本館不負停車責任。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <a class="card-item" href="#" onclick="openMap(23.9755603,121.609563,'PP停車場');return false;" target="_blank">
+      <div class="icon-box ic-teal">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M9 16V8h4a2 2 0 0 1 0 4H9"/></svg>
+      </div>
+      <div class="it">
+        <div class="it-title">PP 停車場</div>
+        <div class="it-desc">付費 · 點擊開啟 Google 導航</div>
+      </div>
+      <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a class="card-item" href="#" onclick="openMap(23.9758974,121.6092131,'花蓮福町停車場');return false;" target="_blank">
+      <div class="icon-box ic-teal">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M9 16V8h4a2 2 0 0 1 0 4H9"/></svg>
+      </div>
+      <div class="it">
+        <div class="it-title">花蓮福町停車場</div>
+        <div class="it-desc">付費 · 點擊開啟 Google 導航</div>
+      </div>
+      <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a class="card-item" href="#" onclick="openMap(23.9742022,121.6107777,'石來運轉停車場');return false;" target="_blank">
+      <div class="icon-box ic-green">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M9 16V8h4a2 2 0 0 1 0 4H9"/></svg>
+      </div>
+      <div class="it">
+        <div class="it-title">石來運轉停車場</div>
+        <div class="it-desc">免費／先到先得 · 點擊開啟 Google 導航</div>
+      </div>
+      <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a class="card-item" href="#" onclick="openMap(23.9706442,121.6094477,'東大門夜市重慶市場免費停車場');return false;" target="_blank">
+      <div class="icon-box ic-green">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M9 16V8h4a2 2 0 0 1 0 4H9"/></svg>
+      </div>
+      <div class="it">
+        <div class="it-title">東大門夜市重慶市場免費停車場</div>
+        <div class="it-desc">免費／先到先得 · 點擊開啟 Google 導航</div>
+      </div>
+      <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- 叫車服務 -->
+<div class="section fade-in s2">
+  <div class="sec-label">叫車服務</div>
+
+  <div class="notice n-warn" style="margin-bottom:12px">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a07000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <div>
+      <div class="n-title">雨天請提早 30 分鐘以上叫車</div>
+      <div class="n-desc">花蓮以私家計程車為大宗。有習慣使用 APP 叫車的旅客可參考下方選項。<br>目前花蓮暫無 Uber 服務。</div>
+    </div>
+  </div>
+
+  <div class="sec-label" style="margin-top:4px">APP 叫車</div>
+  <div class="app-grid">
+    <a class="app-card" href="tel:55688" >
+      <div class="app-ico ic-gold">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="8" width="22" height="12" rx="2"/><path d="M5 8V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/><circle cx="7.5" cy="15.5" r="1"/><circle cx="16.5" cy="15.5" r="1"/></svg>
+      </div>
+      <div>
+        <div class="app-name">55688</div>
+        <div class="app-sub">台灣大車隊</div>
+      </div>
+    </a>
+    <a class="app-card" href="https://apps.apple.com/tw/app/line-taxi/id1082457593" target="_blank">
+      <div class="app-ico ic-blue">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div>
+        <div class="app-name">LINE TAXI</div>
+        <div class="app-sub">APP 叫車</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="sec-label" style="margin-top:4px">花蓮在地計程車</div>
+  <div class="taxi-grid">
+    <a class="taxi-card" href="tel:038346666">
+      <div class="tx-name">美美計程車行</div>
+      <div class="tx-phone">03-834-6666</div>
+      <div class="tx-hint">點擊直撥</div>
+    </a>
+    <a class="taxi-card" href="tel:0800659659">
+      <div class="tx-name">統一計程車行</div>
+      <div class="tx-phone">0800-659-659</div>
+      <div class="tx-hint">點擊直撥</div>
+    </a>
+    <a class="taxi-card" href="tel:0800509509">
+      <div class="tx-name">大豐計程車行</div>
+      <div class="tx-phone">0800-509-509</div>
+      <div class="tx-hint">點擊直撥</div>
+    </a>
+    <a class="taxi-card" href="tel:0800337337">
+      <div class="tx-name">國聲計程車行</div>
+      <div class="tx-phone">0800-337-337</div>
+      <div class="tx-hint">點擊直撥</div>
+    </a>
+  </div>
+</div>
+
+<!-- 大眾交通 -->
+<div class="section fade-in s3">
+  <div class="sec-label">大眾交通</div>
+
+  <div class="bus-step">
+    <div class="bus-row">
+      <div class="bus-num">1</div>
+      <div class="bus-body">
+        <div class="bus-title">搭公車到東大門夜市站</div>
+        <div class="bus-desc">有停「<strong>東大門夜市站</strong>」的路線均可抵達，下車後步行約 <strong>5 分鐘</strong> 即到旅館。</div>
+        <span class="bus-tag">東大門夜市站 下車</span>
+      </div>
+    </div>
+    <div class="bus-row">
+      <div class="bus-num">2</div>
+      <div class="bus-body">
+        <div class="bus-title">從花蓮火車站出發</div>
+        <div class="bus-desc">走到火車站斜對面的「<strong>花蓮轉運站</strong>」，搭乘 <strong>301、308 或 310</strong> 均可直達東大門夜市。</div>
+        <span class="tag tag-teal" style="margin-top:6px">301 ／ 308 ／ 310</span>
+      </div>
+    </div>
+    <div class="bus-row">
+      <div class="bus-num">3</div>
+      <div class="bus-body">
+        <div class="bus-title">建議抵達後先確認班次</div>
+        <div class="bus-desc">公車班次與路線可能調整，建議前往花蓮轉運站詢問最新資訊。</div>
+      </div>
+    </div>
+    <div class="bus-row" style="border-bottom:none">
+      <div class="bus-num" style="background:var(--gold);color:#6a4400">4</div>
+      <div class="bus-body">
+        <div class="bus-title">查詢公車班次</div>
+        <div class="bus-desc">花蓮公車班次不比大都市密集，建議出門前查詢即時動態，抓準到站時間。除「花蓮客運」外，皆由業者官網提供營運路線班次時刻資訊。如有疑義請洽各客運業者。</div>
+        <a href="https://110traffic.hl.gov.tw" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:var(--teal);color:#fff;font-size:13px;font-weight:500;padding:6px 14px;border-radius:20px;margin-top:8px;margin-right:6px;text-decoration:none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          花蓮交通 e 點通
+        </a>
+        <a href="https://www.taiwanbus.tw/ebuspage/Default.aspx?lan=C" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:var(--gold);color:#6a4400;font-size:13px;font-weight:700;padding:6px 14px;border-radius:20px;margin-top:8px;text-decoration:none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          公路客運即時動態
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <strong>路境行旅花蓮文化館</strong><br>
+  花蓮市福建街 512 號<br>
+  如有其他交通問題，歡迎直接留言詢問
+</div>
+
+</body>
+</html>
