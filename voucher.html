@@ -188,6 +188,59 @@
   .custom-room-wrap.show { display: block; }
   .custom-room-wrap input { border-color: var(--yellow-dark); }
 
+  /* ── Room rows (card style) ── */
+  .room-rows { display: flex; flex-direction: column; gap: 0; }
+  .room-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.7rem 0; border-bottom: 1px solid #EBF5F6; gap: 0.75rem;
+  }
+  .room-row:last-child { border-bottom: none; }
+  .room-row-left {
+    display: flex; align-items: center; gap: 0.55rem;
+    flex: 1; cursor: pointer; user-select: none; min-width: 0;
+  }
+  .room-check {
+    width: 20px; height: 20px; border: 2px solid var(--border);
+    border-radius: 5px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.18s; background: white;
+  }
+  .room-check.checked { background: var(--teal); border-color: var(--teal); }
+  .room-check.checked::after { content: '✓'; color: white; font-size: 0.72rem; font-weight: 700; }
+  .room-label { font-size: 0.84rem; color: var(--ink-soft); transition: color 0.18s; }
+  .room-label.active { color: var(--teal-dark); font-weight: 500; }
+  .room-counter {
+    display: flex; align-items: center;
+    opacity: 0.25; pointer-events: none; transition: opacity 0.2s; flex-shrink: 0;
+  }
+  .room-counter.active { opacity: 1; pointer-events: auto; }
+  .counter-btn {
+    width: 30px; height: 30px; border: 1.5px solid var(--border);
+    background: white; color: var(--teal-dark); font-size: 1.1rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; flex-shrink: 0;
+  }
+  .counter-btn:first-child { border-radius: 7px 0 0 7px; }
+  .counter-btn:last-child  { border-radius: 0 7px 7px 0; }
+  .counter-btn:active { background: var(--teal-light); }
+  .counter-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .counter-val {
+    width: 32px; text-align: center; font-size: 0.88rem; font-weight: 600;
+    color: var(--teal-dark);
+    border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border);
+    height: 30px; line-height: 30px; background: var(--teal-light);
+  }
+
+  /* ── Voucher count ── */
+  .voucher-count-wrap {
+    margin-top: 0.75rem; display: none;
+    background: var(--teal-light); border: 1px solid var(--border);
+    border-radius: 9px; padding: 0.75rem 1rem;
+  }
+  .voucher-count-wrap.show { display: block; }
+  .voucher-count-label { font-size: 0.78rem; font-weight: 500; color: var(--ink-soft); margin-bottom: 0.5rem; }
+  .voucher-count-row { display: flex; align-items: center; gap: 0; width: fit-content; }
+
   /* ── Radio Group ── */
   .radio-group { display: flex; gap: 0.65rem; flex-wrap: wrap; }
   .radio-option {
@@ -333,6 +386,19 @@
     margin: 0.5rem 1rem 1.5rem;
   }
 
+  /* ── Copyright ── */
+  .copyright-footer {
+    text-align: center;
+    padding: 1.25rem 1rem 2rem;
+    font-size: 0.68rem;
+    color: #7AACAE;
+    opacity: 0.75;
+    letter-spacing: 0.3px;
+    line-height: 1.9;
+    border-top: 1px solid var(--border);
+    margin-top: 0.5rem;
+  }
+
   /* ── Overlay ── */
   #overlay {
     display: none; position: fixed; inset: 0;
@@ -383,7 +449,6 @@
   <div class="section-card">
     <div class="section-title">基本資料</div>
 
-    <!-- 入住 & 退房日期 -->
     <div class="field">
       <label class="field-label">入住 / 退房日期 <span class="req">*</span></label>
       <div class="date-row">
@@ -428,24 +493,12 @@
   <!-- ── 房型選擇 ── -->
   <div class="section-card">
     <div class="section-title">房型選擇</div>
-
     <div class="field">
-      <label class="field-label">入住房型 <span class="req">*</span></label>
-      <div class="select-wrap">
-        <select id="roomType" required onchange="onRoomChange(this.value)">
-          <option value="">── 請選擇房型 ──</option>
-          <option value="菁英雙人房">菁英雙人房</option>
-          <option value="菁英雙床房">菁英雙床房</option>
-          <option value="高級雙人房">高級雙人房</option>
-          <option value="菁英家庭房">菁英家庭房</option>
-          <option value="其他房型">其他房型</option>
-        </select>
-      </div>
-      <!-- 其他房型注意 -->
+      <label class="field-label">入住房型 <span class="req">*</span>（可複選）</label>
+      <div class="room-rows" id="roomRows"></div>
       <div class="room-note" id="roomNote">
         ⚠️ 選擇其他房型，使用票券限<strong>現金折抵</strong>方式兌換
       </div>
-      <!-- 其他房型手動輸入 -->
       <div class="custom-room-wrap" id="customRoomWrap">
         <input type="text" id="customRoom" placeholder="請填寫需求房型（例如：三人房）">
       </div>
@@ -455,20 +508,37 @@
   <!-- ── 兌換方式 ── -->
   <div class="section-card">
     <div class="section-title">兌換方式</div>
-
     <div class="field">
       <label class="field-label">請選擇兌換方式 <span class="req">*</span></label>
       <div class="radio-group">
         <label class="radio-option">
-          <input type="radio" name="voucherType" value="票券兌換" id="voucherTicket">
+          <input type="radio" name="voucherType" value="票券兌換" id="voucherTicket" onchange="onVoucherTypeChange()">
           <span class="radio-dot"></span>
           🎫 票券兌換
         </label>
         <label class="radio-option">
-          <input type="radio" name="voucherType" value="現金折抵" id="voucherCash">
+          <input type="radio" name="voucherType" value="現金折抵" id="voucherCash" onchange="onVoucherTypeChange()">
           <span class="radio-dot"></span>
           💰 現金折抵
         </label>
+      </div>
+      <!-- 票券兌換張數 -->
+      <div class="voucher-count-wrap" id="voucherTicketCountWrap">
+        <div class="voucher-count-label">此次預計使用幾張票券？<span class="req">*</span></div>
+        <div class="voucher-count-row">
+          <button type="button" class="counter-btn" onclick="changeVoucherCount('ticket',-1)">－</button>
+          <div class="counter-val" id="voucherTicketCount">1</div>
+          <button type="button" class="counter-btn" onclick="changeVoucherCount('ticket',1)">＋</button>
+        </div>
+      </div>
+      <!-- 現金折抵張數 -->
+      <div class="voucher-count-wrap" id="voucherCashCountWrap">
+        <div class="voucher-count-label">此次預計使用幾張票券折抵金額？<span class="req">*</span></div>
+        <div class="voucher-count-row">
+          <button type="button" class="counter-btn" onclick="changeVoucherCount('cash',-1)">－</button>
+          <div class="counter-val" id="voucherCashCount">1</div>
+          <button type="button" class="counter-btn" onclick="changeVoucherCount('cash',1)">＋</button>
+        </div>
       </div>
     </div>
   </div>
@@ -482,17 +552,14 @@
         上傳票券照片 <span class="req">*</span>
         <span class="hint-inline">／紙本請拍攝正面；電子票券請截圖並包含信託序號</span>
       </label>
-
-      <!-- 照片清單（動態新增） -->
       <div class="upload-list" id="uploadList"></div>
-
       <button type="button" class="btn-add-photo" id="addPhotoBtn" onclick="addPhotoSlot()">
         <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
         </svg>
         新增票券照片
       </button>
-      <span class="hint" style="margin-top:0.5rem;display:block;">⚠️ 請至少上傳一張照片才可送出票券訂房需求</span>
+      <span class="hint" style="margin-top:0.5rem;display:block;">⚠️ 請至少上傳一張照片才可送出票券訂房需求（若有多張可一次上傳或後續補齊相對應的票券數量才可預訂）</span>
     </div>
 
     <div class="field">
@@ -520,6 +587,12 @@
 
 </form>
 
+<!-- 版權聲明 -->
+<div class="copyright-footer">
+  © 2026 路境行旅花蓮文化館　All rights reserved.<br>
+  本頁面內容著作權歸路境行旅花蓮文化館所有，未經授權不得轉載或複製。
+</div>
+
 <!-- Overlay -->
 <div id="overlay">
   <div class="modal">
@@ -531,36 +604,93 @@
 </div>
 
 <script>
-// ══════════════════════════════════════
-//  設定區（僅需修改這裡）
-// ══════════════════════════════════════
-const LIFF_ID          = "2010237174-FXcaeMsU";   // ← 換成你的 LIFF ID
-const CLOUDINARY_NAME  = "db1pzd5xq";
+const LIFF_ID           = "2010237174-FXcaeMsU";
+const CLOUDINARY_NAME   = "db1pzd5xq";
 const CLOUDINARY_PRESET = "finders_hotel_voucher";
-// ══════════════════════════════════════
+const MAX_PER_ROOM      = 4;
 
+// ── 房型資料 ──
+const ROOM_TYPES = ["菁英雙人房","菁英雙床房","高級雙人房","菁英家庭房","其他房型"];
+const roomState = {};
+ROOM_TYPES.forEach(r => { roomState[r] = { checked: false, count: 1 }; });
+
+function renderRooms() {
+  const container = document.getElementById("roomRows");
+  container.innerHTML = "";
+  ROOM_TYPES.forEach(name => {
+    const s = roomState[name];
+    const key = name.replace(/\s/g,'');
+    const row = document.createElement("div");
+    row.className = "room-row";
+    row.innerHTML = `
+      <div class="room-row-left" onclick="toggleRoom('${name}')">
+        <div class="room-check ${s.checked ? 'checked' : ''}" id="chk_${key}"></div>
+        <span class="room-label ${s.checked ? 'active' : ''}">${name}</span>
+      </div>
+      <div class="room-counter ${s.checked ? 'active' : ''}" id="ctr_${key}">
+        <button type="button" class="counter-btn" onclick="changeRoomCount('${name}',-1)" ${s.count<=1?'disabled':''}>－</button>
+        <div class="counter-val">${s.count}</div>
+        <button type="button" class="counter-btn" onclick="changeRoomCount('${name}',1)" ${s.count>=MAX_PER_ROOM?'disabled':''}>＋</button>
+      </div>
+    `;
+    container.appendChild(row);
+  });
+  // 其他房型警告 & 輸入框
+  const hasOther = roomState["其他房型"].checked;
+  document.getElementById("roomNote").classList.toggle("show", hasOther);
+  document.getElementById("customRoomWrap").classList.toggle("show", hasOther);
+}
+
+function toggleRoom(name) {
+  roomState[name].checked = !roomState[name].checked;
+  if (!roomState[name].checked) roomState[name].count = 1;
+  renderRooms();
+}
+
+function changeRoomCount(name, delta) {
+  const s = roomState[name];
+  s.count = Math.max(1, Math.min(MAX_PER_ROOM, s.count + delta));
+  renderRooms();
+}
+
+renderRooms();
+
+// ── 兌換方式張數 ──
+let voucherTicketCount = 1;
+let voucherCashCount   = 1;
+
+function onVoucherTypeChange() {
+  const val = document.querySelector('input[name="voucherType"]:checked')?.value;
+  document.getElementById("voucherTicketCountWrap").classList.toggle("show", val === "票券兌換");
+  document.getElementById("voucherCashCountWrap").classList.toggle("show",   val === "現金折抵");
+}
+
+function changeVoucherCount(type, delta) {
+  if (type === 'ticket') {
+    voucherTicketCount = Math.max(1, voucherTicketCount + delta);
+    document.getElementById("voucherTicketCount").textContent = voucherTicketCount;
+  } else {
+    voucherCashCount = Math.max(1, voucherCashCount + delta);
+    document.getElementById("voucherCashCount").textContent = voucherCashCount;
+  }
+}
+
+// ── 照片上傳 ──
 let photoSlots = [];
 let slotCounter = 0;
 
-// ── 初始化 LIFF ──
 async function initLiff() {
   try {
     await liff.init({ liffId: LIFF_ID });
     if (!liff.isLoggedIn()) liff.login({ redirectUri: location.href });
-  } catch (err) {
-    console.warn("LIFF init (dev mode):", err);
-  }
+  } catch (err) { console.warn("LIFF init (dev mode):", err); }
 }
 initLiff();
-
-// 預設建立第一個上傳格
 addPhotoSlot();
 
-// ── 新增照片上傳格 ──
 function addPhotoSlot() {
   const id = `slot_${++slotCounter}`;
   photoSlots.push({ id, file: null, dataUrl: null, cloudUrl: null });
-
   const item = document.createElement("div");
   item.className = "upload-item";
   item.id = id;
@@ -578,16 +708,12 @@ function addPhotoSlot() {
   document.getElementById("uploadList").appendChild(item);
 }
 
-// ── 選圖後預覽 ──
 function onFileSelect(input, id) {
   const file = input.files[0];
   if (!file) return;
   const slot = photoSlots.find(s => s.id === id);
   if (!slot) return;
-
-  slot.file = file;
-  slot.cloudUrl = null; // 重置（換圖時清除舊網址）
-
+  slot.file = file; slot.cloudUrl = null;
   const reader = new FileReader();
   reader.onload = e => {
     slot.dataUrl = e.target.result;
@@ -598,46 +724,23 @@ function onFileSelect(input, id) {
   reader.readAsDataURL(file);
 }
 
-// ── 移除照片格 ──
 function removePhotoSlot(id) {
   photoSlots = photoSlots.filter(s => s.id !== id);
   const el = document.getElementById(id);
   if (el) el.remove();
 }
 
-// ── 上傳單張圖片到 Cloudinary，回傳公開網址 ──
 async function uploadToCloudinary(file, slotId) {
-  // 更新狀態顯示
   const subEl = document.getElementById(`sub_${slotId}`);
   if (subEl) subEl.textContent = "⏫ 上傳中…";
-
   const formData = new FormData();
   formData.append("file", file);
   formData.append("upload_preset", CLOUDINARY_PRESET);
-
-  const res = await fetch(
-    `https://api.cloudinary.com/v1_1/${CLOUDINARY_NAME}/image/upload`,
-    { method: "POST", body: formData }
-  );
-
+  const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_NAME}/image/upload`, { method: "POST", body: formData });
   if (!res.ok) throw new Error(`Cloudinary 上傳失敗（HTTP ${res.status}）`);
-
   const data = await res.json();
   if (subEl) subEl.textContent = "✅ 上傳完成";
-  return data.secure_url; // https://res.cloudinary.com/...
-}
-
-// ── 其他房型邏輯 ──
-function onRoomChange(val) {
-  const note = document.getElementById("roomNote");
-  const wrap = document.getElementById("customRoomWrap");
-  if (val === "其他房型") {
-    note.classList.add("show");
-    wrap.classList.add("show");
-  } else {
-    note.classList.remove("show");
-    wrap.classList.remove("show");
-  }
+  return data.secure_url;
 }
 
 // ── 日期驗證 ──
@@ -648,8 +751,7 @@ function validateDates() {
   const co = document.getElementById("checkOut").value;
   const err = document.getElementById("dateError");
   if (ci && co && co <= ci) { err.style.display = "block"; return false; }
-  err.style.display = "none";
-  return true;
+  err.style.display = "none"; return true;
 }
 
 // ── 表單送出 ──
@@ -663,14 +765,20 @@ document.getElementById("bookingForm").addEventListener("submit", async function
   const adults   = document.getElementById("adultCount").value.trim();
   const children = document.getElementById("childCount").value.trim();
   const guests   = `大人 ${adults || 0} 人／小孩 ${children || 0} 人`;
-  const roomSel  = document.getElementById("roomType").value;
-  const customR  = document.getElementById("customRoom").value.trim();
-  const room     = (roomSel === "其他房型" && customR) ? `其他房型（${customR}）` : roomSel;
-  const voucher  = document.querySelector('input[name="voucherType"]:checked')?.value || "";
-  const remarks  = document.getElementById("remarks").value.trim();
-  const photos   = photoSlots.filter(s => s.file !== null);
 
-  // 驗證
+  // 房型
+  const selectedRooms = ROOM_TYPES.filter(r => roomState[r].checked);
+  const customR = document.getElementById("customRoom").value.trim();
+  const roomSummary = selectedRooms.map(r => {
+    if (r === "其他房型") return customR ? `其他房型（${customR}）× ${roomState[r].count}間` : `其他房型 × ${roomState[r].count}間`;
+    return `${r} × ${roomState[r].count}間`;
+  }).join("、");
+
+  const voucher = document.querySelector('input[name="voucherType"]:checked')?.value || "";
+  const voucherCount = voucher === "票券兌換" ? voucherTicketCount : (voucher === "現金折抵" ? voucherCashCount : null);
+  const remarks = document.getElementById("remarks").value.trim();
+  const photos  = photoSlots.filter(s => s.file !== null);
+
   const errors = [];
   if (!checkIn)  errors.push("請選擇入住日期");
   if (!checkOut) errors.push("請選擇退房日期");
@@ -678,8 +786,8 @@ document.getElementById("bookingForm").addEventListener("submit", async function
   if (!name)     errors.push("請輸入姓名");
   if (!phone)    errors.push("請輸入聯繫電話");
   if (!adults || parseInt(adults) < 1) errors.push("請輸入大人人數（至少1人）");
-  if (!roomSel)  errors.push("請選擇入住房型");
-  if (roomSel === "其他房型" && !customR) errors.push("請填寫需求房型");
+  if (selectedRooms.length === 0) errors.push("請選擇入住房型");
+  if (selectedRooms.includes("其他房型") && !customR) errors.push("請填寫其他房型需求");
   if (!voucher)  errors.push("請選擇兌換方式");
   if (photos.length === 0) errors.push("請至少上傳一張票券照片");
 
@@ -693,14 +801,10 @@ document.getElementById("bookingForm").addEventListener("submit", async function
   submitBtn.textContent = "上傳圖片中…";
 
   try {
-    // ── Step 1：將所有圖片上傳到 Cloudinary 取得網址 ──
     for (const slot of photos) {
-      if (!slot.cloudUrl) {
-        slot.cloudUrl = await uploadToCloudinary(slot.file, slot.id);
-      }
+      if (!slot.cloudUrl) slot.cloudUrl = await uploadToCloudinary(slot.file, slot.id);
     }
 
-    // ── Step 2：計算晚數，組合文字訊息 ──
     const nights = Math.round((new Date(checkOut) - new Date(checkIn)) / 86400000);
     const msg = [
       "📋【票券訂房預約申請】",
@@ -710,8 +814,8 @@ document.getElementById("bookingForm").addEventListener("submit", async function
       `👤 訂房姓名：${name}`,
       `📞 聯繫電話：${phone}`,
       `👥 入住人數：${guests}`,
-      `🛏 入住房型：${room}`,
-      `🎫 兌換方式：${voucher}`,
+      `🛏 入住房型：${roomSummary}`,
+      `🎫 兌換方式：${voucher}${voucherCount ? `（${voucherCount} 張）` : ""}`,
       remarks ? `📝 備註：${remarks}` : null,
       "─────────────────",
       `🖼 票券照片：共 ${photos.length} 張（將於下方傳送）`,
@@ -719,42 +823,26 @@ document.getElementById("bookingForm").addEventListener("submit", async function
       "以上資料如有錯誤，請告知專員更正",
     ].filter(Boolean).join("\n");
 
-    // ── Step 3：組合 LINE 訊息陣列（文字 + 每張圖片） ──
-    // LINE sendMessages 單次上限 5 則，分批傳送
     const allMessages = [
       { type: "text", text: msg },
-      ...photos.map(slot => ({
-        type: "image",
-        originalContentUrl: slot.cloudUrl,
-        previewImageUrl: slot.cloudUrl,
-      }))
+      ...photos.map(slot => ({ type: "image", originalContentUrl: slot.cloudUrl, previewImageUrl: slot.cloudUrl }))
     ];
 
     submitBtn.textContent = "傳送訊息中…";
 
     if (liff.isInClient()) {
-      // 每批最多 5 則
-      for (let i = 0; i < allMessages.length; i += 5) {
-        await liff.sendMessages(allMessages.slice(i, i + 5));
-      }
-      showModal("✅", "預約訊息已送出！",
-        "訂房資料與票券照片已全部傳入聊天室。\n\n專員確認後將盡快回覆您，請稍候。", true);
+      for (let i = 0; i < allMessages.length; i += 5) await liff.sendMessages(allMessages.slice(i, i + 5));
+      showModal("✅", "預約訊息已送出！", "訂房資料與票券照片已全部傳入聊天室。\n\n專員確認後將盡快回覆您，請稍候。", true);
     } else {
-      // 開發模式
       console.log("【訊息預覽】\n" + msg);
       photos.forEach((s, i) => console.log(`圖片 ${i+1}：${s.cloudUrl}`));
-      showModal("🔧", "開發模式預覽",
-        "此頁面需在 LINE 中開啟才能實際送出。\n\nCloudinary 上傳成功，網址已輸出至 Console。", false);
-      submitBtn.disabled = false;
-      submitBtn.textContent = "確認送出預約";
+      showModal("🔧", "開發模式預覽", "此頁面需在 LINE 中開啟才能實際送出。\n\nCloudinary 上傳成功，網址已輸出至 Console。", false);
+      submitBtn.disabled = false; submitBtn.textContent = "確認送出預約";
     }
-
   } catch (err) {
     console.error(err);
-    submitBtn.disabled = false;
-    submitBtn.textContent = "確認送出預約";
-    showModal("❌", "送出失敗",
-      `發生錯誤，請稍後再試或直接聯繫專員。\n\n錯誤：${err.message}`, false);
+    submitBtn.disabled = false; submitBtn.textContent = "確認送出預約";
+    showModal("❌", "送出失敗", `發生錯誤，請稍後再試或直接聯繫專員。\n\n錯誤：${err.message}`, false);
   }
 });
 
@@ -768,11 +856,11 @@ function showModal(icon, title, body, isSuccess) {
 
 function closeLiff() {
   document.getElementById("overlay").classList.remove("show");
-  const title = document.getElementById("modalTitle").textContent;
-  if (title === "預約訊息已送出！") {
+  if (document.getElementById("modalTitle").textContent === "預約訊息已送出！") {
     try { liff.closeWindow(); } catch(e) { window.close(); }
   }
 }
 </script>
+
 </body>
 </html>
