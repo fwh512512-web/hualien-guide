@@ -45,7 +45,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 .chip.on{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 2px 8px rgba(0,101,110,.3);}
 
 /* ── CARDS ── */
-.cards{padding:4px 12px 110px;display:flex;flex-direction:column;gap:10px;}
+.cards{padding:4px 12px 0;display:flex;flex-direction:column;gap:10px;}
 
 .card{background:#fff;border-radius:18px;overflow:hidden;border:1.5px solid #C8E8EA;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s;position:relative;}
 .card.selected{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,199,44,.22);}
@@ -61,6 +61,12 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 .c-cafe   {background:linear-gradient(135deg,#C8B8A8,#907860);}
 .c-night  {background:linear-gradient(135deg,#8898C8,#5060A0);}
 .c-whale  {background:linear-gradient(135deg,#7ECBDE,#2A8FAA);}
+.c-rain   {background:linear-gradient(135deg,#B0BED8,#6878A8);}
+.c-museum {background:linear-gradient(135deg,#C0B4D4,#8070A0);}
+.c-art    {background:linear-gradient(135deg,#D4C0B0,#A08070);}
+.c-exp    {background:linear-gradient(135deg,#A8D4C0,#5A9A80);}
+.rain-tag{display:inline-flex;align-items:center;gap:3px;margin-top:5px;padding:2px 9px;border-radius:10px;background:rgba(80,110,190,.12);border:1px solid rgba(80,110,190,.3);font-size:10px;color:#3858a0;font-weight:500;}
+.copyright{text-align:center;padding:18px 16px 120px;font-size:10px;color:#7AACAE;opacity:0.7;letter-spacing:.3px;line-height:1.9;}
 
 .card-badge{position:absolute;top:8px;right:8px;padding:2px 9px;border-radius:10px;font-size:9px;font-weight:500;background:rgba(255,255,255,.88);color:#4A3020;letter-spacing:.3px;}
 .check-ring{position:absolute;top:8px;left:8px;width:24px;height:24px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.4);transition:all .2s;}
@@ -114,6 +120,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 
 <div class="tabs">
   <button class="tab active" onclick="switchTab('spots')" id="t-spots"><i class="ti ti-mountain"></i>觀光景點</button>
+  <button class="tab" onclick="switchTab('rainy')" id="t-rainy"><i class="ti ti-cloud-rain"></i>雨天備案</button>
   <button class="tab" onclick="switchTab('food')"   id="t-food"><i class="ti ti-bowl"></i>花蓮美食</button>
   <button class="tab" onclick="switchTab('brunch')" id="t-brunch"><i class="ti ti-egg-fried"></i>早午餐</button>
   <button class="tab" onclick="switchTab('cafe')"   id="t-cafe"><i class="ti ti-coffee"></i>咖啡下午茶</button>
@@ -662,7 +669,76 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
   </div>
 </div>
 
+<!-- ═══ 雨天備案 ═══ -->
+<div id="sec-rainy" class="hidden">
+  <div class="filters">
+    <button class="chip on" onclick="filter('all',this,'g-rainy')">全部</button>
+    <button class="chip" onclick="filter('hist',this,'g-rainy')">🏛 歷史文化</button>
+    <button class="chip" onclick="filter('art',this,'g-rainy')">🖼 藝術展覽</button>
+    <button class="chip" onclick="filter('sci',this,'g-rainy')">🔬 博物館・科教</button>
+    <button class="chip" onclick="filter('exp',this,'g-rainy')">🌿 體驗・DIY</button>
+  </div>
+  <div class="cards" id="g-rainy">
+    <div class="card" data-c="hist" data-name="將軍府1936" data-addr="https://maps.app.goo.gl/nhmK4X3TwYJWD8Jg9" onclick="toggleCard(this)">
+      <div class="card-img c-rain">🏯<span class="card-badge">歷史文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">將軍府1936</div><div class="card-desc">日治時期將軍官邸，重新規劃空間的日式建築群，走進昭和時代的花蓮</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/nhmK4X3TwYJWD8Jg9" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="hist" data-name="又一村文創園區" data-addr="https://maps.app.goo.gl/MrTrKEgKjX6aqopJA" onclick="toggleCard(this)">
+      <div class="card-img c-rain">🏘<span class="card-badge">歷史文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">又一村文創園區</div><div class="card-desc">老眷村改建的文創基地，保留濃厚眷村記憶，藝文展覽、特色小店</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/MrTrKEgKjX6aqopJA" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="hist" data-name="花蓮文化創意產業園區" data-addr="https://maps.app.goo.gl/YDQPCageA7UhpynM6" onclick="toggleCard(this)">
+      <div class="card-img c-rain">🎨<span class="card-badge">歷史文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">花蓮文化創意產業園區</div><div class="card-desc">前身日治時期酒廠，老倉庫改建，不定期藝文市集與展覽</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/YDQPCageA7UhpynM6" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="hist" data-name="花蓮鐵道文化園區" data-addr="https://maps.app.goo.gl/uxSXBujutG498FRT7" onclick="toggleCard(this)">
+      <div class="card-img c-rain">🚂<span class="card-badge">歷史文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">花蓮鐵道文化園區</div><div class="card-desc">台灣保存最完整窄軌鐵道遺址，舊車頭與日式建築群，室內外皆宜</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>10:00–18:00</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/uxSXBujutG498FRT7" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="hist" data-name="大陳故事館" data-addr="https://maps.app.goo.gl/58snfpYpBaSwByVx8" onclick="toggleCard(this)">
+      <div class="card-img c-rain">📖<span class="card-badge">歷史文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">大陳故事館</div><div class="card-desc">花蓮市大陳一村的真君廟，走入歷史，了解這段被遺忘的記憶</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/58snfpYpBaSwByVx8" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="art" data-name="花蓮美術館" data-addr="https://maps.app.goo.gl/PAHLRJmRpCUoxckr7" onclick="toggleCard(this)">
+      <div class="card-img c-art">🖼<span class="card-badge">藝術展覽</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">花蓮美術館</div><div class="card-desc">花蓮唯一縣立美術館，不定期特展，本土與國際藝術作品常設展示</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/PAHLRJmRpCUoxckr7" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="art" data-name="光隆博物館" data-addr="https://maps.app.goo.gl/k6CLBocSttjJ3bZV9" onclick="toggleCard(this)">
+      <div class="card-img c-art">🏺<span class="card-badge">藝術展覽</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">光隆博物館</div><div class="card-desc">私人典藏博物館，展示東方藝術瑰寶，陶瓷、古玩、珍奇文物薈萃</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/k6CLBocSttjJ3bZV9" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="art" data-name="花蓮縣石雕博物館" data-addr="https://maps.app.goo.gl/Xs8zVo8RNdGBfjQCA" onclick="toggleCard(this)">
+      <div class="card-img c-art">🪨<span class="card-badge">藝術展覽</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">花蓮縣石雕博物館</div><div class="card-desc">全台唯一石雕主題博物館，展示花蓮大理石與當代石雕創作精華</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/Xs8zVo8RNdGBfjQCA" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="sci" data-name="花蓮縣考古博物館" data-addr="https://maps.app.goo.gl/3Huu4YbkzjzwbQVv8" onclick="toggleCard(this)">
+      <div class="card-img c-museum">🦴<span class="card-badge">博物館</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">花蓮縣考古博物館</div><div class="card-desc">台灣東部考古文化重鎮，展示花蓮史前文化遺址出土文物，互動豐富</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/3Huu4YbkzjzwbQVv8" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="sci" data-name="花蓮防災教育館" data-addr="https://maps.app.goo.gl/36VEcCXfae6ek6e6A" onclick="toggleCard(this)">
+      <div class="card-img c-museum">🪖<span class="card-badge">博物館</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">花蓮防災教育館</div><div class="card-desc">寓教於樂的防災體驗館，地震、颱風模擬體驗，適合親子同遊</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/36VEcCXfae6ek6e6A" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="sci" data-name="台肥海洋深層水園區" data-addr="https://maps.app.goo.gl/ALSMCKpR3oZV1Vee7" onclick="toggleCard(this)">
+      <div class="card-img c-museum">🌊<span class="card-badge">博物館</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">台肥海洋深層水園區（台灣海礦館）</div><div class="card-desc">全台唯一深層海水主題館，展示深海資源與海洋科技，免費參觀</div><div class="card-meta"><span class="meta"><i class="ti ti-coin"></i>免費</span><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/ALSMCKpR3oZV1Vee7" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="exp" data-name="七星柴魚博物館" data-addr="https://maps.app.goo.gl/cX9QynvA6YMD2dAB6" onclick="toggleCard(this)">
+      <div class="card-img c-exp">🐟<span class="card-badge">體驗・DIY</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">七星柴魚博物館</div><div class="card-desc">全台唯一柴魚主題館，了解柴魚製程、DIY 體驗，現場試吃超新鮮</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/cX9QynvA6YMD2dAB6" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+    <div class="card" data-c="exp" data-name="地耕味 玩味蕃樂園" data-addr="https://maps.app.goo.gl/BKnyiZ2Mv6xuVX6e7" onclick="toggleCard(this)">
+      <div class="card-img c-exp">🍅<span class="card-badge">體驗・DIY</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
+      <div class="card-body"><div class="card-info"><div class="card-name">地耕味 玩味蕃樂園</div><div class="card-desc">舊台灣復古時光，一樓有齊全的伴手禮購買，親子同樂好去處</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮縣</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/BKnyiZ2Mv6xuVX6e7" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+    </div>
+  </div>
+</div>
+
 <p class="page-footer">✦ 點卡片選取 · 導航按鈕直接開地圖 ✦</p>
+<div class="copyright">
+  © 2026 路境行旅花蓮文化館　All rights reserved.<br>
+  本頁面內容著作權歸路境行旅花蓮文化館所有，未經授權不得轉載或複製。
+</div>
 
 <div class="plan-bar">
   <div class="plan-bar-left">
@@ -713,7 +789,7 @@ function clearAll(){
   updateBar();
 }
 function switchTab(t){
-  ['spots','food','brunch','cafe'].forEach(s=>{
+  ['spots','food','brunch','cafe','rainy'].forEach(s=>{
     document.getElementById('sec-'+s).classList.toggle('hidden',s!==t);
     document.getElementById('t-'+s).classList.toggle('active',s===t);
   });
