@@ -7,7 +7,6 @@
 <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
 :root {
   --teal:       #00656E;
@@ -26,11 +25,8 @@
   --white:      #FFFFFF;
   --error:      #C0392B;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
   font-family: 'Noto Sans TC', sans-serif;
   background: var(--bg);
@@ -39,8 +35,6 @@ body {
   padding-bottom: 3rem;
   -webkit-font-smoothing: antialiased;
 }
-
-/* ── TOP STRIP ── */
 .top-strip {
   height: 4px;
   background: linear-gradient(90deg, var(--teal-dark), var(--teal-mid), var(--yellow), var(--teal-mid), var(--teal-dark));
@@ -48,543 +42,223 @@ body {
   animation: shimmer 4s linear infinite;
 }
 @keyframes shimmer { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
-
-/* ── HEADER ── */
 .header {
   background: var(--white);
   border-bottom: 1px solid var(--border-light);
   padding: 1.5rem 1.25rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  display: flex; flex-direction: column; gap: 0.25rem;
 }
-.header-label {
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  color: var(--teal-mid);
-  text-transform: uppercase;
-}
-.header h1 {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--teal-dark);
-  letter-spacing: 0.04em;
-  line-height: 1.2;
-}
-.header-sub {
-  font-size: 0.74rem;
-  color: var(--ink-muted);
-  margin-top: 0.1rem;
-}
-.header-accent {
-  width: 2rem;
-  height: 2px;
-  background: var(--yellow);
-  margin-top: 0.6rem;
-  border-radius: 2px;
-}
-
-/* ── NOTICE ── */
+.header-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; color: var(--teal-mid); text-transform: uppercase; }
+.header h1 { font-family: 'Noto Serif TC', serif; font-size: 1.5rem; font-weight: 600; color: var(--teal-dark); letter-spacing: 0.04em; line-height: 1.2; }
+.header-sub { font-size: 0.74rem; color: var(--ink-muted); margin-top: 0.1rem; }
+.header-accent { width: 2rem; height: 2px; background: var(--yellow); margin-top: 0.6rem; border-radius: 2px; }
 .notice {
   margin: 1rem 1rem 0;
   background: var(--teal-pale);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 0.8rem 1rem;
-  font-size: 0.76rem;
-  color: var(--ink-soft);
-  line-height: 1.8;
-  display: flex;
-  gap: 0.6rem;
-  align-items: flex-start;
+  font-size: 0.76rem; color: var(--ink-soft); line-height: 1.8;
+  display: flex; gap: 0.6rem; align-items: flex-start;
 }
-.notice-icon {
-  font-size: 1rem;
-  flex-shrink: 0;
-  margin-top: 0.05rem;
-}
-
-/* ── FORM BODY ── */
-.form-body {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-/* ── GROUP ── */
+.notice-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+.form-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
 .group {
-  background: var(--white);
-  border-radius: 14px;
-  border: 1px solid var(--border-light);
-  overflow: hidden;
+  background: var(--white); border-radius: 14px;
+  border: 1px solid var(--border-light); overflow: hidden;
   box-shadow: 0 1px 4px rgba(0,101,110,0.05);
 }
 .group-header {
-  padding: 0.65rem 1rem;
-  background: var(--teal-pale);
+  padding: 0.65rem 1rem; background: var(--teal-pale);
   border-bottom: 1px solid var(--border-light);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: flex; align-items: center; gap: 0.5rem;
 }
-.group-header span {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--teal-dark);
-}
-.group-dot {
-  width: 6px; height: 6px;
-  background: var(--yellow);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-/* ── FIELD ── */
-.field {
-  padding: 0.85rem 1rem;
-  border-bottom: 1px solid var(--border-light);
-}
+.group-header span { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; color: var(--teal-dark); }
+.group-dot { width: 6px; height: 6px; background: var(--yellow); border-radius: 50%; flex-shrink: 0; }
+.field { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border-light); }
 .field:last-child { border-bottom: none; }
-
-.field-label {
-  display: flex;
-  align-items: baseline;
-  gap: 0.3rem;
-  margin-bottom: 0.5rem;
-}
-.field-label span {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--ink-soft);
-}
-.req {
-  font-size: 0.65rem;
-  color: var(--error);
-  flex-shrink: 0;
-}
-.hint {
-  font-size: 0.7rem;
-  color: var(--ink-muted);
-  margin-top: 0.4rem;
-  line-height: 1.65;
-}
-
-/* ── INPUTS ── */
-input[type="text"],
-input[type="tel"],
-input[type="number"],
-input[type="date"],
-select,
-textarea {
-  width: 100%;
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  padding: 0.6rem 0.8rem;
-  font-size: 0.88rem;
-  font-family: 'Noto Sans TC', sans-serif;
-  color: var(--ink);
-  background: var(--white);
+.field-label { display: flex; align-items: baseline; gap: 0.3rem; margin-bottom: 0.5rem; }
+.field-label span { font-size: 0.8rem; font-weight: 500; color: var(--ink-soft); }
+.req { font-size: 0.65rem; color: var(--error); flex-shrink: 0; }
+.hint { font-size: 0.7rem; color: var(--ink-muted); margin-top: 0.4rem; line-height: 1.65; }
+input[type="text"], input[type="tel"], input[type="email"], input[type="number"], input[type="date"], select, textarea {
+  width: 100%; border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 0.6rem 0.8rem; font-size: 0.88rem;
+  font-family: 'Noto Sans TC', sans-serif; color: var(--ink); background: var(--white);
   transition: border-color 0.2s, box-shadow 0.2s;
-  -webkit-appearance: none;
-  appearance: none;
+  -webkit-appearance: none; appearance: none;
 }
 input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: var(--teal);
+  outline: none; border-color: var(--teal);
   box-shadow: 0 0 0 3px rgba(0,101,110,0.1);
 }
-
-/* ── DATE ROW ── */
-.date-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-.date-col label {
-  display: block;
-  font-size: 0.7rem;
-  color: var(--ink-muted);
-  margin-bottom: 0.3rem;
-}
+.date-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem; }
+.date-col label { display: block; font-size: 0.7rem; color: var(--ink-muted); margin-bottom: 0.3rem; }
 .nights-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  background: var(--yellow-dim);
-  border: 1px solid rgba(255,199,44,0.4);
-  border-radius: 20px;
-  padding: 0.25rem 0.7rem;
-  font-size: 0.73rem;
-  font-weight: 500;
-  color: #7A5800;
-  margin-top: 0.4rem;
-  transition: all 0.3s;
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  background: var(--yellow-dim); border: 1px solid rgba(255,199,44,0.4);
+  border-radius: 20px; padding: 0.25rem 0.7rem;
+  font-size: 0.73rem; font-weight: 500; color: #7A5800;
+  margin-top: 0.4rem; transition: all 0.3s;
 }
 .nights-badge.hidden { opacity: 0; }
-
-/* ── GUEST COUNT ── */
-.count-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-.count-col label {
-  display: block;
-  font-size: 0.7rem;
-  color: var(--ink-muted);
-  margin-bottom: 0.3rem;
-}
+.count-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.count-col label { display: block; font-size: 0.7rem; color: var(--ink-muted); margin-bottom: 0.3rem; }
 input[type="number"] { text-align: center; }
-
-/* ── SELECT WRAP ── */
-.sel-wrap { position: relative; }
-.sel-wrap::after {
-  content: '▾';
-  position: absolute;
-  right: 0.85rem; top: 50%;
-  transform: translateY(-50%);
-  color: var(--teal);
-  font-size: 0.85rem;
-  pointer-events: none;
-}
-.sel-wrap select { padding-right: 2.2rem; }
-
-/* ── ROOM ROWS ── */
 .room-rows { display: flex; flex-direction: column; gap: 0; }
 .room-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.7rem 0;
-  border-bottom: 1px solid var(--border-light);
-  gap: 0.75rem;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 0; border-bottom: 1px solid var(--border-light); gap: 0.75rem;
 }
 .room-row:last-child { border-bottom: none; }
 .room-row-left {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  flex: 1;
-  cursor: pointer;
-  user-select: none;
-  min-width: 0;
+  display: flex; align-items: center; gap: 0.55rem;
+  flex: 1; cursor: pointer; user-select: none; min-width: 0;
 }
 .room-check {
-  width: 20px; height: 20px;
-  border: 2px solid var(--border);
-  border-radius: 5px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.18s;
-  background: white;
+  width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 5px;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  transition: all 0.18s; background: white;
 }
-.room-check.checked {
-  background: var(--teal);
-  border-color: var(--teal);
-}
-.room-check.checked::after {
-  content: '✓';
-  color: white;
-  font-size: 0.72rem;
-  font-weight: 700;
-}
-.room-name {
-  font-size: 0.82rem;
-  color: var(--ink-soft);
-  font-weight: 400;
-  transition: color 0.18s;
-}
+.room-check.checked { background: var(--teal); border-color: var(--teal); }
+.room-check.checked::after { content: '✓'; color: white; font-size: 0.72rem; font-weight: 700; }
+.room-name { font-size: 0.82rem; color: var(--ink-soft); font-weight: 400; transition: color 0.18s; }
 .room-name.active { color: var(--teal-dark); font-weight: 500; }
 .room-counter {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  opacity: 0.25;
-  pointer-events: none;
-  transition: opacity 0.2s;
-  flex-shrink: 0;
+  display: flex; align-items: center; gap: 0;
+  opacity: 0.25; pointer-events: none; transition: opacity 0.2s; flex-shrink: 0;
 }
 .room-counter.active { opacity: 1; pointer-events: auto; }
 .counter-btn {
-  width: 30px; height: 30px;
-  border: 1.5px solid var(--border);
-  background: var(--white);
-  color: var(--teal-dark);
-  font-size: 1.1rem;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s;
-  flex-shrink: 0;
+  width: 30px; height: 30px; border: 1.5px solid var(--border);
+  background: var(--white); color: var(--teal-dark); font-size: 1.1rem; line-height: 1;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; flex-shrink: 0;
 }
 .counter-btn:first-child { border-radius: 7px 0 0 7px; }
 .counter-btn:last-child  { border-radius: 0 7px 7px 0; }
 .counter-btn:active { background: var(--teal-light); }
 .counter-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 .counter-val {
-  width: 32px;
-  text-align: center;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--teal-dark);
-  border-top: 1.5px solid var(--border);
-  border-bottom: 1.5px solid var(--border);
-  height: 30px;
-  line-height: 30px;
-  background: var(--teal-pale);
+  width: 32px; text-align: center; font-size: 0.88rem; font-weight: 600; color: var(--teal-dark);
+  border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border);
+  height: 30px; line-height: 30px; background: var(--teal-pale);
 }
-
-/* ── ROOM NOTE BOX ── */
 .room-note-box {
-  background: #FFFBF0;
-  border: 1px solid rgba(255,199,44,0.5);
-  border-radius: 10px;
-  padding: 0.8rem 0.9rem;
-  margin-top: 0.75rem;
-  font-size: 0.74rem;
-  color: #5A4500;
-  line-height: 1.85;
+  background: #FFFBF0; border: 1px solid rgba(255,199,44,0.5);
+  border-radius: 10px; padding: 0.8rem 0.9rem; margin-top: 0.75rem;
+  font-size: 0.74rem; color: #5A4500; line-height: 1.85;
 }
 .room-note-box p { margin-bottom: 0.45rem; }
 .room-note-box p:last-child { margin-bottom: 0; }
 .room-note-box strong { color: #7A5800; }
-
-/* keep for other uses */
-.room-chip input[type="checkbox"] { display: none; }
-.room-chip-dot {
-  width: 14px; height: 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 3px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.18s;
-  font-size: 0.6rem;
-}
-.room-chip:has(input:checked) {
-  border-color: var(--teal);
-  background: var(--teal-light);
-  color: var(--teal-dark);
-  font-weight: 500;
-}
-.room-chip:has(input:checked) .room-chip-dot {
-  background: var(--teal);
-  border-color: var(--teal);
-  color: white;
-}
-
-/* ── BREAKFAST TOGGLE ── */
-.toggle-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
+.toggle-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
 .toggle-opt {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  border: 1.5px solid var(--border);
-  border-radius: 9px;
-  padding: 0.65rem 0.5rem;
-  cursor: pointer;
-  font-size: 0.82rem;
-  color: var(--ink-soft);
-  transition: all 0.18s;
-  user-select: none;
+  display: flex; align-items: center; justify-content: center; gap: 0.45rem;
+  border: 1.5px solid var(--border); border-radius: 9px; padding: 0.65rem 0.5rem;
+  cursor: pointer; font-size: 0.82rem; color: var(--ink-soft); transition: all 0.18s; user-select: none;
 }
 .toggle-opt input[type="radio"] { display: none; }
-.toggle-opt:has(input:checked) {
-  border-color: var(--teal);
-  background: var(--teal-light);
-  color: var(--teal-dark);
-  font-weight: 500;
-}
-
-/* ── CHECKBOXES (consent) ── */
-.consent-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  padding: 0.85rem 1rem;
-}
-.consent-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.65rem;
-  cursor: pointer;
-}
+.toggle-opt:has(input:checked) { border-color: var(--teal); background: var(--teal-light); color: var(--teal-dark); font-weight: 500; }
+.consent-list { display: flex; flex-direction: column; gap: 0.6rem; padding: 0.85rem 1rem; }
+.consent-item { display: flex; align-items: flex-start; gap: 0.65rem; cursor: pointer; }
 .consent-box {
-  width: 20px; height: 20px;
-  border: 2px solid var(--border);
-  border-radius: 5px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.05rem;
-  transition: all 0.18s;
-  background: white;
+  width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 5px;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  margin-top: 0.05rem; transition: all 0.18s; background: white;
 }
 .consent-item input[type="checkbox"] { display: none; }
-.consent-item:has(input:checked) .consent-box {
-  background: var(--teal);
-  border-color: var(--teal);
-}
-.consent-item:has(input:checked) .consent-box::after {
-  content: '✓';
-  color: white;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-.consent-text {
-  font-size: 0.78rem;
-  color: var(--ink-soft);
-  line-height: 1.7;
-}
+.consent-item:has(input:checked) .consent-box { background: var(--teal); border-color: var(--teal); }
+.consent-item:has(input:checked) .consent-box::after { content: '✓'; color: white; font-size: 0.75rem; font-weight: 700; }
+.consent-text { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.7; }
 .consent-text strong { color: var(--teal-dark); }
-
-/* ── PATIENCE NOTE ── */
 .patience-note {
   margin: 0 1rem;
   background: linear-gradient(135deg, rgba(0,101,110,0.06), rgba(0,130,141,0.04));
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 0.9rem 1rem;
-  font-size: 0.75rem;
-  color: var(--ink-soft);
-  line-height: 1.8;
-  text-align: center;
-  font-style: italic;
+  border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1rem;
+  font-size: 0.75rem; color: var(--ink-soft); line-height: 1.8; text-align: center; font-style: italic;
 }
-.patience-note strong {
-  display: block;
-  font-style: normal;
-  color: var(--teal-dark);
-  margin-bottom: 0.2rem;
-  font-size: 0.78rem;
-}
-
-/* ── SUBMIT ── */
-.submit-area {
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+.patience-note strong { display: block; font-style: normal; color: var(--teal-dark); margin-bottom: 0.2rem; font-size: 0.78rem; }
+.submit-area { padding: 0 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .btn-submit {
-  width: 100%;
-  padding: 1rem;
-  border: none;
-  border-radius: 12px;
-  background: var(--teal-dark);
-  color: white;
-  font-family: 'Noto Serif TC', serif;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-  overflow: hidden;
+  width: 100%; padding: 1rem; border: none; border-radius: 12px;
+  background: var(--teal-dark); color: white;
+  font-family: 'Noto Serif TC', serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.12em;
+  cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden;
   box-shadow: 0 4px 16px rgba(0,77,84,0.3);
 }
 .btn-submit::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 60px; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,199,44,0.3), transparent);
-  transition: left 0.5s;
+  content: ''; position: absolute; top: 0; left: -100%; width: 60px; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,199,44,0.3), transparent); transition: left 0.5s;
 }
 .btn-submit:not(:disabled):hover::before { left: 150%; }
 .btn-submit:active { transform: scale(0.99); }
-.btn-submit:disabled {
-  background: #A0B8BA;
-  box-shadow: none;
-  cursor: not-allowed;
-}
+.btn-submit:disabled { background: #A0B8BA; box-shadow: none; cursor: not-allowed; }
 .btn-submit:disabled::before { display: none; }
+.submit-hint { text-align: center; font-size: 0.7rem; color: var(--ink-muted); }
+.bf-note { margin-top: 0.55rem; border-radius: 8px; padding: 0.65rem 0.8rem; font-size: 0.74rem; line-height: 1.75; }
+.bf-note-yes { background: #FFF8EE; border: 1px solid rgba(255,199,44,0.5); color: #7A5800; }
+.bf-note-no  { background: var(--teal-pale); border: 1px solid var(--border); color: var(--ink-soft); }
 
-.submit-hint {
-  text-align: center;
-  font-size: 0.7rem;
-  color: var(--ink-muted);
+/* 團體詢問區塊 */
+.group-inquiry {
+  background: var(--white); border-radius: 14px;
+  border: 1.5px solid rgba(255,199,44,0.5); overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,101,110,0.05);
+  margin: 0 1rem 1rem;
+}
+.group-inquiry-header {
+  padding: 0.75rem 1rem; background: #FFFBF0;
+  border-bottom: 1px solid rgba(255,199,44,0.35);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.group-inquiry-header span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; color: #7A5800; }
+.group-dot-gold { width: 6px; height: 6px; background: var(--yellow); border-radius: 50%; flex-shrink: 0; }
+.gi-notice {
+  margin: 0.85rem 1rem 0;
+  background: #FFFBF0; border: 1px solid rgba(255,199,44,0.45);
+  border-radius: 9px; padding: 0.75rem 0.9rem;
+  font-size: 0.74rem; color: #5A4500; line-height: 1.85;
+}
+.gi-notice strong { color: #7A5800; }
+.gi-fields { padding: 0.85rem 1rem 1rem; display: flex; flex-direction: column; gap: 0.65rem; }
+.gi-row label { display: block; font-size: 0.75rem; font-weight: 500; color: var(--ink-soft); margin-bottom: 0.3rem; }
+.gi-req { font-size: 0.65rem; color: var(--error); margin-left: 0.2rem; }
+.gi-copy-btn {
+  width: 100%; margin-top: 0.25rem; padding: 0.8rem;
+  border: none; border-radius: 10px; background: var(--yellow);
+  color: #5A3C00; font-family: 'Noto Sans TC', sans-serif;
+  font-size: 0.9rem; font-weight: 700; cursor: pointer;
+  letter-spacing: 0.05em; transition: opacity 0.15s;
+}
+.gi-copy-btn:active { opacity: 0.8; }
+.gi-copy-hint { display:none; text-align:center; font-size:0.73rem; color:var(--teal-dark); margin-top:0.35rem; }
+
+/* 版權 footer */
+.copyright-footer {
+  text-align: center; padding: 1.25rem 1rem 2.5rem;
+  font-size: 0.68rem; color: var(--ink-muted); line-height: 1.9;
+  border-top: 1px solid var(--border-light); margin-top: 0.25rem; opacity: 0.75;
 }
 
-/* ── BREAKFAST NOTES ── */
-.bf-note {
-  margin-top: 0.55rem;
-  border-radius: 8px;
-  padding: 0.65rem 0.8rem;
-  font-size: 0.74rem;
-  line-height: 1.75;
-}
-.bf-note-yes {
-  background: #FFF8EE;
-  border: 1px solid rgba(255,199,44,0.5);
-  color: #7A5800;
-}
-.bf-note-no {
-  background: var(--teal-pale);
-  border: 1px solid var(--border);
-  color: var(--ink-soft);
-}
-
-/* ── OVERLAY ── */
 #overlay {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(13,36,38,0.75);
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
+  display: none; position: fixed; inset: 0;
+  background: rgba(13,36,38,0.75); z-index: 200;
+  align-items: center; justify-content: center; padding: 1.5rem;
 }
 #overlay.show { display: flex; }
 .modal {
-  background: white;
-  border-radius: 18px;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  max-width: 320px;
-  width: 100%;
+  background: white; border-radius: 18px; padding: 2rem 1.5rem;
+  text-align: center; max-width: 320px; width: 100%;
   box-shadow: 0 24px 60px rgba(0,0,0,0.3);
 }
 .modal-icon { font-size: 3rem; margin-bottom: 0.65rem; }
-.modal h2 {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 1.1rem;
-  color: var(--ink);
-  margin-bottom: 0.5rem;
-}
-.modal p {
-  font-size: 0.8rem;
-  color: var(--ink-soft);
-  line-height: 1.85;
-  white-space: pre-line;
-}
+.modal h2 { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.modal p { font-size: 0.8rem; color: var(--ink-soft); line-height: 1.85; white-space: pre-line; }
 .modal-btn {
-  margin-top: 1.25rem;
-  background: var(--teal);
-  color: white;
-  border: none;
-  border-radius: 9px;
-  padding: 0.7rem 2rem;
-  font-size: 0.88rem;
-  cursor: pointer;
-  font-family: 'Noto Sans TC', sans-serif;
-  width: 100%;
+  margin-top: 1.25rem; background: var(--teal); color: white; border: none;
+  border-radius: 9px; padding: 0.7rem 2rem; font-size: 0.88rem; cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif; width: 100%;
 }
 </style>
 </head>
@@ -592,7 +266,6 @@ input[type="number"] { text-align: center; }
 
 <div class="top-strip"></div>
 
-<!-- Header -->
 <div class="header">
   <div class="header-label">路境行旅花蓮文化館</div>
   <h1>訂房需求詢價</h1>
@@ -600,7 +273,6 @@ input[type="number"] { text-align: center; }
   <div class="header-accent"></div>
 </div>
 
-<!-- Notice -->
 <div class="notice">
   <div class="notice-icon">📋</div>
   <div>
@@ -616,64 +288,36 @@ input[type="number"] { text-align: center; }
 <form id="inquiryForm" novalidate>
 <div class="form-body">
 
-  <!-- 入住退房日期 -->
   <div class="group">
-    <div class="group-header">
-      <div class="group-dot"></div>
-      <span>入住 / 退房日期</span>
-    </div>
+    <div class="group-header"><div class="group-dot"></div><span>入住 / 退房日期</span></div>
     <div class="field">
       <div class="date-grid">
-        <div class="date-col">
-          <label>📅 入住日期</label>
-          <input type="date" id="checkIn" required>
-        </div>
-        <div class="date-col">
-          <label>📅 退房日期</label>
-          <input type="date" id="checkOut" required>
-        </div>
+        <div class="date-col"><label>📅 入住日期</label><input type="date" id="checkIn" required></div>
+        <div class="date-col"><label>📅 退房日期</label><input type="date" id="checkOut" required></div>
       </div>
-      <div class="nights-badge hidden" id="nightsBadge">
-        🌙 <span id="nightsText">共 0 晚</span>
-      </div>
+      <div class="nights-badge hidden" id="nightsBadge">🌙 <span id="nightsText">共 0 晚</span></div>
       <div id="dateError" style="display:none;font-size:0.71rem;color:var(--error);margin-top:0.4rem;">⚠ 退房日期須晚於入住日期</div>
     </div>
   </div>
 
-  <!-- 聯絡資料 -->
   <div class="group">
-    <div class="group-header">
-      <div class="group-dot"></div>
-      <span>聯絡資料</span>
-    </div>
+    <div class="group-header"><div class="group-dot"></div><span>聯絡資料</span></div>
     <div class="field">
-      <div class="field-label">
-        <span>訂房姓名</span><span class="req">必填</span>
-      </div>
+      <div class="field-label"><span>訂房姓名</span><span class="req">必填</span></div>
       <input type="text" id="guestName" placeholder="請輸入訂房人姓名" required>
     </div>
     <div class="field">
-      <div class="field-label">
-        <span>聯絡電話</span><span class="req">必填</span>
-      </div>
+      <div class="field-label"><span>聯絡電話</span><span class="req">必填</span></div>
       <input type="tel" id="guestPhone" placeholder="請輸入手機號碼" required>
     </div>
   </div>
 
-  <!-- 房型需求 -->
   <div class="group">
-    <div class="group-header">
-      <div class="group-dot"></div>
-      <span>需求房型</span>
-    </div>
+    <div class="group-header"><div class="group-dot"></div><span>需求房型</span></div>
     <div class="field">
-      <div class="field-label">
-        <span>請選擇需求房型與間數</span><span class="req">必填（可複選）</span>
-      </div>
-      <div class="room-rows" id="roomRows">
-        <!-- 由 JS 渲染 -->
-      </div>
-      <!-- 備註 -->
+      <div class="field-label"><span>請選擇需求房型與間數</span><span class="req">必填（可複選）</span></div>
+      <div class="hint" style="margin-bottom:0.6rem;color:#b06000;">⚠ 每種房型最多選 4 間。需要 5 間以上請使用頁面底部的「團體詢問」表單。</div>
+      <div class="room-rows" id="roomRows"></div>
       <div class="room-note-box">
         <p>🏠 <strong>關於房況：</strong>各通路同步銷售，實際間數以當下房況為主。若所需房間不足，專員將主動聯繫並推薦其他房型。</p>
         <p>💰 <strong>關於房價：</strong>本館採市場浮動房價，非固定金額。報價後未即時下訂，再次詢問時將重新報價，建議符合預算請盡速預訂。</p>
@@ -681,68 +325,33 @@ input[type="number"] { text-align: center; }
     </div>
   </div>
 
-  <!-- 入住人數 + 早餐 -->
   <div class="group">
-    <div class="group-header">
-      <div class="group-dot"></div>
-      <span>入住資訊</span>
-    </div>
-
+    <div class="group-header"><div class="group-dot"></div><span>入住資訊</span></div>
     <div class="field">
-      <div class="field-label">
-        <span>入住人數（含小孩）</span><span class="req">必填</span>
-      </div>
+      <div class="field-label"><span>入住人數（含小孩）</span><span class="req">必填</span></div>
       <div class="count-grid">
-        <div class="count-col">
-          <label>🧑 大人（人）</label>
-          <input type="number" id="adultCount" min="1" max="20" placeholder="0" required>
-        </div>
-        <div class="count-col">
-          <label>🧒 小孩（人）</label>
-          <input type="number" id="childCount" min="0" max="10" placeholder="0">
-        </div>
+        <div class="count-col"><label>🧑 大人（人）</label><input type="number" id="adultCount" min="1" max="20" placeholder="0" required></div>
+        <div class="count-col"><label>🧒 小孩（人）</label><input type="number" id="childCount" min="0" max="10" placeholder="0"></div>
       </div>
       <div class="hint">每房僅限一位12歲以下小孩不佔床不收費（不提供額外備品），超出加收人頭費 500 元／人，不加床</div>
     </div>
-
     <div class="field">
-      <div class="field-label">
-        <span>早餐需求</span><span class="req">必填</span>
-      </div>
+      <div class="field-label"><span>早餐需求</span><span class="req">必填</span></div>
       <div class="toggle-group">
-        <label class="toggle-opt">
-          <input type="radio" name="breakfast" value="含早餐" id="bfYes" onchange="onBreakfastChange()">
-          ☕ 含早餐
-        </label>
-        <label class="toggle-opt">
-          <input type="radio" name="breakfast" value="不含早餐" id="bfNo" onchange="onBreakfastChange()">
-          🚫 不含早餐
-        </label>
+        <label class="toggle-opt"><input type="radio" name="breakfast" value="含早餐" id="bfYes" onchange="onBreakfastChange()">☕ 含早餐</label>
+        <label class="toggle-opt"><input type="radio" name="breakfast" value="不含早餐" id="bfNo" onchange="onBreakfastChange()">🚫 不含早餐</label>
       </div>
-      <!-- 含早餐備註 -->
-      <div id="bfNoteYes" class="bf-note bf-note-yes" style="display:none;">
-        ☕ 早餐供應時間：07:00–10:00，請確認您的行程再決定是否預訂含早餐的方案，不提供早餐外帶服務，選擇含早餐方案後現場因個人因素無法用餐不退款。
-      </div>
-      <!-- 不含早餐備註 -->
-      <div id="bfNoteNo" class="bf-note bf-note-no" style="display:none;">
-        🍳 可現場加價購早餐：大人 $200／小孩 $100（6歲以下用餐不收費）
-      </div>
+      <div id="bfNoteYes" class="bf-note bf-note-yes" style="display:none;">☕ 早餐供應時間：07:00–10:00，請確認您的行程再決定是否預訂含早餐的方案，不提供早餐外帶服務，選擇含早餐方案後現場因個人因素無法用餐不退款。</div>
+      <div id="bfNoteNo" class="bf-note bf-note-no" style="display:none;">🍳 可現場加價購早餐：大人 $200／小孩 $100（6歲以下用餐不收費）</div>
     </div>
-
     <div class="field">
-      <div class="field-label">
-        <span>訂房備註</span>
-      </div>
+      <div class="field-label"><span>訂房備註</span></div>
       <textarea id="remarks" rows="3" placeholder="例如：需要澡盆、嬰兒床、特殊需求等…" style="resize:none;"></textarea>
     </div>
   </div>
 
-  <!-- 知悉確認 -->
   <div class="group">
-    <div class="group-header">
-      <div class="group-dot"></div>
-      <span>入住須知確認</span>
-    </div>
+    <div class="group-header"><div class="group-dot"></div><span>入住須知確認</span></div>
     <div class="consent-list">
       <label class="consent-item">
         <input type="checkbox" id="consent1">
@@ -757,22 +366,69 @@ input[type="number"] { text-align: center; }
     </div>
   </div>
 
-  <!-- 耐心等候提醒 -->
   <div class="patience-note">
     <strong>⏳ 溫馨提醒</strong>
     由於現場服務人員有限，發送訊息後請耐心等候片刻，<br>我們會盡快抽空回覆您，耽誤您寶貴的時間，敬請見諒。
   </div>
 
-  <!-- 送出 -->
   <div class="submit-area">
-    <button type="submit" class="btn-submit" id="submitBtn" disabled>
-      送出訂房需求
-    </button>
+    <button type="submit" class="btn-submit" id="submitBtn" disabled>送出訂房需求</button>
     <div class="submit-hint">請確認勾選上方兩項須知後，方可送出</div>
   </div>
 
 </div>
 </form>
+
+<!-- 團體詢問 -->
+<div class="group-inquiry">
+  <div class="group-inquiry-header">
+    <div class="group-dot-gold"></div>
+    <span>🏢 團體房間需求詢問（10 間以上）</span>
+  </div>
+  <div class="gi-notice">
+    <strong>⚠️ 10 間以上需求請以 Email 聯繫，由團體部門服務</strong><br>
+    服務時間：週一至週五 09:00–17:00，<strong>假日不回覆</strong>，一律以 Email 溝通。<br>
+    填妥以下資料後點擊複製，將需求貼至對話框，以利櫃台人員替您轉達團體部門，務必留下 Email 以便回覆報價。
+  </div>
+  <div class="gi-fields">
+    <div class="gi-row">
+      <label>聯絡姓名 <span class="gi-req">必填</span></label>
+      <input type="text" id="gi-name" placeholder="請輸入姓名">
+    </div>
+    <div class="gi-row">
+      <label>聯絡電話 <span class="gi-req">必填</span></label>
+      <input type="tel" id="gi-phone" placeholder="請輸入手機號碼">
+    </div>
+    <div class="gi-row">
+      <label>Email <span class="gi-req">必填・務必提供</span></label>
+      <input type="email" id="gi-email" placeholder="your@email.com">
+    </div>
+    <div class="gi-row">
+      <label>住宿日期 <span class="gi-req">必填</span></label>
+      <input type="text" id="gi-dates" placeholder="例：2025/08/15 入住，08/17 退房（共2晚）">
+    </div>
+    <div class="gi-row">
+      <label>入住人數</label>
+      <input type="text" id="gi-guests" placeholder="例：大人 10 人、小孩 2 人">
+    </div>
+    <div class="gi-row">
+      <label>房型需求</label>
+      <input type="text" id="gi-rooms" placeholder="例：雙人房 × 3、家庭房 × 2">
+    </div>
+    <div class="gi-row">
+      <label>備註</label>
+      <textarea id="gi-note" rows="3" placeholder="其他需求或特殊說明…" style="resize:none;"></textarea>
+    </div>
+    <button type="button" class="gi-copy-btn" onclick="copyGroupInquiry()">📋 複製詢問內容</button>
+    <div class="gi-copy-hint" id="gi-copy-hint">✅ 內容已複製！請貼到對話框，以利櫃台人員替您轉達團體部門</div>
+  </div>
+</div>
+
+<!-- 版權聲明 -->
+<div class="copyright-footer">
+  © 2026 路境行旅花蓮文化館　All rights reserved.<br>
+  本頁面內容著作權歸路境行旅花蓮文化館所有，未經授權不得轉載或複製。
+</div>
 
 <!-- Overlay -->
 <div id="overlay">
@@ -786,7 +442,6 @@ input[type="number"] { text-align: center; }
 
 <script>
 const LIFF_ID = "2010238736-VU9YAmWU";
-
 async function initLiff() {
   try {
     await liff.init({ liffId: LIFF_ID });
@@ -795,33 +450,32 @@ async function initLiff() {
 }
 initLiff();
 
-// ── 房型資料 ──
 const ROOM_TYPES = [
   "菁英雙人房","菁英雙床房","高級雙人房","高級雙床房",
   "標準雙人房","標準單人房","菁英三人房","菁英家庭房"
 ];
+const MAX_PER_ROOM = 4;
 
-// 狀態：{ checked: bool, count: number }
 const roomState = {};
 ROOM_TYPES.forEach(r => { roomState[r] = { checked: false, count: 1 }; });
 
-// ── 渲染房型列 ──
 function renderRooms() {
   const container = document.getElementById("roomRows");
   container.innerHTML = "";
   ROOM_TYPES.forEach(name => {
     const s = roomState[name];
+    const key = name.replace(/\s/g,'');
     const row = document.createElement("div");
     row.className = "room-row";
     row.innerHTML = `
       <div class="room-row-left" onclick="toggleRoom('${name}')">
-        <div class="room-check ${s.checked ? 'checked' : ''}" id="chk_${name.replace(/\s/g,'')}"></div>
+        <div class="room-check ${s.checked ? 'checked' : ''}" id="chk_${key}"></div>
         <span class="room-name ${s.checked ? 'active' : ''}">${name}</span>
       </div>
-      <div class="room-counter ${s.checked ? 'active' : ''}" id="ctr_${name.replace(/\s/g,'')}">
+      <div class="room-counter ${s.checked ? 'active' : ''}" id="ctr_${key}">
         <button type="button" class="counter-btn" onclick="changeCount('${name}',-1)" ${s.count<=1?'disabled':''}>－</button>
         <div class="counter-val">${s.count}</div>
-        <button type="button" class="counter-btn" onclick="changeCount('${name}',1)" ${s.count>=9?'disabled':''}>＋</button>
+        <button type="button" class="counter-btn" onclick="changeCount('${name}',1)" ${s.count>=MAX_PER_ROOM?'disabled':''}>＋</button>
       </div>
     `;
     container.appendChild(row);
@@ -836,20 +490,17 @@ function toggleRoom(name) {
 
 function changeCount(name, delta) {
   const s = roomState[name];
-  s.count = Math.max(1, Math.min(9, s.count + delta));
+  s.count = Math.max(1, Math.min(MAX_PER_ROOM, s.count + delta));
   renderRooms();
 }
-
 renderRooms();
 
-// ── 早餐備註切換 ──
 function onBreakfastChange() {
   const val = document.querySelector('input[name="breakfast"]:checked')?.value;
   document.getElementById("bfNoteYes").style.display = val === "含早餐" ? "block" : "none";
   document.getElementById("bfNoteNo").style.display  = val === "不含早餐" ? "block" : "none";
 }
 
-// ── 日期計算 ──
 function calcNights() {
   const ci = document.getElementById("checkIn").value;
   const co = document.getElementById("checkOut").value;
@@ -864,7 +515,6 @@ function calcNights() {
 document.getElementById("checkIn").addEventListener("change", calcNights);
 document.getElementById("checkOut").addEventListener("change", calcNights);
 
-// ── 勾選須知後才能送出 ──
 function updateSubmitState() {
   const c1 = document.getElementById("consent1").checked;
   const c2 = document.getElementById("consent2").checked;
@@ -873,10 +523,8 @@ function updateSubmitState() {
 document.getElementById("consent1").addEventListener("change", updateSubmitState);
 document.getElementById("consent2").addEventListener("change", updateSubmitState);
 
-// ── 表單送出 ──
 document.getElementById("inquiryForm").addEventListener("submit", async function(e) {
   e.preventDefault();
-
   const checkIn   = document.getElementById("checkIn").value;
   const checkOut  = document.getElementById("checkOut").value;
   const name      = document.getElementById("guestName").value.trim();
@@ -885,8 +533,6 @@ document.getElementById("inquiryForm").addEventListener("submit", async function
   const children  = document.getElementById("childCount").value.trim();
   const breakfast = document.querySelector('input[name="breakfast"]:checked')?.value || "";
   const remarks   = document.getElementById("remarks").value.trim();
-
-  // 取得選擇的房型
   const selectedRooms = ROOM_TYPES.filter(r => roomState[r].checked);
   const roomSummary = selectedRooms.map(r => `${r} × ${roomState[r].count}間`).join("、");
 
@@ -899,14 +545,9 @@ document.getElementById("inquiryForm").addEventListener("submit", async function
   if (selectedRooms.length === 0) errors.push("請至少選擇一種需求房型");
   if (!adults || parseInt(adults) < 1) errors.push("請輸入大人人數（至少1人）");
   if (!breakfast) errors.push("請選擇早餐需求");
-
-  if (errors.length > 0) {
-    showModal("⚠️", "請確認必填欄位", errors.map(v => `• ${v}`).join("\n"));
-    return;
-  }
+  if (errors.length > 0) { showModal("⚠️", "請確認必填欄位", errors.map(v => `• ${v}`).join("\n")); return; }
 
   const nights = Math.round((new Date(checkOut) - new Date(checkIn)) / 86400000);
-
   const msg = [
     "🏨【訂房需求詢價】",
     "─────────────────",
@@ -927,9 +568,7 @@ document.getElementById("inquiryForm").addEventListener("submit", async function
   ].filter(Boolean).join("\n");
 
   const btn = document.getElementById("submitBtn");
-  btn.disabled = true;
-  btn.textContent = "傳送中…";
-
+  btn.disabled = true; btn.textContent = "傳送中…";
   try {
     if (liff.isInClient()) {
       await liff.sendMessages([{ type: "text", text: msg }]);
@@ -937,18 +576,55 @@ document.getElementById("inquiryForm").addEventListener("submit", async function
     } else {
       console.log("【訊息預覽】\n" + msg);
       showModal("🔧", "開發模式預覽", "此頁面需在 LINE 中開啟才能實際送出。\n\n訊息內容已輸出至 Console。");
-      btn.disabled = false;
-      btn.textContent = "送出訂房需求";
-      updateSubmitState();
+      btn.disabled = false; btn.textContent = "送出訂房需求"; updateSubmitState();
     }
   } catch (err) {
     console.error(err);
-    btn.disabled = false;
-    btn.textContent = "送出訂房需求";
-    updateSubmitState();
+    btn.disabled = false; btn.textContent = "送出訂房需求"; updateSubmitState();
     showModal("❌", "送出失敗", `請稍後再試或直接聯繫專員。\n\n錯誤：${err.message}`);
   }
 });
+
+function copyGroupInquiry() {
+  const name   = document.getElementById("gi-name").value.trim();
+  const phone  = document.getElementById("gi-phone").value.trim();
+  const email  = document.getElementById("gi-email").value.trim();
+  const dates  = document.getElementById("gi-dates").value.trim();
+  const guests = document.getElementById("gi-guests").value.trim();
+  const rooms  = document.getElementById("gi-rooms").value.trim();
+  const note   = document.getElementById("gi-note").value.trim();
+
+  if (!name || !phone || !email || !dates) {
+    alert("請至少填寫：聯絡姓名、聯絡電話、Email 與住宿日期。");
+    return;
+  }
+
+  const content = [
+    "【團體訂房需求詢問】",
+    "─────────────────",
+    `聯絡姓名：${name}`,
+    `聯絡電話：${phone}`,
+    `Email　：${email}`,
+    `住宿日期：${dates}`,
+    guests ? `入住人數：${guests}` : null,
+    rooms  ? `房型需求：${rooms}`  : null,
+    note   ? `備　　註：${note}`   : null,
+    "─────────────────",
+    "以上為團體訂房需求，請協助報價，謝謝！",
+  ].filter(Boolean).join("\n");
+
+  const hint = document.getElementById("gi-copy-hint");
+  navigator.clipboard.writeText(content).then(() => {
+    hint.style.display = "block";
+    setTimeout(() => { hint.style.display = "none"; }, 4000);
+  }).catch(() => {
+    const ta = document.createElement("textarea");
+    ta.value = content; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); document.body.removeChild(ta);
+    hint.style.display = "block";
+    setTimeout(() => { hint.style.display = "none"; }, 4000);
+  });
+}
 
 function showModal(icon, title, body) {
   document.getElementById("modalIcon").textContent = icon;
@@ -956,11 +632,9 @@ function showModal(icon, title, body) {
   document.getElementById("modalBody").textContent = body;
   document.getElementById("overlay").classList.add("show");
 }
-
 function closeLiff() {
   document.getElementById("overlay").classList.remove("show");
-  const title = document.getElementById("modalTitle").textContent;
-  if (title === "需求已送出！") {
+  if (document.getElementById("modalTitle").textContent === "需求已送出！") {
     try { liff.closeWindow(); } catch(e) { window.close(); }
   }
 }
