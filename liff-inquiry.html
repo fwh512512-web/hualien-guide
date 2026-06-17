@@ -9,278 +9,430 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --teal:       #00656E;
-  --teal-dark:  #004D54;
-  --teal-mid:   #00828D;
-  --teal-light: #E0F2F3;
-  --teal-pale:  #F0FAFA;
-  --yellow:     #FFC72C;
-  --yellow-dim: rgba(255,199,44,0.15);
-  --ink:        #0D2426;
-  --ink-soft:   #3A5558;
-  --ink-muted:  #6A9699;
-  --border:     #C8E0E2;
-  --border-light: #E8F4F5;
-  --bg:         #F2F9FA;
-  --white:      #FFFFFF;
-  --error:      #C0392B;
+  --sand:        #F5EFE6;
+  --sand-mid:    #EDE3D6;
+  --sand-deep:   #D8C9B5;
+  --cream:       #FAF7F2;
+  --brown-dark:  #2C1A0E;
+  --brown-mid:   #5C3D22;
+  --brown-soft:  #8C6645;
+  --brown-muted: #B8956E;
+  --ocean:       #1A6B8A;
+  --ocean-dark:  #0F4D65;
+  --ocean-light: #E8F4F8;
+  --ocean-pale:  #F0F8FB;
+  --gold:        #D4882A;
+  --gold-dim:    rgba(212,136,42,0.12);
+  --gold-border: rgba(212,136,42,0.35);
+  --error:       #B5341E;
+  --white:       #FFFFFF;
+  --border:      #DDD3C5;
+  --border-light:#EDE7DF;
+  --shadow-sm:   0 1px 4px rgba(44,26,14,0.07);
+  --shadow-md:   0 4px 16px rgba(44,26,14,0.10);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Noto Sans TC', sans-serif;
-  background: var(--bg);
-  color: var(--ink);
+  background: var(--cream);
+  color: var(--brown-dark);
   min-height: 100vh;
-  padding-bottom: 3rem;
+  padding-bottom: 4rem;
   -webkit-font-smoothing: antialiased;
 }
-.top-strip {
-  height: 4px;
-  background: linear-gradient(90deg, var(--teal-dark), var(--teal-mid), var(--yellow), var(--teal-mid), var(--teal-dark));
-  background-size: 200% 100%;
-  animation: shimmer 4s linear infinite;
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  background: linear-gradient(160deg, #0F4D65 0%, #1A6B8A 40%, #2A8CA8 70%, #1A6B8A 100%);
+  padding: 2.5rem 1.25rem 3.5rem;
+  overflow: hidden;
 }
-@keyframes shimmer { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
-.header {
-  background: var(--white);
-  border-bottom: 1px solid var(--border-light);
-  padding: 1.5rem 1.25rem 1.25rem;
-  display: flex; flex-direction: column; gap: 0.25rem;
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 110%, rgba(212,136,42,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 90% -20%, rgba(255,255,255,0.08) 0%, transparent 50%);
+  pointer-events: none;
 }
-.header-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; color: var(--teal-mid); text-transform: uppercase; }
-.header h1 { font-family: 'Noto Serif TC', serif; font-size: 1.5rem; font-weight: 600; color: var(--teal-dark); letter-spacing: 0.04em; line-height: 1.2; }
-.header-sub { font-size: 0.74rem; color: var(--ink-muted); margin-top: 0.1rem; }
-.header-accent { width: 2rem; height: 2px; background: var(--yellow); margin-top: 0.6rem; border-radius: 2px; }
-.notice {
-  margin: 1rem 1rem 0;
-  background: var(--teal-pale);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 0.8rem 1rem;
-  font-size: 0.76rem; color: var(--ink-soft); line-height: 1.8;
-  display: flex; gap: 0.6rem; align-items: flex-start;
+.hero-wave {
+  position: absolute; bottom: -1px; left: 0; right: 0;
+  height: 40px;
 }
-.notice-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
-.form-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
-.group {
-  background: var(--white); border-radius: 14px;
-  border: 1px solid var(--border-light); overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,101,110,0.05);
+.hero-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.24em; font-weight: 500;
+  color: rgba(255,255,255,0.6); text-transform: uppercase;
+  margin-bottom: 0.6rem; position: relative;
 }
-.group-header {
-  padding: 0.65rem 1rem; background: var(--teal-pale);
-  border-bottom: 1px solid var(--border-light);
+.hero h1 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.75rem; font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: 0.06em; line-height: 1.2;
+  position: relative;
+}
+.hero-sub {
+  font-size: 0.72rem; color: rgba(255,255,255,0.55);
+  margin-top: 0.4rem; letter-spacing: 0.08em;
+  position: relative;
+}
+.hero-accent {
   display: flex; align-items: center; gap: 0.5rem;
+  margin-top: 1.1rem; position: relative;
 }
-.group-header span { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; color: var(--teal-dark); }
-.group-dot { width: 6px; height: 6px; background: var(--yellow); border-radius: 50%; flex-shrink: 0; }
-.field { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border-light); }
+.hero-accent-line { height: 1px; width: 2rem; background: var(--gold); opacity: 0.8; }
+.hero-accent-text { font-size: 0.7rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; }
+
+/* ── NOTICE ── */
+.notice-banner {
+  margin: 1.25rem 1rem 0;
+  background: var(--white); border-radius: 14px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.notice-banner-head {
+  background: linear-gradient(90deg, var(--ocean-dark), var(--ocean));
+  padding: 0.55rem 1rem;
+  display: flex; align-items: center; gap: 0.45rem;
+}
+.notice-banner-head span {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.9);
+}
+.notice-banner-body {
+  padding: 0.85rem 1rem;
+  font-size: 0.75rem; color: var(--brown-mid); line-height: 1.9;
+}
+.notice-banner-body ul { padding-left: 1.1rem; list-style: disc; }
+.notice-banner-body li { margin-bottom: 0.3rem; }
+.notice-banner-body li:last-child { margin-bottom: 0; }
+.notice-banner-body strong { color: var(--ocean-dark); }
+.notice-step {
+  display: flex; align-items: center; gap: 0.35rem;
+  font-size: 0.78rem; font-weight: 600; color: var(--ocean-dark);
+  margin-bottom: 0.65rem;
+}
+.notice-step-dot {
+  width: 6px; height: 6px; background: var(--gold);
+  border-radius: 50%; flex-shrink: 0;
+}
+
+/* ── FORM BODY ── */
+.form-body { padding: 1rem; display: flex; flex-direction: column; gap: 0.85rem; }
+
+/* ── SECTION CARD ── */
+.card {
+  background: var(--white); border-radius: 16px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm); overflow: hidden;
+}
+.card-header {
+  padding: 0.7rem 1.1rem;
+  display: flex; align-items: center; gap: 0.6rem;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--sand);
+}
+.card-header-icon { font-size: 0.95rem; line-height: 1; }
+.card-header-text { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; color: var(--brown-mid); }
+.card-header-bar { flex: 1; }
+.card-header-tag {
+  font-size: 0.6rem; font-weight: 500;
+  background: var(--gold-dim); border: 1px solid var(--gold-border);
+  color: #8A5500; border-radius: 20px; padding: 0.15rem 0.55rem;
+  letter-spacing: 0.06em;
+}
+
+.field { padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--border-light); }
 .field:last-child { border-bottom: none; }
-.field-label { display: flex; align-items: baseline; gap: 0.3rem; margin-bottom: 0.5rem; }
-.field-label span { font-size: 0.8rem; font-weight: 500; color: var(--ink-soft); }
-.req { font-size: 0.65rem; color: var(--error); flex-shrink: 0; }
-.hint { font-size: 0.7rem; color: var(--ink-muted); margin-top: 0.4rem; line-height: 1.65; }
-input[type="text"], input[type="tel"], input[type="email"], input[type="number"], input[type="date"], select, textarea {
-  width: 100%; border: 1.5px solid var(--border); border-radius: 8px;
-  padding: 0.6rem 0.8rem; font-size: 0.88rem;
-  font-family: 'Noto Sans TC', sans-serif; color: var(--ink); background: var(--white);
+.field-label {
+  display: flex; align-items: baseline; gap: 0.35rem; margin-bottom: 0.55rem;
+}
+.field-label-text { font-size: 0.82rem; font-weight: 500; color: var(--brown-mid); }
+.req { font-size: 0.62rem; color: var(--error); flex-shrink: 0; }
+.hint { font-size: 0.71rem; color: var(--brown-muted); margin-top: 0.4rem; line-height: 1.7; }
+
+/* ── INPUTS ── */
+input[type="text"], input[type="tel"], input[type="email"],
+input[type="number"], input[type="date"], select, textarea {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 9px;
+  padding: 0.62rem 0.85rem;
+  font-size: 0.88rem;
+  font-family: 'Noto Sans TC', sans-serif;
+  color: var(--brown-dark);
+  background: var(--white);
   transition: border-color 0.2s, box-shadow 0.2s;
   -webkit-appearance: none; appearance: none;
 }
+input::placeholder, textarea::placeholder { color: var(--sand-deep); }
 input:focus, select:focus, textarea:focus {
-  outline: none; border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(0,101,110,0.1);
+  outline: none;
+  border-color: var(--ocean);
+  box-shadow: 0 0 0 3px rgba(26,107,138,0.1);
 }
-.date-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem; }
-.date-col label { display: block; font-size: 0.7rem; color: var(--ink-muted); margin-bottom: 0.3rem; }
+
+/* ── DATE ── */
+.date-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.date-col label { display: block; font-size: 0.68rem; color: var(--brown-muted); margin-bottom: 0.3rem; font-weight: 500; }
 .nights-badge {
-  display: inline-flex; align-items: center; gap: 0.3rem;
-  background: var(--yellow-dim); border: 1px solid rgba(255,199,44,0.4);
-  border-radius: 20px; padding: 0.25rem 0.7rem;
-  font-size: 0.73rem; font-weight: 500; color: #7A5800;
-  margin-top: 0.4rem; transition: all 0.3s;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  margin-top: 0.55rem;
+  background: var(--ocean-pale); border: 1px solid rgba(26,107,138,0.25);
+  border-radius: 20px; padding: 0.28rem 0.8rem;
+  font-size: 0.74rem; font-weight: 600; color: var(--ocean-dark);
+  transition: all 0.3s;
 }
 .nights-badge.hidden { opacity: 0; }
-.count-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-.count-col label { display: block; font-size: 0.7rem; color: var(--ink-muted); margin-bottom: 0.3rem; }
-input[type="number"] { text-align: center; }
-.room-rows { display: flex; flex-direction: column; gap: 0; }
+
+/* ── ROOM ROWS ── */
+.room-rows { display: flex; flex-direction: column; }
 .room-row {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0.7rem 0; border-bottom: 1px solid var(--border-light); gap: 0.75rem;
 }
 .room-row:last-child { border-bottom: none; }
 .room-row-left {
-  display: flex; align-items: center; gap: 0.55rem;
+  display: flex; align-items: center; gap: 0.6rem;
   flex: 1; cursor: pointer; user-select: none; min-width: 0;
 }
 .room-check {
-  width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 5px;
+  width: 20px; height: 20px;
+  border: 2px solid var(--sand-deep); border-radius: 5px;
   flex-shrink: 0; display: flex; align-items: center; justify-content: center;
   transition: all 0.18s; background: white;
 }
-.room-check.checked { background: var(--teal); border-color: var(--teal); }
+.room-check.checked { background: var(--ocean); border-color: var(--ocean); }
 .room-check.checked::after { content: '✓'; color: white; font-size: 0.72rem; font-weight: 700; }
-.room-name { font-size: 0.82rem; color: var(--ink-soft); font-weight: 400; transition: color 0.18s; }
-.room-name.active { color: var(--teal-dark); font-weight: 500; }
+.room-name { font-size: 0.83rem; color: var(--brown-soft); transition: color 0.18s; }
+.room-name.active { color: var(--ocean-dark); font-weight: 600; }
+
 .room-counter {
-  display: flex; align-items: center; gap: 0;
-  opacity: 0.25; pointer-events: none; transition: opacity 0.2s; flex-shrink: 0;
+  display: flex; align-items: center;
+  opacity: 0.22; pointer-events: none; transition: opacity 0.2s; flex-shrink: 0;
 }
 .room-counter.active { opacity: 1; pointer-events: auto; }
 .counter-btn {
-  width: 30px; height: 30px; border: 1.5px solid var(--border);
-  background: var(--white); color: var(--teal-dark); font-size: 1.1rem; line-height: 1;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.15s; flex-shrink: 0;
+  width: 30px; height: 30px;
+  border: 1.5px solid var(--border);
+  background: var(--white); color: var(--ocean-dark);
+  font-size: 1rem; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s; flex-shrink: 0;
 }
 .counter-btn:first-child { border-radius: 7px 0 0 7px; }
 .counter-btn:last-child  { border-radius: 0 7px 7px 0; }
-.counter-btn:active { background: var(--teal-light); }
+.counter-btn:active { background: var(--ocean-light); }
 .counter-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 .counter-val {
-  width: 32px; text-align: center; font-size: 0.88rem; font-weight: 600; color: var(--teal-dark);
-  border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border);
-  height: 30px; line-height: 30px; background: var(--teal-pale);
+  width: 32px; text-align: center;
+  font-size: 0.88rem; font-weight: 600; color: var(--ocean-dark);
+  border-top: 1.5px solid var(--border);
+  border-bottom: 1.5px solid var(--border);
+  height: 30px; line-height: 30px;
+  background: var(--ocean-pale);
 }
-.room-note-box {
-  background: #FFFBF0; border: 1px solid rgba(255,199,44,0.5);
-  border-radius: 10px; padding: 0.8rem 0.9rem; margin-top: 0.75rem;
-  font-size: 0.74rem; color: #5A4500; line-height: 1.85;
+
+/* ── ROOM NOTE ── */
+.room-note {
+  margin-top: 0.8rem;
+  background: linear-gradient(135deg, #FBF8F3, #F5F0E8);
+  border: 1px solid var(--gold-border);
+  border-radius: 10px; padding: 0.8rem 0.95rem;
+  font-size: 0.74rem; color: var(--brown-mid); line-height: 1.85;
 }
-.room-note-box p { margin-bottom: 0.45rem; }
-.room-note-box p:last-child { margin-bottom: 0; }
-.room-note-box strong { color: #7A5800; }
-.toggle-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.room-note p { margin-bottom: 0.4rem; }
+.room-note p:last-child { margin-bottom: 0; }
+.room-note strong { color: var(--brown-dark); }
+
+/* ── COUNTS ── */
+.count-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.count-col label { display: block; font-size: 0.68rem; color: var(--brown-muted); margin-bottom: 0.3rem; font-weight: 500; }
+input[type="number"] { text-align: center; }
+
+/* ── BREAKFAST TOGGLE ── */
+.toggle-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
 .toggle-opt {
-  display: flex; align-items: center; justify-content: center; gap: 0.45rem;
-  border: 1.5px solid var(--border); border-radius: 9px; padding: 0.65rem 0.5rem;
-  cursor: pointer; font-size: 0.82rem; color: var(--ink-soft); transition: all 0.18s; user-select: none;
+  display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+  border: 1.5px solid var(--border); border-radius: 10px; padding: 0.7rem 0.5rem;
+  cursor: pointer; font-size: 0.83rem; color: var(--brown-soft);
+  transition: all 0.18s; user-select: none;
 }
 .toggle-opt input[type="radio"] { display: none; }
-.toggle-opt:has(input:checked) { border-color: var(--teal); background: var(--teal-light); color: var(--teal-dark); font-weight: 500; }
-.consent-list { display: flex; flex-direction: column; gap: 0.6rem; padding: 0.85rem 1rem; }
-.consent-item { display: flex; align-items: flex-start; gap: 0.65rem; cursor: pointer; }
+.toggle-opt:has(input:checked) {
+  border-color: var(--ocean); background: var(--ocean-light);
+  color: var(--ocean-dark); font-weight: 600;
+}
+.bf-note { margin-top: 0.6rem; border-radius: 9px; padding: 0.7rem 0.9rem; font-size: 0.74rem; line-height: 1.75; }
+.bf-note-yes { background: #FBF8EE; border: 1px solid var(--gold-border); color: #6B4800; }
+.bf-note-no  { background: var(--ocean-pale); border: 1px solid rgba(26,107,138,0.2); color: var(--brown-mid); }
+
+/* ── CONSENT ── */
+.consent-list { display: flex; flex-direction: column; gap: 0; }
+.consent-item {
+  display: flex; align-items: flex-start; gap: 0.7rem;
+  padding: 0.8rem 1.1rem; border-bottom: 1px solid var(--border-light);
+  cursor: pointer;
+}
+.consent-item:last-child { border-bottom: none; }
 .consent-box {
-  width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 5px;
+  width: 20px; height: 20px;
+  border: 2px solid var(--sand-deep); border-radius: 5px;
   flex-shrink: 0; display: flex; align-items: center; justify-content: center;
   margin-top: 0.05rem; transition: all 0.18s; background: white;
 }
 .consent-item input[type="checkbox"] { display: none; }
-.consent-item:has(input:checked) .consent-box { background: var(--teal); border-color: var(--teal); }
+.consent-item:has(input:checked) .consent-box { background: var(--ocean); border-color: var(--ocean); }
 .consent-item:has(input:checked) .consent-box::after { content: '✓'; color: white; font-size: 0.75rem; font-weight: 700; }
-.consent-text { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.7; }
-.consent-text strong { color: var(--teal-dark); }
+.consent-text { font-size: 0.79rem; color: var(--brown-mid); line-height: 1.7; }
+.consent-text strong { color: var(--brown-dark); }
+
+/* ── PATIENCE ── */
 .patience-note {
   margin: 0 1rem;
-  background: linear-gradient(135deg, rgba(0,101,110,0.06), rgba(0,130,141,0.04));
-  border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1rem;
-  font-size: 0.75rem; color: var(--ink-soft); line-height: 1.8; text-align: center; font-style: italic;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px; padding: 0.85rem 1rem;
+  font-size: 0.75rem; color: var(--brown-mid); line-height: 1.8;
 }
-.patience-note strong { display: block; font-style: normal; color: var(--teal-dark); margin-bottom: 0.2rem; font-size: 0.78rem; }
+.patience-note strong { display: block; color: var(--brown-dark); margin-bottom: 0.2rem; font-size: 0.78rem; }
+
+/* ── SUBMIT ── */
 .submit-area { padding: 0 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .btn-submit {
-  width: 100%; padding: 1rem; border: none; border-radius: 12px;
-  background: var(--teal-dark); color: white;
-  font-family: 'Noto Serif TC', serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.12em;
-  cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0,77,84,0.3);
+  width: 100%; padding: 1.05rem;
+  border: none; border-radius: 12px;
+  background: linear-gradient(135deg, var(--ocean-dark), var(--ocean));
+  color: white;
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1rem; font-weight: 600; letter-spacing: 0.14em;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 18px rgba(15,77,101,0.32);
+  position: relative; overflow: hidden;
 }
-.btn-submit::before {
-  content: ''; position: absolute; top: 0; left: -100%; width: 60px; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,199,44,0.3), transparent); transition: left 0.5s;
+.btn-submit::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent);
+  pointer-events: none;
 }
-.btn-submit:not(:disabled):hover::before { left: 150%; }
-.btn-submit:active { transform: scale(0.99); }
-.btn-submit:disabled { background: #A0B8BA; box-shadow: none; cursor: not-allowed; }
-.btn-submit:disabled::before { display: none; }
-.submit-hint { text-align: center; font-size: 0.7rem; color: var(--ink-muted); }
-.bf-note { margin-top: 0.55rem; border-radius: 8px; padding: 0.65rem 0.8rem; font-size: 0.74rem; line-height: 1.75; }
-.bf-note-yes { background: #FFF8EE; border: 1px solid rgba(255,199,44,0.5); color: #7A5800; }
-.bf-note-no  { background: var(--teal-pale); border: 1px solid var(--border); color: var(--ink-soft); }
+.btn-submit:not(:disabled):active { transform: scale(0.99); }
+.btn-submit:disabled {
+  background: linear-gradient(135deg, #9AABB0, #B0C3C8);
+  box-shadow: none; cursor: not-allowed;
+}
+.submit-hint { text-align: center; font-size: 0.7rem; color: var(--brown-muted); }
 
-/* 團體詢問區塊 */
-.group-inquiry {
-  background: var(--white); border-radius: 14px;
-  border: 1.5px solid rgba(255,199,44,0.5); overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,101,110,0.05);
+/* ── GROUP INQUIRY ── */
+.group-section {
   margin: 0 1rem 1rem;
+  background: var(--white); border-radius: 16px;
+  border: 1px solid var(--gold-border);
+  box-shadow: var(--shadow-sm); overflow: hidden;
 }
-.group-inquiry-header {
-  padding: 0.75rem 1rem; background: #FFFBF0;
-  border-bottom: 1px solid rgba(255,199,44,0.35);
+.group-section-head {
+  background: linear-gradient(90deg, #7A5200, #A8740A);
+  padding: 0.65rem 1.1rem;
   display: flex; align-items: center; gap: 0.5rem;
 }
-.group-inquiry-header span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; color: #7A5800; }
-.group-dot-gold { width: 6px; height: 6px; background: var(--yellow); border-radius: 50%; flex-shrink: 0; }
+.group-section-head span { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.92); }
 .gi-notice {
   margin: 0.85rem 1rem 0;
-  background: #FFFBF0; border: 1px solid rgba(255,199,44,0.45);
+  background: #FBF8EE; border: 1px solid var(--gold-border);
   border-radius: 9px; padding: 0.75rem 0.9rem;
-  font-size: 0.74rem; color: #5A4500; line-height: 1.85;
+  font-size: 0.74rem; color: #5A3E00; line-height: 1.85;
 }
-.gi-notice strong { color: #7A5800; }
+.gi-notice strong { color: #7A5200; }
 .gi-fields { padding: 0.85rem 1rem 1rem; display: flex; flex-direction: column; gap: 0.65rem; }
-.gi-row label { display: block; font-size: 0.75rem; font-weight: 500; color: var(--ink-soft); margin-bottom: 0.3rem; }
-.gi-req { font-size: 0.65rem; color: var(--error); margin-left: 0.2rem; }
+.gi-row label { display: block; font-size: 0.75rem; font-weight: 500; color: var(--brown-mid); margin-bottom: 0.3rem; }
+.gi-req { font-size: 0.62rem; color: var(--error); margin-left: 0.2rem; }
 .gi-copy-btn {
-  width: 100%; margin-top: 0.25rem; padding: 0.8rem;
-  border: none; border-radius: 10px; background: var(--yellow);
-  color: #5A3C00; font-family: 'Noto Sans TC', sans-serif;
+  width: 100%; margin-top: 0.25rem; padding: 0.85rem;
+  border: none; border-radius: 10px;
+  background: linear-gradient(135deg, #C07A10, var(--gold));
+  color: white; font-family: 'Noto Sans TC', sans-serif;
   font-size: 0.9rem; font-weight: 700; cursor: pointer;
-  letter-spacing: 0.05em; transition: opacity 0.15s;
+  letter-spacing: 0.06em; transition: opacity 0.15s;
+  box-shadow: 0 3px 12px rgba(212,136,42,0.3);
 }
-.gi-copy-btn:active { opacity: 0.8; }
-.gi-copy-hint { display:none; text-align:center; font-size:0.73rem; color:var(--teal-dark); margin-top:0.35rem; }
+.gi-copy-btn:active { opacity: 0.85; }
+.gi-copy-hint { display:none; text-align:center; font-size:0.73rem; color:var(--ocean-dark); margin-top:0.35rem; }
 
-/* 版權 footer */
+/* ── FOOTER ── */
 .copyright-footer {
   text-align: center; padding: 1.25rem 1rem 2.5rem;
-  font-size: 0.68rem; color: var(--ink-muted); line-height: 1.9;
-  border-top: 1px solid var(--border-light); margin-top: 0.25rem; opacity: 0.75;
+  font-size: 0.67rem; color: var(--brown-muted); line-height: 2;
+  border-top: 1px solid var(--border-light); margin-top: 0.5rem;
+  opacity: 0.7;
 }
 
+/* ── DIVIDER ── */
+.section-divider {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0 1rem;
+}
+.section-divider-line { flex: 1; height: 1px; background: var(--border-light); }
+.section-divider-label { font-size: 0.62rem; letter-spacing: 0.14em; color: var(--sand-deep); white-space: nowrap; }
+
+/* ── OVERLAY ── */
 #overlay {
   display: none; position: fixed; inset: 0;
-  background: rgba(13,36,38,0.75); z-index: 200;
+  background: rgba(44,26,14,0.72); z-index: 200;
   align-items: center; justify-content: center; padding: 1.5rem;
+  backdrop-filter: blur(4px);
 }
 #overlay.show { display: flex; }
 .modal {
-  background: white; border-radius: 18px; padding: 2rem 1.5rem;
+  background: white; border-radius: 20px; padding: 2rem 1.5rem;
   text-align: center; max-width: 320px; width: 100%;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  box-shadow: 0 32px 72px rgba(0,0,0,0.25);
 }
 .modal-icon { font-size: 3rem; margin-bottom: 0.65rem; }
-.modal h2 { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.5rem; }
-.modal p { font-size: 0.8rem; color: var(--ink-soft); line-height: 1.85; white-space: pre-line; }
+.modal h2 { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; color: var(--brown-dark); margin-bottom: 0.5rem; }
+.modal p { font-size: 0.8rem; color: var(--brown-mid); line-height: 1.85; white-space: pre-line; }
 .modal-btn {
-  margin-top: 1.25rem; background: var(--teal); color: white; border: none;
-  border-radius: 9px; padding: 0.7rem 2rem; font-size: 0.88rem; cursor: pointer;
+  margin-top: 1.25rem;
+  background: linear-gradient(135deg, var(--ocean-dark), var(--ocean));
+  color: white; border: none; border-radius: 10px;
+  padding: 0.75rem 2rem; font-size: 0.88rem; cursor: pointer;
   font-family: 'Noto Sans TC', sans-serif; width: 100%;
+  box-shadow: 0 3px 10px rgba(15,77,101,0.25);
 }
 </style>
 </head>
 <body>
 
-<div class="top-strip"></div>
-
-<div class="header">
-  <div class="header-label">路境行旅花蓮文化館</div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">路境行旅花蓮文化館</div>
   <h1>訂房需求詢價</h1>
-  <div class="header-sub">Finders Hotel Hualien · Room Inquiry</div>
-  <div class="header-accent"></div>
+  <div class="hero-sub">Finders Hotel Hualien · Room Inquiry</div>
+  <div class="hero-accent">
+    <div class="hero-accent-line"></div>
+    <div class="hero-accent-text">填寫需求，專員為您報價</div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 375 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,20 C60,38 120,5 187.5,20 C255,35 315,5 375,20 L375,40 L0,40 Z" fill="#FAF7F2"/>
+  </svg>
 </div>
 
-<div class="notice">
-  <div class="notice-icon">📋</div>
-  <div>
-    <div style="font-size:0.8rem;font-weight:600;color:var(--teal-dark);margin-bottom:0.4rem;">填寫需求 ➔ 專員依序確認房況並報價 ➔ 確認無誤後匯款訂金</div>
-    <div style="font-size:0.74rem;font-weight:600;color:var(--ink-soft);margin-bottom:0.35rem;">⚠️ 注意事項：</div>
-    <ul style="padding-left:1rem;font-size:0.74rem;color:var(--ink-soft);line-height:1.9;list-style:disc;">
-      <li><strong>匯款退費：</strong>因行政流程，匯款訂金後若取消訂單，退款需等待約 1 個月，並扣除 30 元匯費。</li>
-      <li><strong>免訂金推薦：</strong>欲快速訂房，建議利用<strong>官網預訂</strong>。官網免匯款訂金，僅需填寫信用卡資料進行預先授權擔保，省時又便利！</li>
+<!-- NOTICE -->
+<div class="notice-banner">
+  <div class="notice-banner-head">
+    <span>📋 &nbsp;訂房流程說明</span>
+  </div>
+  <div class="notice-banner-body">
+    <div class="notice-step">
+      <div class="notice-step-dot"></div>
+      填寫需求 ➔ 專員確認房況並報價 ➔ 確認無誤後匯款訂金
+    </div>
+    <ul>
+      <li><strong>匯款退費：</strong>因行政流程，匯款訂金後若取消，退款約等待 1 個月，並扣除 30 元匯費。</li>
+      <li><strong>免訂金推薦：</strong>欲快速訂房，建議利用<strong>官網預訂</strong>，僅需信用卡授權擔保，省時便利！</li>
     </ul>
   </div>
 </div>
@@ -288,70 +440,92 @@ input[type="number"] { text-align: center; }
 <form id="inquiryForm" novalidate>
 <div class="form-body">
 
-  <div class="group">
-    <div class="group-header"><div class="group-dot"></div><span>入住 / 退房日期</span></div>
+  <!-- 日期 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon">📅</div>
+      <div class="card-header-text">入住 / 退房日期</div>
+    </div>
     <div class="field">
       <div class="date-grid">
-        <div class="date-col"><label>📅 入住日期</label><input type="date" id="checkIn" required></div>
-        <div class="date-col"><label>📅 退房日期</label><input type="date" id="checkOut" required></div>
+        <div class="date-col"><label>入住日期</label><input type="date" id="checkIn" required></div>
+        <div class="date-col"><label>退房日期</label><input type="date" id="checkOut" required></div>
       </div>
       <div class="nights-badge hidden" id="nightsBadge">🌙 <span id="nightsText">共 0 晚</span></div>
       <div id="dateError" style="display:none;font-size:0.71rem;color:var(--error);margin-top:0.4rem;">⚠ 退房日期須晚於入住日期</div>
     </div>
   </div>
 
-  <div class="group">
-    <div class="group-header"><div class="group-dot"></div><span>聯絡資料</span></div>
+  <!-- 聯絡資料 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon">👤</div>
+      <div class="card-header-text">聯絡資料</div>
+    </div>
     <div class="field">
-      <div class="field-label"><span>訂房姓名</span><span class="req">必填</span></div>
+      <div class="field-label"><span class="field-label-text">訂房姓名</span><span class="req">必填</span></div>
       <input type="text" id="guestName" placeholder="請輸入訂房人姓名" required>
     </div>
     <div class="field">
-      <div class="field-label"><span>聯絡電話</span><span class="req">必填</span></div>
+      <div class="field-label"><span class="field-label-text">聯絡電話</span><span class="req">必填</span></div>
       <input type="tel" id="guestPhone" placeholder="請輸入手機號碼" required>
     </div>
   </div>
 
-  <div class="group">
-    <div class="group-header"><div class="group-dot"></div><span>需求房型</span></div>
+  <!-- 房型 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon">🛏</div>
+      <div class="card-header-text">需求房型</div>
+      <div class="card-header-bar"></div>
+      <div class="card-header-tag">可複選</div>
+    </div>
     <div class="field">
-      <div class="field-label"><span>請選擇需求房型與間數</span><span class="req">必填（可複選）</span></div>
-      <div class="hint" style="margin-bottom:0.6rem;color:#b06000;">⚠ 每種房型最多選 4 間。需要 10 間以上請使用頁面底部的「團體詢問」表單。</div>
+      <div class="field-label"><span class="field-label-text">請選擇房型與間數</span><span class="req">必填</span></div>
+      <div class="hint" style="margin-bottom:0.65rem;color:#C07A10;">⚠ 每種房型最多 4 間。10 間以上請使用頁面底部的「團體詢問」表單。</div>
       <div class="room-rows" id="roomRows"></div>
-      <div class="room-note-box">
-        <p>🏠 <strong>關於房況：</strong>各通路同步銷售，實際間數以當下房況為主。若所需房間不足，專員將主動聯繫並推薦其他房型。</p>
-        <p>💰 <strong>關於房價：</strong>本館採市場浮動房價，非固定金額。報價後未即時下訂，再次詢問時將重新報價，建議符合預算請盡速預訂。</p>
+      <div class="room-note">
+        <p>🏠 <strong>房況：</strong>各通路同步銷售，實際間數以當下為主。若所需房間不足，專員將主動聯繫推薦其他房型。</p>
+        <p>💰 <strong>房價：</strong>採市場浮動房價，非固定金額。報價後未即時下訂，再次詢問將重新報價。</p>
       </div>
     </div>
   </div>
 
-  <div class="group">
-    <div class="group-header"><div class="group-dot"></div><span>入住資訊</span></div>
+  <!-- 入住資訊 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon">👥</div>
+      <div class="card-header-text">入住資訊</div>
+    </div>
     <div class="field">
-      <div class="field-label"><span>入住人數（含小孩）</span><span class="req">必填</span></div>
+      <div class="field-label"><span class="field-label-text">入住人數（含小孩）</span><span class="req">必填</span></div>
       <div class="count-grid">
         <div class="count-col"><label>🧑 大人（人）</label><input type="number" id="adultCount" min="1" max="20" placeholder="0" required></div>
         <div class="count-col"><label>🧒 小孩（人）</label><input type="number" id="childCount" min="0" max="10" placeholder="0"></div>
       </div>
-      <div class="hint">每房僅限一位12歲以下小孩不佔床不收費（不提供額外備品），超出加收人頭費 500 元／人，不加床</div>
+      <div class="hint">每房限一位 12 歲以下小孩不佔床不收費；超出加收人頭費 500 元／人，不加床</div>
     </div>
     <div class="field">
-      <div class="field-label"><span>早餐需求</span><span class="req">必填</span></div>
+      <div class="field-label"><span class="field-label-text">早餐需求</span><span class="req">必填</span></div>
       <div class="toggle-group">
         <label class="toggle-opt"><input type="radio" name="breakfast" value="含早餐" id="bfYes" onchange="onBreakfastChange()">☕ 含早餐</label>
         <label class="toggle-opt"><input type="radio" name="breakfast" value="不含早餐" id="bfNo" onchange="onBreakfastChange()">🚫 不含早餐</label>
       </div>
-      <div id="bfNoteYes" class="bf-note bf-note-yes" style="display:none;">☕ 早餐供應時間：07:00–10:00，請確認您的行程再決定是否預訂含早餐的方案，不提供早餐外帶服務，選擇含早餐方案後現場因個人因素無法用餐不退款。</div>
-      <div id="bfNoteNo" class="bf-note bf-note-no" style="display:none;">🍳 可現場加價購早餐：大人 $200／小孩 $100（6歲以下用餐不收費）</div>
+      <div id="bfNoteYes" class="bf-note bf-note-yes" style="display:none;">☕ 早餐供應時間：07:00–10:00，請確認行程再決定。選含早餐後，現場因個人因素無法用餐不退款，不提供外帶服務。</div>
+      <div id="bfNoteNo" class="bf-note bf-note-no" style="display:none;">🍳 現場加價購早餐：大人 $200／小孩 $100（6 歲以下用餐不收費）</div>
     </div>
     <div class="field">
-      <div class="field-label"><span>訂房備註</span></div>
+      <div class="field-label"><span class="field-label-text">訂房備註</span></div>
       <textarea id="remarks" rows="3" placeholder="例如：需要澡盆、嬰兒床、特殊需求等…" style="resize:none;"></textarea>
     </div>
   </div>
 
-  <div class="group">
-    <div class="group-header"><div class="group-dot"></div><span>入住須知確認</span></div>
+  <!-- 須知確認 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-icon">✅</div>
+      <div class="card-header-text">入住須知確認</div>
+    </div>
     <div class="consent-list">
       <label class="consent-item">
         <input type="checkbox" id="consent1">
@@ -368,7 +542,7 @@ input[type="number"] { text-align: center; }
 
   <div class="patience-note">
     <strong>⏳ 溫馨提醒</strong>
-    由於現場服務人員有限，發送訊息後請耐心等候片刻，<br>我們會盡快抽空回覆您，耽誤您寶貴的時間，敬請見諒。
+    由於現場服務人員有限，發送訊息後請耐心等候片刻，我們會盡快回覆您，感謝您的體諒。
   </div>
 
   <div class="submit-area">
@@ -380,51 +554,35 @@ input[type="number"] { text-align: center; }
 </form>
 
 <!-- 團體詢問 -->
-<div class="group-inquiry">
-  <div class="group-inquiry-header">
-    <div class="group-dot-gold"></div>
-    <span>🏢 團體房間需求詢問（10 間以上）</span>
+<div class="section-divider" style="margin-bottom:0.75rem;">
+  <div class="section-divider-line"></div>
+  <div class="section-divider-label">10 間以上 · 團體詢問</div>
+  <div class="section-divider-line"></div>
+</div>
+
+<div class="group-section">
+  <div class="group-section-head">
+    <span>🏢 &nbsp;團體房間需求詢問（10 間以上）</span>
   </div>
   <div class="gi-notice">
     <strong>⚠️ 10 間以上需求請以 Email 聯繫，由團體部門服務</strong><br>
     服務時間：週一至週五 09:00–17:00，<strong>假日不回覆</strong>，一律以 Email 溝通。<br>
-    填妥以下資料後點擊複製，將需求貼至對話框，以利櫃台人員替您轉達團體部門，務必留下 Email 以便回覆報價。
+    填妥以下資料後點擊複製，將內容貼至對話框，以利櫃台人員轉達。
   </div>
   <div class="gi-fields">
-    <div class="gi-row">
-      <label>聯絡姓名 <span class="gi-req">必填</span></label>
-      <input type="text" id="gi-name" placeholder="請輸入姓名">
-    </div>
-    <div class="gi-row">
-      <label>聯絡電話 <span class="gi-req">必填</span></label>
-      <input type="tel" id="gi-phone" placeholder="請輸入手機號碼">
-    </div>
-    <div class="gi-row">
-      <label>Email <span class="gi-req">必填・務必提供</span></label>
-      <input type="email" id="gi-email" placeholder="your@email.com">
-    </div>
-    <div class="gi-row">
-      <label>住宿日期 <span class="gi-req">必填</span></label>
-      <input type="text" id="gi-dates" placeholder="例：2025/08/15 入住，08/17 退房（共2晚）">
-    </div>
-    <div class="gi-row">
-      <label>入住人數</label>
-      <input type="text" id="gi-guests" placeholder="例：大人 10 人、小孩 2 人">
-    </div>
-    <div class="gi-row">
-      <label>房型需求</label>
-      <input type="text" id="gi-rooms" placeholder="例：雙人房 × 3、家庭房 × 2">
-    </div>
-    <div class="gi-row">
-      <label>備註</label>
-      <textarea id="gi-note" rows="3" placeholder="其他需求或特殊說明…" style="resize:none;"></textarea>
-    </div>
+    <div class="gi-row"><label>聯絡姓名 <span class="gi-req">必填</span></label><input type="text" id="gi-name" placeholder="請輸入姓名"></div>
+    <div class="gi-row"><label>聯絡電話 <span class="gi-req">必填</span></label><input type="tel" id="gi-phone" placeholder="請輸入手機號碼"></div>
+    <div class="gi-row"><label>Email <span class="gi-req">必填・務必提供</span></label><input type="email" id="gi-email" placeholder="your@email.com"></div>
+    <div class="gi-row"><label>住宿日期 <span class="gi-req">必填</span></label><input type="text" id="gi-dates" placeholder="例：2025/08/15 入住，08/17 退房（共2晚）"></div>
+    <div class="gi-row"><label>入住人數</label><input type="text" id="gi-guests" placeholder="例：大人 10 人、小孩 2 人"></div>
+    <div class="gi-row"><label>房型需求</label><input type="text" id="gi-rooms" placeholder="例：雙人房 × 3、家庭房 × 2"></div>
+    <div class="gi-row"><label>備註</label><textarea id="gi-note" rows="3" placeholder="其他需求或特殊說明…" style="resize:none;"></textarea></div>
     <button type="button" class="gi-copy-btn" onclick="copyGroupInquiry()">📋 複製詢問內容</button>
     <div class="gi-copy-hint" id="gi-copy-hint">✅ 內容已複製！請貼到對話框，以利櫃台人員替您轉達團體部門</div>
   </div>
 </div>
 
-<!-- 版權聲明 -->
+<!-- 版權 -->
 <div class="copyright-footer">
   © 2026 路境行旅花蓮文化館　All rights reserved.<br>
   本頁面內容著作權歸路境行旅花蓮文化館所有，未經授權不得轉載或複製。
@@ -455,7 +613,6 @@ const ROOM_TYPES = [
   "標準雙人房","標準單人房","菁英三人房","菁英家庭房"
 ];
 const MAX_PER_ROOM = 4;
-
 const roomState = {};
 ROOM_TYPES.forEach(r => { roomState[r] = { checked: false, count: 1 }; });
 
