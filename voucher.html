@@ -8,494 +8,148 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ══ 品牌色票 ══ */
-:root {
-  --teal:       #00656E;
-  --teal-dark:  #004D54;
-  --teal-mid:   #005A63;
-  --teal-light: #D6F0F1;
-  --teal-pale:  #EEF8F8;
-  --yellow:     #FFC72C;
-  --yellow-bg:  #FFF8E1;
-  --cream:      #F4F9F9;
-  --ink:        #0D2426;
-  --ink-soft:   #3A5558;
-  --ink-muted:  #6A8E90;
-  --border:     #C2DCDE;
-  --border-light: #DFF0F1;
-  --white:      #FFFFFF;
-  --error:      #C0392B;
-  --error-bg:   #FFF2F2;
-  --success:    #1E7E4A;
-}
-
-*{box-sizing:border-box;margin:0;padding:0;}
-html{-webkit-text-size-adjust:100%;}
-body{
-  font-family:'Noto Sans TC',sans-serif;
-  background:var(--cream);
-  color:var(--ink);
-  min-height:100vh;
-  padding-bottom:3rem;
-  font-size:16px; /* 基準字號 — 各年齡層易讀 */
-  line-height:1.6;
-}
-
-/* ══ Hero ══ */
-.hero{
-  background:linear-gradient(150deg, var(--teal-dark) 0%, var(--teal) 60%, #007E88 100%);
-  position:relative; overflow:hidden;
-  padding:2.25rem 1.5rem 2.75rem;
-  text-align:center;
-}
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M26 0l26 26-26 26L0 26z'/%3E%3C/g%3E%3C/svg%3E");
-}
-.hero-badge{
-  display:inline-block;
-  background:var(--yellow); color:var(--teal-dark);
-  font-size:0.7rem; font-weight:700; letter-spacing:0.1em;
-  padding:0.25rem 0.9rem; border-radius:20px;
-  margin-bottom:0.85rem; position:relative;
-}
-.hero h1{
-  font-family:'Noto Serif TC',serif;
-  font-size:1.55rem; font-weight:700;
-  color:#FFF; letter-spacing:0.08em;
-  position:relative; margin-bottom:0.3rem;
-}
+:root{--teal:#00656E;--teal-dark:#004D54;--teal-mid:#005A63;--teal-light:#D6F0F1;--teal-pale:#EEF8F8;--yellow:#FFC72C;--yellow-bg:#FFF8E1;--cream:#F4F9F9;--ink:#0D2426;--ink-soft:#3A5558;--ink-muted:#6A8E90;--border:#C2DCDE;--border-light:#DFF0F1;--white:#FFFFFF;--error:#C0392B;--error-bg:#FFF2F2;--success:#1E7E4A;}
+*{box-sizing:border-box;margin:0;padding:0;}html{-webkit-text-size-adjust:100%;}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;padding-bottom:3rem;font-size:16px;line-height:1.6;}
+.hero{background:linear-gradient(150deg,var(--teal-dark) 0%,var(--teal) 60%,#007E88 100%);position:relative;overflow:hidden;padding:2.25rem 1.5rem 2.75rem;text-align:center;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M26 0l26 26-26 26L0 26z'/%3E%3C/g%3E%3C/svg%3E");}
+.hero-badge{display:inline-block;background:var(--yellow);color:var(--teal-dark);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;padding:0.25rem 0.9rem;border-radius:20px;margin-bottom:0.85rem;position:relative;}
+.hero h1{font-family:'Noto Serif TC',serif;font-size:1.55rem;font-weight:700;color:#FFF;letter-spacing:0.08em;position:relative;margin-bottom:0.3rem;}
 .hero-sub{color:rgba(255,255,255,0.6);font-size:0.78rem;letter-spacing:0.06em;position:relative;}
-.hero-line{
-  display:flex;align-items:center;justify-content:center;
-  gap:0.6rem; margin:0.85rem 0 0.45rem; position:relative;
-}
+.hero-line{display:flex;align-items:center;justify-content:center;gap:0.6rem;margin:0.85rem 0 0.45rem;position:relative;}
 .hero-line span{height:1px;width:2.5rem;background:var(--yellow);opacity:0.65;display:block;}
 .hero-line i{color:var(--yellow);font-size:0.7rem;font-style:normal;}
-
-/* ══ Notice ══ */
-.notice-box{
-  background:#E4F4F5;
-  border-left:4px solid var(--teal);
-  border-radius:0 10px 10px 0;
-  padding:1rem 1.1rem;
-  margin:1.25rem 1rem;
-  font-size:0.85rem;
-  color:var(--ink-soft);
-  line-height:1.85;
-}
+.notice-box{background:#E4F4F5;border-left:4px solid var(--teal);border-radius:0 10px 10px 0;padding:1rem 1.1rem;margin:1.25rem 1rem;font-size:0.85rem;color:var(--ink-soft);line-height:1.85;}
 .notice-box strong{color:var(--teal-dark);display:block;margin-bottom:0.3rem;font-size:0.88rem;}
-
-/* ══ Section Card ══ */
-.section-card{
-  background:var(--white);
-  border:1px solid var(--border);
-  border-radius:14px;
-  margin:0 1rem 1.1rem;
-  overflow:hidden;
-  box-shadow:0 2px 8px rgba(0,101,110,0.06);
-}
-.section-title{
-  background:var(--teal-pale);
-  border-bottom:1px solid var(--border-light);
-  padding:0.7rem 1.1rem;
-  font-size:0.75rem; font-weight:700;
-  letter-spacing:0.12em; color:var(--teal-dark);
-  display:flex; align-items:center; gap:0.55rem;
-}
-.section-title::before{
-  content:''; display:block;
-  width:4px; height:15px;
-  background:var(--teal); border-radius:2px; flex-shrink:0;
-}
-
-/* ══ Field ══ */
+.section-card{background:var(--white);border:1px solid var(--border);border-radius:14px;margin:0 1rem 1.1rem;overflow:hidden;box-shadow:0 2px 8px rgba(0,101,110,0.06);}
+.section-title{background:var(--teal-pale);border-bottom:1px solid var(--border-light);padding:0.7rem 1.1rem;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;color:var(--teal-dark);display:flex;align-items:center;gap:0.55rem;}
+.section-title::before{content:'';display:block;width:4px;height:15px;background:var(--teal);border-radius:2px;flex-shrink:0;}
 .field{padding:1rem 1.1rem;border-bottom:1px solid var(--border-light);}
 .field:last-child{border-bottom:none;}
-
-label.field-label{
-  display:block;
-  font-size:0.9rem; font-weight:600;
-  color:var(--ink); margin-bottom:0.5rem;
-}
+label.field-label{display:block;font-size:0.9rem;font-weight:600;color:var(--ink);margin-bottom:0.5rem;}
 .req{color:var(--error);margin-left:3px;font-size:0.75rem;}
-.hint{
-  display:block; color:var(--ink-muted);
-  font-size:0.78rem; margin-top:0.35rem; line-height:1.65;
-}
+.hint{display:block;color:var(--ink-muted);font-size:0.78rem;margin-top:0.35rem;line-height:1.65;}
 .hint-inline{color:var(--ink-muted);font-size:0.78rem;}
-
-/* ── 通用輸入框 ── */
-input[type="text"],input[type="tel"],select,textarea{
-  width:100%;
-  border:2px solid var(--border);
-  border-radius:10px;
-  padding:0.75rem 0.9rem;
-  font-size:1rem;
-  font-family:'Noto Sans TC',sans-serif;
-  color:var(--ink); background:white;
-  transition:border-color 0.2s,box-shadow 0.2s;
-  -webkit-appearance:none; appearance:none;
-}
-input[type="date"]{
-  width:100%;
-  border:2px solid var(--border);
-  border-radius:10px;
-  padding:0.75rem 0.9rem;
-  font-size:1rem;
-  font-family:'Noto Sans TC',sans-serif;
-  color:var(--ink); background:white;
-  transition:border-color 0.2s,box-shadow 0.2s;
-  -webkit-appearance:none; appearance:none;
-  cursor:pointer;
-}
-input:focus,select:focus,textarea:focus{
-  outline:none;
-  border-color:var(--teal);
-  box-shadow:0 0 0 3px rgba(0,101,110,0.12);
-}
+input[type="text"],input[type="tel"],select,textarea{width:100%;border:2px solid var(--border);border-radius:10px;padding:0.75rem 0.9rem;font-size:1rem;font-family:'Noto Sans TC',sans-serif;color:var(--ink);background:white;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;appearance:none;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,101,110,0.12);}
 input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(192,57,43,0.1)!important;}
-
-/* ── 錯誤訊息 ── */
-.field-error{
-  display:none;
-  font-size:0.8rem; color:var(--error);
-  margin-top:0.4rem;
-  padding:0.35rem 0.65rem;
-  background:var(--error-bg);
-  border-left:3px solid var(--error);
-  border-radius:0 6px 6px 0;
-  line-height:1.5;
-}
+.field-error{display:none;font-size:0.8rem;color:var(--error);margin-top:0.4rem;padding:0.35rem 0.65rem;background:var(--error-bg);border-left:3px solid var(--error);border-radius:0 6px 6px 0;line-height:1.5;}
 .field-error.show{display:block;}
-
-/* ── 日期欄 ── */
 .date-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
 .date-sub-label{font-size:0.78rem;font-weight:500;color:var(--ink-soft);margin-bottom:0.4rem;display:block;}
-
-/* ── 自訂日期選擇器（iOS Safari 相容）── */
-.date-display{
-  width:100%;
-  border:2px solid var(--border);
-  border-radius:10px;
-  padding:0.75rem 0.9rem;
-  font-size:1rem;
-  font-family:'Noto Sans TC',sans-serif;
-  color:var(--ink); background:white;
-  cursor:pointer;
-  display:flex; align-items:center; justify-content:space-between;
-  user-select:none; -webkit-user-select:none;
-  transition:border-color 0.2s, box-shadow 0.2s;
-}
+/* ── 日期欄：不含右側 emoji ── */
+.date-display{width:100%;border:2px solid var(--border);border-radius:10px;padding:0.75rem 0.9rem;font-size:1rem;font-family:'Noto Sans TC',sans-serif;color:var(--ink);background:white;cursor:pointer;display:flex;align-items:center;user-select:none;-webkit-user-select:none;transition:border-color 0.2s,box-shadow 0.2s;}
 .date-display.placeholder{color:#aaa;}
 .date-display.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(192,57,43,0.1)!important;}
 .date-display:active{border-color:var(--teal);}
-.date-display-icon{font-size:1rem;flex-shrink:0;}
-
-/* Picker 下拉 */
 .date-picker-wrap{position:relative;}
-.date-picker-dropdown{
-  display:none;
-  position:absolute; top:calc(100% + 6px); left:0; right:0;
-  background:white;
-  border:2px solid var(--teal);
-  border-radius:14px;
-  box-shadow:0 8px 32px rgba(0,101,110,0.18);
-  z-index:200;
-  overflow:hidden;
-}
+.date-picker-dropdown{display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:white;border:2px solid var(--teal);border-radius:14px;box-shadow:0 8px 32px rgba(0,101,110,0.18);z-index:200;overflow:hidden;}
 .date-picker-dropdown.open{display:block;}
-
-/* 月份導航 */
-.dp-nav{
-  display:flex; align-items:center; justify-content:space-between;
-  background:var(--teal-dark); color:white;
-  padding:0.85rem 1rem;
-}
-.dp-nav-btn{
-  background:rgba(255,255,255,0.15); border:none; color:white;
-  width:42px; height:42px; border-radius:10px;
-  font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
-  transition:background 0.15s;
-}
-.dp-nav-btn:active{background:rgba(255,255,255,0.3);}
-.dp-nav-title{font-size:1.05rem;font-weight:700;letter-spacing:0.06em;}
-
-/* 星期列 */
-.dp-weekdays{
-  display:grid; grid-template-columns:repeat(7,1fr);
-  background:var(--teal-pale);
-  padding:0.55rem 0.6rem 0.45rem;
-  gap:3px;
-}
-.dp-wd{
-  text-align:center; font-size:0.82rem; font-weight:700;
-  color:var(--ink-muted); padding:0.25rem 0;
-}
-.dp-wd:first-child{color:#c0392b;}
-.dp-wd:last-child{color:#2980b9;}
-
-/* 日期格 */
-.dp-days{
-  display:grid; grid-template-columns:repeat(7,1fr);
-  padding:0.5rem 0.6rem 0.8rem;
-  gap:5px;
-}
-.dp-day{
-  text-align:center;
-  font-size:1rem;
-  padding:0.6rem 0.1rem;
-  border-radius:10px;
-  cursor:pointer;
-  transition:all 0.12s;
-  color:var(--ink);
-  border:none; background:none;
-  min-height:44px; display:flex; align-items:center; justify-content:center;
-}
+.dp-nav{display:flex;align-items:center;justify-content:space-between;background:var(--teal-dark);color:white;padding:0.65rem 0.9rem;}
+.dp-nav-btn{background:rgba(255,255,255,0.12);border:none;color:white;width:34px;height:34px;border-radius:8px;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s;}
+.dp-nav-btn:active{background:rgba(255,255,255,0.28);}
+.dp-nav-title{font-size:0.95rem;font-weight:600;letter-spacing:0.04em;}
+.dp-weekdays{display:grid;grid-template-columns:repeat(7,1fr);padding:0.5rem 0.75rem 0.25rem;gap:2px;}
+.dp-wd{text-align:center;font-size:0.72rem;font-weight:600;color:var(--ink-muted);padding:0.2rem 0;letter-spacing:0.03em;}
+.dp-wd:first-child{color:#c0392b;}.dp-wd:last-child{color:#2980b9;}
+.dp-days{display:grid;grid-template-columns:repeat(7,1fr);padding:0.3rem 0.75rem 0.9rem;gap:2px;}
+.dp-day{text-align:center;font-size:0.88rem;border-radius:50%;cursor:pointer;transition:all 0.12s;color:var(--ink);border:none;background:none;width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-weight:400;}
 .dp-day:hover:not(.past):not(.empty){background:var(--teal-light);color:var(--teal-dark);}
-.dp-day.today{font-weight:700;color:var(--teal);outline:2px solid var(--teal-light);}
-.dp-day.selected{background:var(--teal);color:white!important;font-weight:700;}
-.dp-day.in-range{background:var(--teal-light);color:var(--teal-dark);}
-.dp-day.past{color:#ccc;cursor:not-allowed;}
-.dp-day.empty{cursor:default;}
-.dp-day.sun{color:#e74c3c;}
-.dp-day.sat{color:#2980b9;}
+.dp-day.today{font-weight:700;color:var(--teal);box-shadow:inset 0 0 0 1.5px var(--teal-light);}
+.dp-day.selected{background:var(--teal);color:white!important;font-weight:600;}
+.dp-day.in-range{background:var(--teal-light);color:var(--teal-dark);border-radius:0;}
+.dp-day.in-range:first-of-type{border-radius:50% 0 0 50%;}
+.dp-day.past{color:#ccc;cursor:not-allowed;}.dp-day.empty{cursor:default;}
+.dp-day.sun{color:#e74c3c;}.dp-day.sat{color:#2980b9;}
 .dp-day.selected.sun,.dp-day.selected.sat{color:white!important;}
-
-
 /* ── 手機號碼狀態 ── */
-.phone-status{
-  display:none;
-  font-size:0.78rem; margin-top:0.35rem;
-  padding:0.3rem 0.65rem;
-  border-radius:0 6px 6px 0;
-  border-left:3px solid;
-  line-height:1.5;
-}
+.phone-status{display:none;font-size:0.78rem;margin-top:0.35rem;padding:0.3rem 0.65rem;border-radius:0 6px 6px 0;border-left:3px solid;line-height:1.5;}
 .phone-status.ok{display:block;color:var(--success);background:#EDF7F1;border-color:var(--success);}
 .phone-status.err{display:block;color:var(--error);background:var(--error-bg);border-color:var(--error);}
-
-/* ══ 人數計數器（大按鈕版）══ */
+/* ── 人數計數器 ── */
 .guest-counters{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:0.25rem;}
-.guest-counter-card{
-  background:var(--teal-pale);
-  border:1.5px solid var(--border-light);
-  border-radius:12px;
-  padding:0.85rem 0.75rem;
-  display:flex; flex-direction:column; align-items:center; gap:0.5rem;
-}
+.guest-counter-card{background:var(--teal-pale);border:1.5px solid var(--border-light);border-radius:12px;padding:0.85rem 0.75rem;display:flex;flex-direction:column;align-items:center;gap:0.5rem;}
 .guest-counter-card-label{font-size:0.8rem;font-weight:600;color:var(--ink-soft);}
 .big-counter{display:flex;align-items:center;gap:0;}
-.big-btn{
-  width:44px; height:44px;
-  border:2px solid var(--border);
-  background:white; color:var(--teal-dark);
-  font-size:1.4rem; font-weight:300;
-  cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  transition:all 0.15s; flex-shrink:0;
-  user-select:none; -webkit-user-select:none;
-}
-.big-btn:first-child{border-radius:10px 0 0 10px;}
-.big-btn:last-child{border-radius:0 10px 10px 0;}
+.big-btn{width:44px;height:44px;border:2px solid var(--border);background:white;color:var(--teal-dark);font-size:1.4rem;font-weight:300;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0;user-select:none;-webkit-user-select:none;}
+.big-btn:first-child{border-radius:10px 0 0 10px;}.big-btn:last-child{border-radius:0 10px 10px 0;}
 .big-btn:active{background:var(--teal-light);border-color:var(--teal);}
 .big-btn:disabled{opacity:0.3;cursor:not-allowed;}
-.big-val{
-  min-width:48px; text-align:center;
-  font-size:1.35rem; font-weight:700; color:var(--teal-dark);
-  border-top:2px solid var(--border); border-bottom:2px solid var(--border);
-  height:44px; line-height:44px;
-  background:white;
-}
-
-/* ══ 房型 ══ */
+.big-val{min-width:48px;text-align:center;font-size:1.35rem;font-weight:700;color:var(--teal-dark);border-top:2px solid var(--border);border-bottom:2px solid var(--border);height:44px;line-height:44px;background:white;}
+/* ── 房型 ── */
 .room-rows{display:flex;flex-direction:column;}
-.room-row{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:0.8rem 0; border-bottom:1px solid var(--border-light); gap:0.75rem;
-}
+.room-row{display:flex;align-items:center;justify-content:space-between;padding:0.8rem 0;border-bottom:1px solid var(--border-light);gap:0.75rem;}
 .room-row:last-child{border-bottom:none;}
-.room-row-left{
-  display:flex; align-items:center; gap:0.65rem;
-  flex:1; cursor:pointer; user-select:none; min-width:0;
-}
-.room-check{
-  width:22px; height:22px;
-  border:2px solid var(--border); border-radius:6px;
-  flex-shrink:0; display:flex; align-items:center; justify-content:center;
-  transition:all 0.18s; background:white;
-}
+.room-row-left{display:flex;align-items:center;gap:0.65rem;flex:1;cursor:pointer;user-select:none;min-width:0;}
+.room-check{width:22px;height:22px;border:2px solid var(--border);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.18s;background:white;}
 .room-check.checked{background:var(--teal);border-color:var(--teal);}
 .room-check.checked::after{content:'✓';color:white;font-size:0.75rem;font-weight:700;}
 .room-label{font-size:0.92rem;color:var(--ink-soft);transition:color 0.18s;}
 .room-label.active{color:var(--teal-dark);font-weight:600;}
 .room-counter{display:flex;align-items:center;opacity:0.25;pointer-events:none;transition:opacity 0.2s;flex-shrink:0;}
 .room-counter.active{opacity:1;pointer-events:auto;}
-.counter-btn{
-  width:32px; height:32px;
-  border:1.5px solid var(--border); background:white; color:var(--teal-dark);
-  font-size:1.15rem; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  transition:all 0.15s; flex-shrink:0;
-}
-.counter-btn:first-child{border-radius:8px 0 0 8px;}
-.counter-btn:last-child{border-radius:0 8px 8px 0;}
+.counter-btn{width:32px;height:32px;border:1.5px solid var(--border);background:white;color:var(--teal-dark);font-size:1.15rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0;}
+.counter-btn:first-child{border-radius:8px 0 0 8px;}.counter-btn:last-child{border-radius:0 8px 8px 0;}
 .counter-btn:active{background:var(--teal-light);}
 .counter-btn:disabled{opacity:0.3;cursor:not-allowed;}
-.counter-val{
-  width:34px; text-align:center;
-  font-size:0.9rem; font-weight:700; color:var(--teal-dark);
-  border-top:1.5px solid var(--border); border-bottom:1.5px solid var(--border);
-  height:32px; line-height:32px; background:var(--teal-light);
-}
-
-.room-note{
-  background:var(--yellow-bg); border:1px solid #FFD970;
-  border-radius:8px; padding:0.6rem 0.85rem;
-  font-size:0.82rem; color:#7A5800;
-  margin-top:0.6rem; display:none; line-height:1.7;
-}
+.counter-val{width:34px;text-align:center;font-size:0.9rem;font-weight:700;color:var(--teal-dark);border-top:1.5px solid var(--border);border-bottom:1.5px solid var(--border);height:32px;line-height:32px;background:var(--teal-light);}
+.room-note{background:var(--yellow-bg);border:1px solid #FFD970;border-radius:8px;padding:0.6rem 0.85rem;font-size:0.82rem;color:#7A5800;margin-top:0.6rem;display:none;line-height:1.7;}
 .room-note.show{display:block;}
 .custom-room-wrap{margin-top:0.65rem;display:none;}
 .custom-room-wrap.show{display:block;}
 .custom-room-wrap input{border-color:#E0A800;}
-
-/* ══ 兌換方式 ══ */
+/* ── 兌換方式 ── */
 .radio-group{display:flex;gap:0.65rem;flex-wrap:wrap;}
-.radio-option{
-  flex:1; min-width:130px;
-  display:flex; align-items:center; justify-content:center; gap:0.5rem;
-  border:2px solid var(--border); border-radius:10px;
-  padding:0.75rem 0.5rem;
-  cursor:pointer; font-size:0.9rem; color:var(--ink-soft);
-  transition:all 0.2s; position:relative;
-}
+.radio-option{flex:1;min-width:130px;display:flex;align-items:center;justify-content:center;gap:0.5rem;border:2px solid var(--border);border-radius:10px;padding:0.75rem 0.5rem;cursor:pointer;font-size:0.9rem;color:var(--ink-soft);transition:all 0.2s;position:relative;}
 .radio-option input[type="radio"]{position:absolute;opacity:0;width:0;height:0;}
-.radio-dot{
-  width:18px; height:18px; border:2px solid var(--border);
-  border-radius:50%; flex-shrink:0; transition:all 0.2s;
-  display:flex; align-items:center; justify-content:center;
-}
+.radio-dot{width:18px;height:18px;border:2px solid var(--border);border-radius:50%;flex-shrink:0;transition:all 0.2s;display:flex;align-items:center;justify-content:center;}
 .radio-option input:checked ~ .radio-dot{border-color:var(--teal);background:var(--teal);}
 .radio-option input:checked ~ .radio-dot::after{content:'';display:block;width:6px;height:6px;background:white;border-radius:50%;}
 .radio-option:has(input:checked){border-color:var(--teal);background:var(--teal-light);color:var(--teal-dark);font-weight:600;}
-
-/* ── 票券張數 ── */
-.voucher-count-wrap{
-  margin-top:0.85rem; display:none;
-  background:var(--teal-pale); border:1.5px solid var(--border-light);
-  border-radius:10px; padding:0.85rem 1rem;
-}
+.voucher-count-wrap{margin-top:0.85rem;display:none;background:var(--teal-pale);border:1.5px solid var(--border-light);border-radius:10px;padding:0.85rem 1rem;}
 .voucher-count-wrap.show{display:block;}
 .voucher-count-label{font-size:0.85rem;font-weight:600;color:var(--ink);margin-bottom:0.6rem;}
 .voucher-count-row{display:flex;align-items:center;gap:0;width:fit-content;}
-.vbtn{
-  width:42px; height:42px;
-  border:2px solid var(--border); background:white; color:var(--teal-dark);
-  font-size:1.3rem; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  transition:all 0.15s; flex-shrink:0; user-select:none;
-}
-.vbtn:first-child{border-radius:10px 0 0 10px;}
-.vbtn:last-child{border-radius:0 10px 10px 0;}
+.vbtn{width:42px;height:42px;border:2px solid var(--border);background:white;color:var(--teal-dark);font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0;user-select:none;}
+.vbtn:first-child{border-radius:10px 0 0 10px;}.vbtn:last-child{border-radius:0 10px 10px 0;}
 .vbtn:active{background:var(--teal-light);border-color:var(--teal);}
 .vbtn:disabled{opacity:0.3;cursor:not-allowed;}
-.vval{
-  min-width:52px; text-align:center;
-  font-size:1.15rem; font-weight:700; color:var(--teal-dark);
-  border-top:2px solid var(--border); border-bottom:2px solid var(--border);
-  height:42px; line-height:42px; background:white; padding:0 0.25rem;
-}
-
-/* ══ 上傳區 ══ */
+.vval{min-width:52px;text-align:center;font-size:1.15rem;font-weight:700;color:var(--teal-dark);border-top:2px solid var(--border);border-bottom:2px solid var(--border);height:42px;line-height:42px;background:white;padding:0 0.25rem;}
+/* ── 上傳區 ── */
 .upload-list{display:flex;flex-direction:column;gap:0.65rem;}
 .upload-item{border:2px dashed var(--border);border-radius:12px;overflow:hidden;transition:border-color 0.2s;}
 .upload-item.has-file{border-style:solid;border-color:var(--teal);background:#FAFFFE;}
 .upload-trigger{display:flex;align-items:center;gap:0.85rem;padding:0.85rem 1rem;cursor:pointer;position:relative;}
 .upload-trigger input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;padding:0;}
-.upload-thumb{
-  width:50px; height:50px; border-radius:8px;
-  background:var(--teal-pale); display:flex; align-items:center;
-  justify-content:center; font-size:1.6rem; flex-shrink:0; overflow:hidden;
-}
+.upload-thumb{width:50px;height:50px;border-radius:8px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;overflow:hidden;}
 .upload-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
 .upload-info{flex:1;min-width:0;}
 .up-title{font-size:0.88rem;font-weight:500;color:var(--ink-soft);}
 .up-sub{font-size:0.75rem;color:var(--ink-muted);margin-top:0.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.upload-del{
-  width:28px; height:28px; background:#FFE0E0; border-radius:50%;
-  display:none; align-items:center; justify-content:center;
-  font-size:0.8rem; color:var(--error); cursor:pointer; flex-shrink:0; border:none;
-}
+.upload-del{width:28px;height:28px;background:#FFE0E0;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:0.8rem;color:var(--error);cursor:pointer;flex-shrink:0;border:none;}
 .upload-item.has-file .upload-del{display:flex;}
-.btn-add-photo{
-  display:flex; align-items:center; justify-content:center; gap:0.5rem;
-  width:100%; border:2px dashed var(--teal); border-radius:10px;
-  background:var(--teal-pale); color:var(--teal-dark);
-  font-size:0.88rem; font-weight:600;
-  padding:0.75rem; cursor:pointer; transition:all 0.2s; margin-top:0.6rem;
-}
+.btn-add-photo{display:flex;align-items:center;justify-content:center;gap:0.5rem;width:100%;border:2px dashed var(--teal);border-radius:10px;background:var(--teal-pale);color:var(--teal-dark);font-size:0.88rem;font-weight:600;padding:0.75rem;cursor:pointer;transition:all 0.2s;margin-top:0.6rem;}
 .btn-add-photo:active{background:var(--teal-light);}
-
-/* ══ 重要提醒 ══ */
-.alert-warning{
-  background:#FEF3E2; border:1px solid #F5C06A;
-  border-radius:12px; padding:1rem 1.1rem;
-  margin:0 1rem 1.1rem;
-  font-size:0.85rem; color:#7A4F1A; line-height:1.85;
-}
+.alert-warning{background:#FEF3E2;border:1px solid #F5C06A;border-radius:12px;padding:1rem 1.1rem;margin:0 1rem 1.1rem;font-size:0.85rem;color:#7A4F1A;line-height:1.85;}
 .alert-warning .aw-title{font-size:0.9rem;font-weight:700;color:#9B3A1A;display:block;margin-bottom:0.4rem;}
-.alert-warning ol{padding-left:1.3rem;}
-.alert-warning li{margin-bottom:0.2rem;}
-
-/* ══ 送出按鈕 ══ */
+.alert-warning ol{padding-left:1.3rem;}.alert-warning li{margin-bottom:0.2rem;}
 .submit-wrap{padding:0.5rem 1rem 0.25rem;}
-.btn-submit{
-  width:100%;
-  background:linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 100%);
-  color:white;
-  font-family:'Noto Serif TC',serif;
-  font-size:1.05rem; font-weight:700; letter-spacing:0.15em;
-  border:none; border-radius:12px; padding:1rem;
-  cursor:pointer;
-  box-shadow:0 4px 18px rgba(0,101,110,0.32);
-  transition:all 0.2s;
-}
+.btn-submit{width:100%;background:linear-gradient(135deg,var(--teal-dark) 0%,var(--teal) 100%);color:white;font-family:'Noto Serif TC',serif;font-size:1.05rem;font-weight:700;letter-spacing:0.15em;border:none;border-radius:12px;padding:1rem;cursor:pointer;box-shadow:0 4px 18px rgba(0,101,110,0.32);transition:all 0.2s;}
 .btn-submit:active{transform:scale(0.98);box-shadow:0 2px 8px rgba(0,101,110,0.2);}
 .btn-submit:disabled{background:#A0B8BA;box-shadow:none;cursor:not-allowed;}
 .sub-note{text-align:center;font-size:0.75rem;color:var(--ink-muted);margin:0.6rem 1rem 1.75rem;}
-
-/* ══ 版權 ══ */
-.copyright-footer{
-  text-align:center;padding:1.25rem 1rem 2rem;
-  font-size:0.7rem;color:var(--ink-muted);opacity:0.8;
-  letter-spacing:0.3px;line-height:2;
-  border-top:1px solid var(--border-light);margin-top:0.5rem;
-}
-
-/* ══ Modal ══ */
+.copyright-footer{text-align:center;padding:1.25rem 1rem 2rem;font-size:0.7rem;color:var(--ink-muted);opacity:0.8;letter-spacing:0.3px;line-height:2;border-top:1px solid var(--border-light);margin-top:0.5rem;}
 #overlay{display:none;position:fixed;inset:0;background:rgba(13,36,38,0.75);z-index:100;align-items:center;justify-content:center;}
 #overlay.show{display:flex;}
-.modal{
-  background:white;border-radius:18px;
-  padding:2.25rem 1.75rem;margin:1.5rem;
-  text-align:center;max-width:320px;width:100%;
-  box-shadow:0 24px 64px rgba(0,0,0,0.28);
-}
+.modal{background:white;border-radius:18px;padding:2.25rem 1.75rem;margin:1.5rem;text-align:center;max-width:320px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,0.28);}
 .modal-icon{font-size:3rem;margin-bottom:0.75rem;}
 .modal h2{font-family:'Noto Serif TC',serif;font-size:1.15rem;color:var(--ink);margin-bottom:0.6rem;font-weight:700;}
 .modal p{font-size:0.85rem;color:var(--ink-soft);line-height:1.9;white-space:pre-line;}
-.modal-close{
-  margin-top:1.4rem;background:var(--teal);color:white;
-  border:none;border-radius:10px;padding:0.75rem 2.25rem;
-  font-size:0.92rem;cursor:pointer;font-family:'Noto Sans TC',sans-serif;
-  font-weight:600;
-}
+.modal-close{margin-top:1.4rem;background:var(--teal);color:white;border:none;border-radius:10px;padding:0.75rem 2.25rem;font-size:0.92rem;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-weight:600;}
 </style>
 </head>
 <body>
 
-<!-- ══ Hero ══ -->
 <div class="hero">
   <div class="hero-badge">LINE 官方帳號訂房專區</div>
   <h1>旅展票券訂房預約</h1>
@@ -503,7 +157,6 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
   <p class="hero-sub">VOUCHER RESERVATION FORM</p>
 </div>
 
-<!-- ══ 訂房須知 ══ -->
 <div class="notice-box">
   <strong>📋 訂房須知</strong>
   欲使用旅展票券訂房，請提供完整的「禮券編號」、「信託序號」以便現場查詢，待專員確認票券可正常使用後，會發送訂房成功通知訊息給您。
@@ -511,7 +164,6 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
 
 <form id="bookingForm" novalidate>
 
-  <!-- ══ 基本資料 ══ -->
   <div class="section-card">
     <div class="section-title">基本資料</div>
 
@@ -522,7 +174,6 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
           <span class="date-sub-label">📅 入住日期</span>
           <div class="date-display placeholder" id="ciDisplay" tabindex="0">
             <span id="ciText">請選擇日期</span>
-            <span class="date-display-icon">📅</span>
           </div>
           <div class="date-picker-dropdown" id="ciDropdown">
             <div class="dp-nav">
@@ -530,11 +181,7 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
               <span class="dp-nav-title" id="ciTitle"></span>
               <button type="button" class="dp-nav-btn" id="ciNext">&#8250;</button>
             </div>
-            <div class="dp-weekdays">
-              <div class="dp-wd">日</div><div class="dp-wd">一</div><div class="dp-wd">二</div>
-              <div class="dp-wd">三</div><div class="dp-wd">四</div><div class="dp-wd">五</div>
-              <div class="dp-wd">六</div>
-            </div>
+            <div class="dp-weekdays"><div class="dp-wd">日</div><div class="dp-wd">一</div><div class="dp-wd">二</div><div class="dp-wd">三</div><div class="dp-wd">四</div><div class="dp-wd">五</div><div class="dp-wd">六</div></div>
             <div class="dp-days" id="ciDays"></div>
           </div>
         </div>
@@ -542,7 +189,6 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
           <span class="date-sub-label">📅 退房日期</span>
           <div class="date-display placeholder" id="coDisplay" tabindex="0">
             <span id="coText">請選擇日期</span>
-            <span class="date-display-icon">📅</span>
           </div>
           <div class="date-picker-dropdown" id="coDropdown">
             <div class="dp-nav">
@@ -550,11 +196,7 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
               <span class="dp-nav-title" id="coTitle"></span>
               <button type="button" class="dp-nav-btn" id="coNext">&#8250;</button>
             </div>
-            <div class="dp-weekdays">
-              <div class="dp-wd">日</div><div class="dp-wd">一</div><div class="dp-wd">二</div>
-              <div class="dp-wd">三</div><div class="dp-wd">四</div><div class="dp-wd">五</div>
-              <div class="dp-wd">六</div>
-            </div>
+            <div class="dp-weekdays"><div class="dp-wd">日</div><div class="dp-wd">一</div><div class="dp-wd">二</div><div class="dp-wd">三</div><div class="dp-wd">四</div><div class="dp-wd">五</div><div class="dp-wd">六</div></div>
             <div class="dp-days" id="coDays"></div>
           </div>
         </div>
@@ -600,7 +242,6 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
     </div>
   </div>
 
-  <!-- ══ 票券房型選擇 ══ -->
   <div class="section-card">
     <div class="section-title">票券房型選擇</div>
     <div class="field">
@@ -614,43 +255,26 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
     </div>
   </div>
 
-  <!-- ══ 兌換方式 ══ -->
   <div class="section-card">
     <div class="section-title">兌換方式</div>
     <div class="field">
       <label class="field-label">請選擇兌換方式 <span class="req">*</span></label>
       <div class="radio-group">
-        <label class="radio-option">
-          <input type="radio" name="voucherType" value="票券兌換" id="voucherTicket">
-          <span class="radio-dot"></span>🎫 票券兌換
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="voucherType" value="現金折抵" id="voucherCash">
-          <span class="radio-dot"></span>💰 現金折抵
-        </label>
+        <label class="radio-option"><input type="radio" name="voucherType" value="票券兌換" id="voucherTicket"><span class="radio-dot"></span>🎫 票券兌換</label>
+        <label class="radio-option"><input type="radio" name="voucherType" value="現金折抵" id="voucherCash"><span class="radio-dot"></span>💰 現金折抵</label>
       </div>
       <div class="field-error" id="voucherTypeError">⚠ 請選擇兌換方式</div>
-
       <div class="voucher-count-wrap" id="voucherTicketCountWrap">
         <div class="voucher-count-label">此次預計使用幾張票券？<span class="req">*</span></div>
-        <div class="voucher-count-row">
-          <button type="button" class="vbtn" id="vt_minus">－</button>
-          <div class="vval" id="voucherTicketCount">1</div>
-          <button type="button" class="vbtn" id="vt_plus">＋</button>
-        </div>
+        <div class="voucher-count-row"><button type="button" class="vbtn" id="vt_minus">－</button><div class="vval" id="voucherTicketCount">1</div><button type="button" class="vbtn" id="vt_plus">＋</button></div>
       </div>
       <div class="voucher-count-wrap" id="voucherCashCountWrap">
         <div class="voucher-count-label">此次預計使用幾張票券折抵金額？<span class="req">*</span></div>
-        <div class="voucher-count-row">
-          <button type="button" class="vbtn" id="vc_minus">－</button>
-          <div class="vval" id="voucherCashCount">1</div>
-          <button type="button" class="vbtn" id="vc_plus">＋</button>
-        </div>
+        <div class="voucher-count-row"><button type="button" class="vbtn" id="vc_minus">－</button><div class="vval" id="voucherCashCount">1</div><button type="button" class="vbtn" id="vc_plus">＋</button></div>
       </div>
     </div>
   </div>
 
-  <!-- ══ 票券資料 ══ -->
   <div class="section-card">
     <div class="section-title">票券資料</div>
     <div class="field">
@@ -670,7 +294,6 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
     </div>
   </div>
 
-  <!-- ══ 重要提醒 ══ -->
   <div class="alert-warning">
     <span class="aw-title">⚠️ 重要提醒</span>
     <ol>
@@ -686,7 +309,6 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
     <button type="submit" class="btn-submit" id="submitBtn">確認送出預約</button>
   </div>
   <p class="sub-note">送出後訊息將自動傳入聊天室，請稍候專員確認</p>
-
 </form>
 
 <div class="copyright-footer">
@@ -704,505 +326,192 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
 </div>
 
 <script>
-var LIFF_ID           = "2010237174-FXcaeMsU";
-var CLOUDINARY_NAME   = "db1pzd5xq";
-var CLOUDINARY_PRESET = "finders_hotel_voucher";
-var MAX_PER_ROOM = 4;
-var MAX_VC       = 20;
-var MAX_ADULT    = 10;
-var MAX_CHILD    = 6;
+var LIFF_ID="2010237174-FXcaeMsU",CLOUDINARY_NAME="db1pzd5xq",CLOUDINARY_PRESET="finders_hotel_voucher";
+var MAX_PER_ROOM=4,MAX_VC=20,MAX_ADULT=10,MAX_CHILD=6;
 
-// ══ 人數計數器 ══
-var adultCnt = 1, childCnt = 0;
-function updateGuest(type, delta){
-  if(type === 'adult'){
-    adultCnt = Math.max(1, Math.min(MAX_ADULT, adultCnt + delta));
-    document.getElementById('adultVal').textContent = adultCnt;
-    document.getElementById('adultMinus').disabled = adultCnt <= 1;
-    document.getElementById('adultPlus').disabled  = adultCnt >= MAX_ADULT;
-  } else {
-    childCnt = Math.max(0, Math.min(MAX_CHILD, childCnt + delta));
-    document.getElementById('childVal').textContent = childCnt;
-    document.getElementById('childMinus').disabled = childCnt <= 0;
-    document.getElementById('childPlus').disabled  = childCnt >= MAX_CHILD;
-  }
+// 人數計數器
+var adultCnt=1,childCnt=0;
+function updateGuest(type,delta){
+  if(type==='adult'){adultCnt=Math.max(1,Math.min(MAX_ADULT,adultCnt+delta));document.getElementById('adultVal').textContent=adultCnt;document.getElementById('adultMinus').disabled=adultCnt<=1;document.getElementById('adultPlus').disabled=adultCnt>=MAX_ADULT;}
+  else{childCnt=Math.max(0,Math.min(MAX_CHILD,childCnt+delta));document.getElementById('childVal').textContent=childCnt;document.getElementById('childMinus').disabled=childCnt<=0;document.getElementById('childPlus').disabled=childCnt>=MAX_CHILD;}
   hideErr('guestError');
 }
-document.getElementById('adultMinus').addEventListener('click', function(){ updateGuest('adult', -1); });
-document.getElementById('adultPlus').addEventListener('click',  function(){ updateGuest('adult',  1); });
-document.getElementById('childMinus').addEventListener('click', function(){ updateGuest('child', -1); });
-document.getElementById('childPlus').addEventListener('click',  function(){ updateGuest('child',  1); });
+document.getElementById('adultMinus').addEventListener('click',function(){updateGuest('adult',-1);});
+document.getElementById('adultPlus').addEventListener('click',function(){updateGuest('adult',1);});
+document.getElementById('childMinus').addEventListener('click',function(){updateGuest('child',-1);});
+document.getElementById('childPlus').addEventListener('click',function(){updateGuest('child',1);});
 
-// ══ 房型 ══
-var ROOM_TYPES = ["菁英雙人房","菁英雙床房","高級雙人房","菁英家庭房","其他房型"];
-var roomState  = {};
-ROOM_TYPES.forEach(function(r){ roomState[r] = {checked:false, count:1}; });
-
+// 房型
+var ROOM_TYPES=["菁英雙人房","菁英雙床房","高級雙人房","菁英家庭房","其他房型"];
+var roomState={};
+ROOM_TYPES.forEach(function(r){roomState[r]={checked:false,count:1};});
 function renderRooms(){
-  var container = document.getElementById("roomRows");
-  container.innerHTML = "";
+  var container=document.getElementById("roomRows");container.innerHTML="";
   ROOM_TYPES.forEach(function(name){
-    var s   = roomState[name];
-    var key = name.replace(/\s/g,'');
-    var row = document.createElement("div");
-    row.className = "room-row";
-    row.innerHTML =
-      '<div class="room-row-left" data-room="'+name+'">' +
-        '<div class="room-check '+(s.checked?'checked':'')+'" id="chk_'+key+'"></div>' +
-        '<span class="room-label '+(s.checked?'active':'')+'">'+name+'</span>' +
-      '</div>' +
-      '<div class="room-counter '+(s.checked?'active':'')+'" id="ctr_'+key+'">' +
-        '<button type="button" class="counter-btn" data-room="'+name+'" data-d="-1" '+(s.count<=1?'disabled':'')+'>－</button>' +
-        '<div class="counter-val">'+s.count+'</div>' +
-        '<button type="button" class="counter-btn" data-room="'+name+'" data-d="1"  '+(s.count>=MAX_PER_ROOM?'disabled':'')+'>＋</button>' +
-      '</div>';
+    var s=roomState[name],key=name.replace(/\s/g,'');
+    var row=document.createElement("div");row.className="room-row";
+    row.innerHTML='<div class="room-row-left" data-room="'+name+'"><div class="room-check '+(s.checked?'checked':'')+'" id="chk_'+key+'"></div><span class="room-label '+(s.checked?'active':'')+'">'+name+'</span></div><div class="room-counter '+(s.checked?'active':'')+'" id="ctr_'+key+'"><button type="button" class="counter-btn" data-room="'+name+'" data-d="-1" '+(s.count<=1?'disabled':'')+'>－</button><div class="counter-val">'+s.count+'</div><button type="button" class="counter-btn" data-room="'+name+'" data-d="1" '+(s.count>=MAX_PER_ROOM?'disabled':'')+'>＋</button></div>';
     container.appendChild(row);
   });
-  container.querySelectorAll('.room-row-left').forEach(function(el){
-    el.addEventListener('click', function(){
-      var nm = this.getAttribute('data-room');
-      roomState[nm].checked = !roomState[nm].checked;
-      if(!roomState[nm].checked) roomState[nm].count = 1;
-      hideErr('roomError');
-      renderRooms();
-    });
-  });
-  container.querySelectorAll('.counter-btn').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.stopPropagation();
-      var nm = this.getAttribute('data-room');
-      var d  = parseInt(this.getAttribute('data-d'), 10);
-      roomState[nm].count = Math.max(1, Math.min(MAX_PER_ROOM, roomState[nm].count + d));
-      renderRooms();
-    });
-  });
-  var hasOther = roomState["其他房型"].checked;
-  document.getElementById("roomNote").classList.toggle("show", hasOther);
-  document.getElementById("customRoomWrap").classList.toggle("show", hasOther);
+  container.querySelectorAll('.room-row-left').forEach(function(el){el.addEventListener('click',function(){var nm=this.getAttribute('data-room');roomState[nm].checked=!roomState[nm].checked;if(!roomState[nm].checked)roomState[nm].count=1;hideErr('roomError');renderRooms();});});
+  container.querySelectorAll('.counter-btn').forEach(function(btn){btn.addEventListener('click',function(e){e.stopPropagation();var nm=this.getAttribute('data-room'),d=parseInt(this.getAttribute('data-d'),10);roomState[nm].count=Math.max(1,Math.min(MAX_PER_ROOM,roomState[nm].count+d));renderRooms();});});
+  var hasOther=roomState["其他房型"].checked;
+  document.getElementById("roomNote").classList.toggle("show",hasOther);
+  document.getElementById("customRoomWrap").classList.toggle("show",hasOther);
 }
 renderRooms();
 
-// ══ 兌換方式 ══
-var voucherTicketCount = 1;
-var voucherCashCount   = 1;
+// 兌換方式
+var voucherTicketCount=1,voucherCashCount=1;
+function onVoucherTypeChange(){var checked=document.querySelector('input[name="voucherType"]:checked'),val=checked?checked.value:null;document.getElementById("voucherTicketCountWrap").classList.toggle("show",val==="票券兌換");document.getElementById("voucherCashCountWrap").classList.toggle("show",val==="現金折抵");hideErr('voucherTypeError');}
+document.getElementById("voucherTicket").addEventListener("change",onVoucherTypeChange);
+document.getElementById("voucherCash").addEventListener("change",onVoucherTypeChange);
+var vtMinus=document.getElementById("vt_minus"),vtPlus=document.getElementById("vt_plus"),vcMinus=document.getElementById("vc_minus"),vcPlus=document.getElementById("vc_plus");
+vtMinus.addEventListener("click",function(){voucherTicketCount=Math.max(1,voucherTicketCount-1);document.getElementById("voucherTicketCount").textContent=voucherTicketCount;vtMinus.disabled=voucherTicketCount<=1;vtPlus.disabled=false;});
+vtPlus.addEventListener("click",function(){voucherTicketCount=Math.min(MAX_VC,voucherTicketCount+1);document.getElementById("voucherTicketCount").textContent=voucherTicketCount;vtMinus.disabled=false;vtPlus.disabled=voucherTicketCount>=MAX_VC;});
+vcMinus.addEventListener("click",function(){voucherCashCount=Math.max(1,voucherCashCount-1);document.getElementById("voucherCashCount").textContent=voucherCashCount;vcMinus.disabled=voucherCashCount<=1;vcPlus.disabled=false;});
+vcPlus.addEventListener("click",function(){voucherCashCount=Math.min(MAX_VC,voucherCashCount+1);document.getElementById("voucherCashCount").textContent=voucherCashCount;vcMinus.disabled=false;vcPlus.disabled=voucherCashCount>=MAX_VC;});
 
-function onVoucherTypeChange(){
-  var checked = document.querySelector('input[name="voucherType"]:checked');
-  var val = checked ? checked.value : null;
-  document.getElementById("voucherTicketCountWrap").classList.toggle("show", val === "票券兌換");
-  document.getElementById("voucherCashCountWrap").classList.toggle("show",   val === "現金折抵");
-  hideErr('voucherTypeError');
-}
-document.getElementById("voucherTicket").addEventListener("change", onVoucherTypeChange);
-document.getElementById("voucherCash").addEventListener("change",   onVoucherTypeChange);
-
-var vtMinus = document.getElementById("vt_minus");
-var vtPlus  = document.getElementById("vt_plus");
-var vcMinus = document.getElementById("vc_minus");
-var vcPlus  = document.getElementById("vc_plus");
-vtMinus.addEventListener("click", function(){
-  voucherTicketCount = Math.max(1, voucherTicketCount - 1);
-  document.getElementById("voucherTicketCount").textContent = voucherTicketCount;
-  vtMinus.disabled = voucherTicketCount <= 1;
-  vtPlus.disabled  = false;
-});
-vtPlus.addEventListener("click", function(){
-  voucherTicketCount = Math.min(MAX_VC, voucherTicketCount + 1);
-  document.getElementById("voucherTicketCount").textContent = voucherTicketCount;
-  vtMinus.disabled = false;
-  vtPlus.disabled  = voucherTicketCount >= MAX_VC;
-});
-vcMinus.addEventListener("click", function(){
-  voucherCashCount = Math.max(1, voucherCashCount - 1);
-  document.getElementById("voucherCashCount").textContent = voucherCashCount;
-  vcMinus.disabled = voucherCashCount <= 1;
-  vcPlus.disabled  = false;
-});
-vcPlus.addEventListener("click", function(){
-  voucherCashCount = Math.min(MAX_VC, voucherCashCount + 1);
-  document.getElementById("voucherCashCount").textContent = voucherCashCount;
-  vcMinus.disabled = false;
-  vcPlus.disabled  = voucherCashCount >= MAX_VC;
-});
-
-// ══ 照片上傳 ══
-var photoSlots = [];
-var slotCounter = 0;
-
+// 照片上傳
+var photoSlots=[],slotCounter=0;
 function addPhotoSlot(){
-  slotCounter++;
-  var id = "slot_" + slotCounter;
-  photoSlots.push({id:id, file:null, cloudUrl:null});
-
-  var item = document.createElement("div");
-  item.className = "upload-item"; item.id = id;
-
-  var trigger = document.createElement("div");
-  trigger.className = "upload-trigger";
-
-  var inp = document.createElement("input");
-  inp.type = "file"; inp.accept = "image/*";
-
-  var thumb = document.createElement("div");
-  thumb.className = "upload-thumb"; thumb.id = "thumb_"+id;
-  thumb.textContent = "🖼️";
-
-  var info = document.createElement("div");
-  info.className = "upload-info";
-  info.innerHTML = '<div class="up-title">點擊選擇或拍攝照片</div>' +
-    '<div class="up-sub" id="sub_'+id+'">支援 JPG / PNG，請確保圖片清晰</div>';
-
-  trigger.appendChild(inp);
-  trigger.appendChild(thumb);
-  trigger.appendChild(info);
-
-  var delBtn = document.createElement("button");
-  delBtn.type = "button"; delBtn.className = "upload-del"; delBtn.textContent = "✕";
-
-  item.appendChild(trigger);
-  item.appendChild(delBtn);
+  slotCounter++;var id="slot_"+slotCounter;photoSlots.push({id:id,file:null,cloudUrl:null});
+  var item=document.createElement("div");item.className="upload-item";item.id=id;
+  var trigger=document.createElement("div");trigger.className="upload-trigger";
+  var inp=document.createElement("input");inp.type="file";inp.accept="image/*";
+  var thumb=document.createElement("div");thumb.className="upload-thumb";thumb.id="thumb_"+id;thumb.textContent="🖼️";
+  var info=document.createElement("div");info.className="upload-info";
+  info.innerHTML='<div class="up-title">點擊選擇或拍攝照片</div><div class="up-sub" id="sub_'+id+'">支援 JPG / PNG，請確保圖片清晰</div>';
+  trigger.appendChild(inp);trigger.appendChild(thumb);trigger.appendChild(info);
+  var delBtn=document.createElement("button");delBtn.type="button";delBtn.className="upload-del";delBtn.textContent="✕";
+  item.appendChild(trigger);item.appendChild(delBtn);
   document.getElementById("uploadList").appendChild(item);
-
-  inp.addEventListener("change", function(){
-    var file = this.files[0];
-    if(!file) return;
-    var slot = photoSlots.find(function(s){ return s.id === id; });
-    if(!slot) return;
-    slot.file = file; slot.cloudUrl = null;
-    var reader = new FileReader();
-    reader.onload = function(e){
-      document.getElementById("thumb_"+id).innerHTML = '<img src="'+e.target.result+'" alt="預覽">';
-      document.getElementById("sub_"+id).textContent = "📎 "+file.name;
-      document.getElementById(id).classList.add("has-file");
-      hideErr('photoError');
-    };
-    reader.readAsDataURL(file);
-  });
-  delBtn.addEventListener("click", function(){
-    photoSlots = photoSlots.filter(function(s){ return s.id !== id; });
-    var el = document.getElementById(id);
-    if(el) el.remove();
-  });
+  inp.addEventListener("change",function(){var file=this.files[0];if(!file)return;var slot=photoSlots.find(function(s){return s.id===id;});if(!slot)return;slot.file=file;slot.cloudUrl=null;var reader=new FileReader();reader.onload=function(e){document.getElementById("thumb_"+id).innerHTML='<img src="'+e.target.result+'" alt="預覽">';document.getElementById("sub_"+id).textContent="📎 "+file.name;document.getElementById(id).classList.add("has-file");hideErr('photoError');};reader.readAsDataURL(file);});
+  delBtn.addEventListener("click",function(){photoSlots=photoSlots.filter(function(s){return s.id!==id;});var el=document.getElementById(id);if(el)el.remove();});
 }
-document.getElementById("addPhotoBtn").addEventListener("click", addPhotoSlot);
-addPhotoSlot(); // 預設一個槽
+document.getElementById("addPhotoBtn").addEventListener("click",addPhotoSlot);
+addPhotoSlot();
 
-// ══ 自訂日期 Picker（iOS Safari 相容）══
-var ciValue = "";  // "YYYY-MM-DD"
-var coValue = "";
-
+// 日期 Picker
+var ciValue="",coValue="";
 (function(){
-  var today = new Date(); today.setHours(0,0,0,0);
-
-  function toYMD(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
-  function fromYMD(s){ var p=s.split("-"); return new Date(+p[0],+p[1]-1,+p[2]); }
-  function fmtDisplay(s){
-    if(!s) return null;
-    var p=s.split("-");
-    return p[0]+"年"+Number(p[1])+"月"+Number(p[2])+"日";
-  }
-
-  // 每個 picker 的狀態
-  var pickers = {
-    ci:{ cur:new Date(today.getFullYear(),today.getMonth(),1), minDate:today, maxDate:new Date(2099,11,31) },
-    co:{ cur:new Date(today.getFullYear(),today.getMonth(),1), minDate:today, maxDate:new Date(2099,11,31) }
-  };
-  var openPicker = null;
-
+  var today=new Date();today.setHours(0,0,0,0);
+  function toYMD(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+  function fromYMD(s){var p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2]);}
+  function fmtDisplay(s){if(!s)return null;var p=s.split("-");return p[0]+"年"+Number(p[1])+"月"+Number(p[2])+"日";}
+  var pickers={ci:{cur:new Date(today.getFullYear(),today.getMonth(),1),minDate:today,maxDate:new Date(2099,11,31)},co:{cur:new Date(today.getFullYear(),today.getMonth(),1),minDate:today,maxDate:new Date(2099,11,31)}};
+  var openPicker=null;
   function renderPicker(key){
-    var state = pickers[key];
-    var y = state.cur.getFullYear(), m = state.cur.getMonth();
-    document.getElementById(key+"Title").textContent = y+"年"+(m+1)+"月";
-
-    var first = new Date(y,m,1).getDay(); // 0=Sun
-    var daysInMonth = new Date(y,m+1,0).getDate();
-    var container = document.getElementById(key+"Days");
-    container.innerHTML = "";
-
-    var val = key==="ci" ? ciValue : coValue;
-
-    for(var i=0;i<first;i++){
-      var emp=document.createElement("div"); emp.className="dp-day empty"; container.appendChild(emp);
-    }
+    var state=pickers[key],y=state.cur.getFullYear(),m=state.cur.getMonth();
+    document.getElementById(key+"Title").textContent=y+"年"+(m+1)+"月";
+    var first=new Date(y,m,1).getDay(),daysInMonth=new Date(y,m+1,0).getDate();
+    var container=document.getElementById(key+"Days");container.innerHTML="";
+    var val=key==="ci"?ciValue:coValue;
+    for(var i=0;i<first;i++){var emp=document.createElement("div");emp.className="dp-day empty";container.appendChild(emp);}
     for(var d=1;d<=daysInMonth;d++){
-      var dt = new Date(y,m,d);
-      var btn = document.createElement("button");
-      btn.type="button"; btn.textContent=d;
-      var cls = ["dp-day"];
-      var dow = dt.getDay();
-      if(dow===0) cls.push("sun");
-      if(dow===6) cls.push("sat");
-      if(dt < state.minDate) cls.push("past");
-      if(toYMD(dt)===toYMD(today)) cls.push("today");
-      if(val && toYMD(dt)===val) cls.push("selected");
-      // 範圍標示
-      if(ciValue && coValue && toYMD(dt)>ciValue && toYMD(dt)<coValue) cls.push("in-range");
+      var dt=new Date(y,m,d),btn=document.createElement("button");
+      btn.type="button";btn.textContent=d;
+      var cls=["dp-day"],dow=dt.getDay();
+      if(dow===0)cls.push("sun");if(dow===6)cls.push("sat");
+      if(dt<state.minDate)cls.push("past");
+      if(toYMD(dt)===toYMD(today))cls.push("today");
+      if(val&&toYMD(dt)===val)cls.push("selected");
+      if(ciValue&&coValue&&toYMD(dt)>ciValue&&toYMD(dt)<coValue)cls.push("in-range");
       btn.className=cls.join(" ");
-      if(!cls.includes("past") && !cls.includes("empty")){
-        (function(dateStr){
-          btn.addEventListener("click", function(){
-            if(key==="ci"){
-              ciValue = dateStr;
-              // 退房自動設為隔天（若退房早於或等於入住）
-              if(!coValue || coValue <= ciValue){
-                var nx=fromYMD(ciValue); nx.setDate(nx.getDate()+1);
-                coValue=toYMD(nx);
-                pickers.co.minDate=fromYMD(coValue);
-                pickers.co.cur=new Date(fromYMD(coValue).getFullYear(),fromYMD(coValue).getMonth(),1);
-                updateDisplay("co");
-                renderPicker("co");
-              } else {
-                pickers.co.minDate = fromYMD(ciValue); pickers.co.minDate.setDate(pickers.co.minDate.getDate()+1);
-              }
-            } else {
-              coValue = dateStr;
-            }
-            updateDisplay(key);
-            hideErr("dateError");
-            document.getElementById(key+"Display").classList.remove("has-error");
-            updateNights();
-            closeAllPickers();
-            // 選完入住自動開退房
-            if(key==="ci" && !coValue){
-              setTimeout(function(){ openDp("co"); },120);
-            }
-            renderPicker("ci"); renderPicker("co");
-          });
-        })(toYMD(dt));
+      if(!cls.includes("past")&&!cls.includes("empty")){
+        (function(dateStr){btn.addEventListener("click",function(){
+          if(key==="ci"){ciValue=dateStr;if(!coValue||coValue<=ciValue){var nx=fromYMD(ciValue);nx.setDate(nx.getDate()+1);coValue=toYMD(nx);pickers.co.minDate=fromYMD(coValue);pickers.co.cur=new Date(fromYMD(coValue).getFullYear(),fromYMD(coValue).getMonth(),1);updateDisplay("co");renderPicker("co");}else{pickers.co.minDate=fromYMD(ciValue);pickers.co.minDate.setDate(pickers.co.minDate.getDate()+1);}}
+          else{coValue=dateStr;}
+          updateDisplay(key);hideErr("dateError");document.getElementById(key+"Display").classList.remove("has-error");updateNights();closeAllPickers();
+          if(key==="ci"&&!coValue){setTimeout(function(){openDp("co");},120);}
+          renderPicker("ci");renderPicker("co");
+        });})(toYMD(dt));
       }
       container.appendChild(btn);
     }
   }
-
-  function updateDisplay(key){
-    var val = key==="ci" ? ciValue : coValue;
-    var disp = document.getElementById(key+"Display");
-    var txt  = document.getElementById(key+"Text");
-    if(val){
-      txt.textContent = fmtDisplay(val);
-      disp.classList.remove("placeholder");
-    } else {
-      txt.textContent = "請選擇日期";
-      disp.classList.add("placeholder");
-    }
-  }
-
-  function openDp(key){
-    closeAllPickers();
-    openPicker = key;
-    document.getElementById(key+"Dropdown").classList.add("open");
-    renderPicker(key);
-  }
-  function closeAllPickers(){
-    ["ci","co"].forEach(function(k){
-      document.getElementById(k+"Dropdown").classList.remove("open");
-    });
-    openPicker = null;
-  }
-
-  function updateNights(){
-    var el = document.getElementById("nightsSummary");
-    if(ciValue && coValue && coValue > ciValue){
-      var diff = Math.round((new Date(coValue) - new Date(ciValue)) / 86400000);
-      document.getElementById("nightsCount").textContent = diff;
-      el.style.display = "block";
-    } else {
-      el.style.display = "none";
-    }
-  }
-
-  // 顯示欄點擊
-  document.getElementById("ciDisplay").addEventListener("click", function(){ openPicker==="ci" ? closeAllPickers() : openDp("ci"); });
-  document.getElementById("coDisplay").addEventListener("click", function(){ openPicker==="co" ? closeAllPickers() : openDp("co"); });
-
-  // 上下月
-  document.getElementById("ciPrev").addEventListener("click", function(e){ e.stopPropagation(); pickers.ci.cur.setMonth(pickers.ci.cur.getMonth()-1); renderPicker("ci"); });
-  document.getElementById("ciNext").addEventListener("click", function(e){ e.stopPropagation(); pickers.ci.cur.setMonth(pickers.ci.cur.getMonth()+1); renderPicker("ci"); });
-  document.getElementById("coPrev").addEventListener("click", function(e){ e.stopPropagation(); pickers.co.cur.setMonth(pickers.co.cur.getMonth()-1); renderPicker("co"); });
-  document.getElementById("coNext").addEventListener("click", function(e){ e.stopPropagation(); pickers.co.cur.setMonth(pickers.co.cur.getMonth()+1); renderPicker("co"); });
-
-  // 點外部關閉
-  document.addEventListener("click", function(e){
-    if(!document.getElementById("ciWrap").contains(e.target) &&
-       !document.getElementById("coWrap").contains(e.target)){
-      closeAllPickers();
-    }
-  });
-
-  // 初始渲染
-  renderPicker("ci"); renderPicker("co");
+  function updateDisplay(key){var val=key==="ci"?ciValue:coValue,disp=document.getElementById(key+"Display"),txt=document.getElementById(key+"Text");if(val){txt.textContent=fmtDisplay(val);disp.classList.remove("placeholder");}else{txt.textContent="請選擇日期";disp.classList.add("placeholder");}}
+  function openDp(key){closeAllPickers();openPicker=key;document.getElementById(key+"Dropdown").classList.add("open");renderPicker(key);}
+  function closeAllPickers(){["ci","co"].forEach(function(k){document.getElementById(k+"Dropdown").classList.remove("open");});openPicker=null;}
+  function updateNights(){var el=document.getElementById("nightsSummary");if(ciValue&&coValue&&coValue>ciValue){var diff=Math.round((new Date(coValue)-new Date(ciValue))/86400000);document.getElementById("nightsCount").textContent=diff;el.style.display="block";}else{el.style.display="none";}}
+  document.getElementById("ciDisplay").addEventListener("click",function(){openPicker==="ci"?closeAllPickers():openDp("ci");});
+  document.getElementById("coDisplay").addEventListener("click",function(){openPicker==="co"?closeAllPickers():openDp("co");});
+  document.getElementById("ciPrev").addEventListener("click",function(e){e.stopPropagation();pickers.ci.cur.setMonth(pickers.ci.cur.getMonth()-1);renderPicker("ci");});
+  document.getElementById("ciNext").addEventListener("click",function(e){e.stopPropagation();pickers.ci.cur.setMonth(pickers.ci.cur.getMonth()+1);renderPicker("ci");});
+  document.getElementById("coPrev").addEventListener("click",function(e){e.stopPropagation();pickers.co.cur.setMonth(pickers.co.cur.getMonth()-1);renderPicker("co");});
+  document.getElementById("coNext").addEventListener("click",function(e){e.stopPropagation();pickers.co.cur.setMonth(pickers.co.cur.getMonth()+1);renderPicker("co");});
+  document.addEventListener("click",function(e){if(!document.getElementById("ciWrap").contains(e.target)&&!document.getElementById("coWrap").contains(e.target))closeAllPickers();});
+  renderPicker("ci");renderPicker("co");
 })();
 
-// ══ 手機號碼防呆 ══
+// ── 手機號碼防呆（即時提示版）──
 (function(){
-  var p  = document.getElementById("guestPhone");
-  var st = document.getElementById("phoneStatus");
-  p.addEventListener("keypress", function(e){
-    if(!/[0-9]/.test(e.key)) e.preventDefault();
-  });
-  p.addEventListener("input", function(){
-    var v = this.value.replace(/[^0-9]/g,'').slice(0,10);
-    if(this.value !== v) this.value = v;
-    // 即時回饋：輸入到10碼才判斷
-    if(v.length === 10){
-      if(/^09\d{8}$/.test(v)){
-        st.className = "phone-status ok"; st.textContent = "✅ 號碼格式正確";
-        p.classList.remove('has-error');
-      } else {
-        st.className = "phone-status err"; st.textContent = "⚠ 手機號碼格式不正確（需為 09 開頭共10碼）";
-        p.classList.add('has-error');
-      }
+  var p=document.getElementById("guestPhone"),st=document.getElementById("phoneStatus");
+  p.addEventListener("keypress",function(e){if(!/[0-9]/.test(e.key))e.preventDefault();});
+  p.addEventListener("input",function(){
+    var v=this.value.replace(/[^0-9]/g,'').slice(0,10);
+    if(this.value!==v)this.value=v;
+    if(v.length===0){st.className="phone-status";p.classList.remove('has-error');return;}
+    if(!v.startsWith("09")){
+      st.className="phone-status err";st.textContent="⚠ 手機號碼須以 09 開頭";p.classList.add('has-error');
+    } else if(v.length<10){
+      st.className="phone-status err";st.textContent="⚠ 號碼太短，目前 "+v.length+" 碼，需 10 碼";p.classList.add('has-error');
     } else {
-      st.className = "phone-status";
-      p.classList.remove('has-error');
+      st.className="phone-status ok";st.textContent="✅ 號碼格式正確";p.classList.remove('has-error');
     }
   });
-  p.addEventListener("blur", function(){
-    if(this.value.length > 0 && !/^09\d{8}$/.test(this.value)){
-      st.className = "phone-status err"; st.textContent = "⚠ 手機號碼格式不正確（需為 09 開頭共10碼）";
+  p.addEventListener("blur",function(){
+    var v=this.value;
+    if(v.length>0&&!/^09\d{8}$/.test(v)){
+      st.className="phone-status err";
+      st.textContent=!v.startsWith("09")?"⚠ 手機號碼須以 09 開頭":"⚠ 號碼太短，目前 "+v.length+" 碼，需 10 碼";
       p.classList.add('has-error');
     }
   });
 })();
 
-// ══ 錯誤輔助 ══
-function showErr(id){ var el=document.getElementById(id); if(el) el.classList.add('show'); }
-function hideErr(id){ var el=document.getElementById(id); if(el) el.classList.remove('show'); }
+function showErr(id){var el=document.getElementById(id);if(el)el.classList.add('show');}
+function hideErr(id){var el=document.getElementById(id);if(el)el.classList.remove('show');}
 
-// ══ Modal ══
-function showModal(icon, title, body, isSuccess){
-  document.getElementById("modalIcon").textContent  = icon;
-  document.getElementById("modalTitle").textContent = title;
-  document.getElementById("modalBody").textContent  = body;
-  document.getElementById("modalClose").textContent = isSuccess ? "關閉視窗" : "我知道了";
-  document.getElementById("overlay").classList.add("show");
-}
-function closeLiff(){
-  document.getElementById("overlay").classList.remove("show");
-  if(document.getElementById("modalTitle").textContent === "預約訊息已送出！"){
-    try{ liff.closeWindow(); }catch(e){ window.close(); }
-  }
-}
-document.getElementById("modalClose").addEventListener("click", closeLiff);
+function showModal(icon,title,body,isSuccess){document.getElementById("modalIcon").textContent=icon;document.getElementById("modalTitle").textContent=title;document.getElementById("modalBody").textContent=body;document.getElementById("modalClose").textContent=isSuccess?"關閉視窗":"我知道了";document.getElementById("overlay").classList.add("show");}
+function closeLiff(){document.getElementById("overlay").classList.remove("show");if(document.getElementById("modalTitle").textContent==="預約訊息已送出！"){try{liff.closeWindow();}catch(e){window.close();}}}
+document.getElementById("modalClose").addEventListener("click",closeLiff);
 
-// ══ Cloudinary ══
-async function uploadToCloudinary(file, slotId){
-  var subEl = document.getElementById("sub_"+slotId);
-  if(subEl) subEl.textContent = "⏫ 上傳中…";
-  var fd = new FormData();
-  fd.append("file", file);
-  fd.append("upload_preset", CLOUDINARY_PRESET);
-  var res = await fetch("https://api.cloudinary.com/v1_1/"+CLOUDINARY_NAME+"/image/upload",{method:"POST",body:fd});
-  if(!res.ok) throw new Error("Cloudinary 上傳失敗（HTTP "+res.status+"）");
-  var data = await res.json();
-  if(subEl) subEl.textContent = "✅ 上傳完成";
-  return data.secure_url;
-}
+async function uploadToCloudinary(file,slotId){var subEl=document.getElementById("sub_"+slotId);if(subEl)subEl.textContent="⏫ 上傳中…";var fd=new FormData();fd.append("file",file);fd.append("upload_preset",CLOUDINARY_PRESET);var res=await fetch("https://api.cloudinary.com/v1_1/"+CLOUDINARY_NAME+"/image/upload",{method:"POST",body:fd});if(!res.ok)throw new Error("Cloudinary 上傳失敗（HTTP "+res.status+"）");var data=await res.json();if(subEl)subEl.textContent="✅ 上傳完成";return data.secure_url;}
 
-// ══ 表單送出 ══
-document.getElementById("bookingForm").addEventListener("submit", async function(e){
+document.getElementById("bookingForm").addEventListener("submit",async function(e){
   e.preventDefault();
-
-  var checkIn  = ciValue;
-  var checkOut = coValue;
-  var name     = document.getElementById("guestName").value.trim();
-  var phone    = document.getElementById("guestPhone").value.trim();
-  var selectedRooms = ROOM_TYPES.filter(function(r){ return roomState[r].checked; });
-  var customR  = document.getElementById("customRoom").value.trim();
-  var voucher  = (document.querySelector('input[name="voucherType"]:checked')||{}).value || "";
-  var vCount   = voucher==="票券兌換" ? voucherTicketCount : (voucher==="現金折抵" ? voucherCashCount : null);
-  var remarks  = document.getElementById("remarks").value.trim();
-  var photos   = photoSlots.filter(function(s){ return s.file; });
-
-  var ok = true;
-  function check(cond, errId, inputId){
-    if(cond){
-      showErr(errId);
-      if(inputId){ var el=document.getElementById(inputId); if(el) el.classList.add('has-error'); }
-      ok = false;
-    } else {
-      hideErr(errId);
-      if(inputId){ var el=document.getElementById(inputId); if(el) el.classList.remove('has-error'); }
-    }
-  }
-
-  if(!checkIn){ showErr('dateError'); document.getElementById('ciDisplay').classList.add('has-error'); ok=false; } else { document.getElementById('ciDisplay').classList.remove('has-error'); }
-  if(!checkOut){ showErr('dateError'); document.getElementById('coDisplay').classList.add('has-error'); ok=false; } else { document.getElementById('coDisplay').classList.remove('has-error'); }
-  if(checkIn && checkOut && checkOut <= checkIn){ showErr('dateError'); ok=false; }
-  check(!name,   'nameError',        'guestName');
-  check(!/^09\d{8}$/.test(phone), 'phoneStatus', 'guestPhone');
-  if(!/^09\d{8}$/.test(phone)){
-    var st=document.getElementById('phoneStatus');
-    st.className="phone-status err"; st.textContent="⚠ 手機號碼格式不正確（需為 09 開頭共10碼）";
-    ok=false;
-  }
-  if(adultCnt < 1){ showErr('guestError'); ok=false; } else hideErr('guestError');
-  check(selectedRooms.length===0, 'roomError', null);
-  check(!voucher, 'voucherTypeError', null);
-  check(photos.length===0, 'photoError', null);
-
-  if(!ok){
-    var firstErr = document.querySelector('.field-error.show, .phone-status.err');
-    if(firstErr) firstErr.scrollIntoView({behavior:'smooth', block:'center'});
-    return;
-  }
-
-  var btn = document.getElementById("submitBtn");
-  btn.disabled = true; btn.textContent = "上傳圖片中…";
-
+  var checkIn=ciValue,checkOut=coValue,name=document.getElementById("guestName").value.trim(),phone=document.getElementById("guestPhone").value.trim();
+  var selectedRooms=ROOM_TYPES.filter(function(r){return roomState[r].checked;}),customR=document.getElementById("customRoom").value.trim();
+  var voucher=(document.querySelector('input[name="voucherType"]:checked')||{}).value||"";
+  var vCount=voucher==="票券兌換"?voucherTicketCount:(voucher==="現金折抵"?voucherCashCount:null);
+  var remarks=document.getElementById("remarks").value.trim(),photos=photoSlots.filter(function(s){return s.file;});
+  var ok=true;
+  function check(cond,errId,inputId){if(cond){showErr(errId);if(inputId){var el=document.getElementById(inputId);if(el)el.classList.add('has-error');}ok=false;}else{hideErr(errId);if(inputId){var el=document.getElementById(inputId);if(el)el.classList.remove('has-error');}}}
+  if(!checkIn){showErr('dateError');document.getElementById('ciDisplay').classList.add('has-error');ok=false;}else document.getElementById('ciDisplay').classList.remove('has-error');
+  if(!checkOut){showErr('dateError');document.getElementById('coDisplay').classList.add('has-error');ok=false;}else document.getElementById('coDisplay').classList.remove('has-error');
+  if(checkIn&&checkOut&&checkOut<=checkIn){showErr('dateError');ok=false;}
+  check(!name,'nameError','guestName');
+  if(!/^09\d{8}$/.test(phone)){var st=document.getElementById('phoneStatus');st.className="phone-status err";st.textContent=!phone.startsWith("09")?"⚠ 手機號碼須以 09 開頭":"⚠ 號碼太短，目前 "+phone.length+" 碼，需 10 碼";document.getElementById('guestPhone').classList.add('has-error');ok=false;}
+  if(adultCnt<1){showErr('guestError');ok=false;}else hideErr('guestError');
+  check(selectedRooms.length===0,'roomError',null);
+  check(!voucher,'voucherTypeError',null);
+  check(photos.length===0,'photoError',null);
+  if(!ok){var firstErr=document.querySelector('.field-error.show, .phone-status.err');if(firstErr)firstErr.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  var btn=document.getElementById("submitBtn");btn.disabled=true;btn.textContent="上傳圖片中…";
   try{
-    for(var i=0;i<photos.length;i++){
-      if(!photos[i].cloudUrl) photos[i].cloudUrl = await uploadToCloudinary(photos[i].file, photos[i].id);
-    }
-    var nights = Math.round((new Date(checkOut)-new Date(checkIn))/86400000);
-    var roomSummary = selectedRooms.map(function(r){
-      if(r==="其他房型") return customR?"其他房型（"+customR+"）× "+roomState[r].count+"間":"其他房型 × "+roomState[r].count+"間";
-      return r+" × "+roomState[r].count+"間";
-    }).join("、");
-
-    var msg = [
-      "📋【票券訂房預約申請】","─────────────────",
-      "🏨 入住日期："+checkIn,
-      "🚪 退房日期："+checkOut+"（共 "+nights+" 晚）",
-      "👤 訂房姓名："+name,
-      "📞 聯繫電話："+phone,
-      "👥 入住人數：大人 "+adultCnt+" 人／小孩 "+childCnt+" 人",
-      "🛏 入住房型："+roomSummary,
-      "🎫 兌換方式："+voucher+(vCount?"（"+vCount+" 張）":""),
-      remarks?"📝 備註："+remarks:null,
-      "─────────────────",
-      "🖼 票券照片：共 "+photos.length+" 張（將於下方傳送）",
-      "─────────────────",
-      "以上資料如有錯誤，請告知專員更正"
-    ].filter(Boolean).join("\n");
-
-    var allMsgs = [{type:"text",text:msg}].concat(
-      photos.map(function(s){ return {type:"image",originalContentUrl:s.cloudUrl,previewImageUrl:s.cloudUrl}; })
-    );
-    btn.textContent = "傳送訊息中…";
-    if(typeof liff !== "undefined" && liff.isInClient()){
-      for(var j=0;j<allMsgs.length;j+=5) await liff.sendMessages(allMsgs.slice(j,j+5));
-      showModal("✅","預約訊息已送出！","訂房資料與票券照片已全部傳入聊天室。\n\n專員確認後將盡快回覆您，請稍候。",true);
-    } else {
-      console.log("【訊息預覽】\n"+msg);
-      photos.forEach(function(s,i){ console.log("圖片 "+(i+1)+"："+s.cloudUrl); });
-      showModal("🔧","開發模式預覽","此頁面需在 LINE 中開啟才能實際送出。\n\nCloudinary 上傳成功，網址已輸出至 Console。",false);
-      btn.disabled=false; btn.textContent="確認送出預約";
-    }
-  } catch(err){
-    console.error(err);
-    btn.disabled=false; btn.textContent="確認送出預約";
-    showModal("❌","送出失敗","發生錯誤，請稍後再試或直接聯繫專員。\n\n錯誤："+err.message,false);
-  }
+    for(var i=0;i<photos.length;i++){if(!photos[i].cloudUrl)photos[i].cloudUrl=await uploadToCloudinary(photos[i].file,photos[i].id);}
+    var nights=Math.round((new Date(checkOut)-new Date(checkIn))/86400000);
+    var roomSummary=selectedRooms.map(function(r){return(r==="其他房型"&&customR)?"其他房型（"+customR+"）× "+roomState[r].count+"間":r+" × "+roomState[r].count+"間";}).join("、");
+    var msg=["📋【票券訂房預約申請】","─────────────────","🏨 入住日期："+checkIn,"🚪 退房日期："+checkOut+"（共 "+nights+" 晚）","👤 訂房姓名："+name,"📞 聯繫電話："+phone,"👥 入住人數：大人 "+adultCnt+" 人／小孩 "+childCnt+" 人","🛏 入住房型："+roomSummary,"🎫 兌換方式："+voucher+(vCount?"（"+vCount+" 張）":""),remarks?"📝 備註："+remarks:null,"─────────────────","🖼 票券照片：共 "+photos.length+" 張（將於下方傳送）","─────────────────","以上資料如有錯誤，請告知專員更正"].filter(Boolean).join("\n");
+    var allMsgs=[{type:"text",text:msg}].concat(photos.map(function(s){return{type:"image",originalContentUrl:s.cloudUrl,previewImageUrl:s.cloudUrl};}));
+    btn.textContent="傳送訊息中…";
+    if(typeof liff!=="undefined"&&liff.isInClient()){for(var j=0;j<allMsgs.length;j+=5)await liff.sendMessages(allMsgs.slice(j,j+5));showModal("✅","預約訊息已送出！","訂房資料與票券照片已全部傳入聊天室。\n\n專員確認後將盡快回覆您，請稍候。",true);}
+    else{console.log("【訊息預覽】\n"+msg);showModal("🔧","開發模式預覽","此頁面需在 LINE 中開啟才能實際送出。\n\nCloudinary 上傳成功，網址已輸出至 Console。",false);btn.disabled=false;btn.textContent="確認送出預約";}
+  }catch(err){console.error(err);btn.disabled=false;btn.textContent="確認送出預約";showModal("❌","送出失敗","發生錯誤，請稍後再試或直接聯繫專員。\n\n錯誤："+err.message,false);}
 });
 
-// ══ LIFF ══
-async function initLiff(){
-  try{
-    await liff.init({liffId:LIFF_ID});
-    if(!liff.isLoggedIn()) liff.login({redirectUri:location.href});
-  } catch(err){ console.warn("LIFF init (dev mode):", err); }
-}
+async function initLiff(){try{await liff.init({liffId:LIFF_ID});if(!liff.isLoggedIn())liff.login({redirectUri:location.href});}catch(err){console.warn("LIFF init (dev mode):",err);}}
 initLiff();
 </script>
 </body>
