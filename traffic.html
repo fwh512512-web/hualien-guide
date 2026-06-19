@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>路境行旅花蓮文化館 — 交通資訊</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --teal: #00656E;
@@ -31,15 +31,51 @@ body {
   background: var(--bg);
   color: var(--text-dark);
   font-family: 'Noto Sans TC', sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   min-height: 100vh;
   max-width: 480px;
   margin: 0 auto;
 }
 
+/* ── LANG BAR ── */
+.lang-bar {
+  background: var(--teal-dark);
+  padding: 7px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+}
+.lang-bar-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.5px;
+  margin-right: 4px;
+}
+.lang-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.70);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  letter-spacing: 0.3px;
+}
+.lang-btn.active,
+.lang-btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #1a2c2d;
+}
+
+/* ── HEADER ── */
 .page-header {
   background: var(--teal);
-  padding: 30px 22px 26px;
+  padding: 28px 22px 28px;
   position: relative;
   overflow: hidden;
 }
@@ -49,7 +85,7 @@ body {
   top: -50px; right: -50px;
   width: 160px; height: 160px;
   border-radius: 50%;
-  background: rgba(255,199,44,0.08);
+  background: rgba(255,199,44,0.07);
 }
 .page-header::after {
   content: '';
@@ -57,34 +93,96 @@ body {
   bottom: -30px; right: 30px;
   width: 90px; height: 90px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.04);
+}
+.header-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+/* 金線裝飾 */
+.header-accent-line {
+  width: 3px;
+  background: linear-gradient(to bottom, var(--gold), rgba(255,199,44,0.15));
+  border-radius: 2px;
+  align-self: stretch;
+  flex-shrink: 0;
+  min-height: 80px;
 }
 .header-eyebrow {
   font-size: 11px;
   letter-spacing: 2.5px;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.50);
   text-transform: uppercase;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 .header-title {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   color: #fff;
-  line-height: 1.2;
+  line-height: 1.25;
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 0.03em;
 }
-.header-title .gold { color: var(--gold); }
-.header-addr {
+.header-title .gold { color: var(--gold); font-family: 'Noto Serif TC', serif; }
+.header-addr-label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  margin: 18px 0 8px;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.header-nav-btn {
   display: flex;
   align-items: center;
-  gap: 7px;
-  margin-top: 12px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 10px;
-  padding: 10px 14px;
+  gap: 12px;
+  background: var(--gold);
+  border-radius: 13px;
+  padding: 13px 16px;
   text-decoration: none;
+  transition: opacity 0.15s;
 }
-.header-addr span { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.5; }
+.header-nav-btn:active { opacity: 0.85; }
+.header-call-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--teal-dark);
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 13px;
+  padding: 13px 16px;
+  text-decoration: none;
+  margin-top: 8px;
+  transition: opacity 0.15s;
+}
+.header-call-btn:active { opacity: 0.80; }
+.nav-btn-left {
+  width: 40px; height: 40px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.nav-btn-body { flex: 1; }
+.nav-btn-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0a1628;
+  line-height: 1.3;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.nav-btn-addr {
+  font-size: 12px;
+  color: rgba(10,22,40,0.62);
+  margin-top: 2px;
+}
+.nav-btn-arrow { flex-shrink: 0; }
 
+/* ── SECTIONS ── */
 .section { padding: 22px 16px 6px; }
 
 .sec-label {
@@ -93,10 +191,11 @@ body {
   text-transform: uppercase;
   color: var(--teal);
   font-weight: 700;
-  margin-bottom: 11px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 .sec-label::after {
   content: '';
@@ -105,6 +204,7 @@ body {
   background: var(--teal-light);
 }
 
+/* ── CARDS ── */
 .card {
   background: var(--white);
   border: 1.5px solid var(--border);
@@ -112,25 +212,11 @@ body {
   overflow: hidden;
   margin-bottom: 10px;
 }
-.card-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 16px;
-  text-decoration: none;
-  color: inherit;
-  border-bottom: 1px solid var(--teal-light);
-}
-.card-item:last-child { border-bottom: none; }
-.card-item:active { background: var(--teal-pale); }
 
 .icon-box {
-  width: 46px;
-  height: 46px;
+  width: 46px; height: 46px;
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
 .ic-teal  { background: var(--teal-light); color: var(--teal); }
@@ -138,17 +224,35 @@ body {
 .ic-blue  { background: #edf1ff; color: #3a6fd8; }
 .ic-green { background: #edfaf3; color: #1a8a50; }
 .ic-red   { background: var(--red-soft);   color: var(--red-text); }
-.ic-green { background: #edfaf3; color: #1a8a50; }
 
 .it { flex: 1; min-width: 0; }
-.it-title { font-size: 16px; font-weight: 500; color: var(--text-dark); line-height: 1.3; }
-.it-desc  { font-size: 13px; color: var(--text-mid); margin-top: 4px; line-height: 1.6; font-weight: 300; }
-.it-phone { font-size: 18px; font-weight: 700; color: var(--teal); letter-spacing: 0.5px; margin-top: 3px; }
+.it-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.35;
+  font-family: 'Noto Serif TC', serif;
+}
+.it-desc {
+  font-size: 14px;
+  color: var(--text-mid);
+  margin-top: 5px;
+  line-height: 1.65;
+  font-weight: 300;
+}
+.it-phone {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 0.5px;
+  margin-top: 3px;
+}
 
 .arr { color: var(--teal-light); flex-shrink: 0; }
 
+/* ── NOTICES ── */
 .notice {
-  border-radius: 12px;
+  border-radius: 13px;
   padding: 14px 15px;
   margin-bottom: 10px;
   display: flex;
@@ -158,9 +262,19 @@ body {
 .n-warn { background: var(--gold-pale);  border: 1.5px solid var(--gold-border); }
 .n-info { background: var(--teal-pale);  border: 1.5px solid var(--teal-light); }
 .n-red  { background: var(--red-soft);   border: 1.5px solid var(--red-border); }
-.notice svg { flex-shrink: 0; margin-top: 1px; }
-.n-title { font-size: 14px; font-weight: 500; line-height: 1.4; }
-.n-desc  { font-size: 13px; margin-top: 5px; line-height: 1.7; font-weight: 300; }
+.notice svg { flex-shrink: 0; margin-top: 2px; }
+.n-title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  font-family: 'Noto Serif TC', serif;
+}
+.n-desc {
+  font-size: 14px;
+  margin-top: 5px;
+  line-height: 1.75;
+  font-weight: 300;
+}
 .n-warn .n-title { color: #7a5200; }
 .n-warn .n-desc  { color: #8a6418; }
 .n-info .n-title { color: var(--teal-dark); }
@@ -179,7 +293,38 @@ body {
 .tag-teal { background: var(--teal-light); color: var(--teal-dark); }
 .tag-gold { background: var(--gold-pale);  color: #8a6000; }
 
-/* 計程車 2欄 */
+/* ── MAP BUTTON on card items ── */
+.card-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid var(--teal-light);
+}
+.card-item:last-child { border-bottom: none; }
+.card-item:active { background: var(--teal-pale); }
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--teal);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: 'Noto Sans TC', sans-serif;
+  letter-spacing: 0.3px;
+}
+.map-btn-free {
+  background: #1a8a50;
+}
+
+/* ── TAXI GRID ── */
 .taxi-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
@@ -190,20 +335,34 @@ body {
   background: var(--white);
   border: 1.5px solid var(--border);
   border-radius: 12px;
-  padding: 15px 14px;
+  padding: 14px 14px 12px;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
   transition: background 0.12s;
 }
 .taxi-card:active { background: var(--teal-pale); }
-.tx-name  { font-size: 14px; font-weight: 500; color: var(--text-dark); }
-.tx-phone { font-size: 17px; font-weight: 700; color: var(--teal); letter-spacing: 0.3px; margin-top: 2px; }
-.tx-hint  { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.tx-name  { font-size: 14px; font-weight: 500; color: var(--text-dark); font-family: 'Noto Serif TC', serif; }
+.tx-phone { font-size: 18px; font-weight: 700; color: var(--teal); letter-spacing: 0.5px; margin-top: 4px; }
+.tx-call-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+  background: var(--teal);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 0;
+  border-radius: 8px;
+  font-family: 'Noto Sans TC', sans-serif;
+  letter-spacing: 0.3px;
+}
 
-/* APP 叫車 2欄 */
+/* ── APP GRID ── */
 .app-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
@@ -224,14 +383,14 @@ body {
 }
 .app-card:active { background: var(--teal-pale); }
 .app-ico { width: 38px; height: 38px; border-radius: 10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.app-name { font-size: 15px; font-weight: 500; color: var(--text-dark); }
-.app-sub  { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+.app-name { font-size: 15px; font-weight: 500; color: var(--text-dark); font-family: 'Noto Serif TC', serif; }
+.app-sub  { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
-/* 公車步驟 */
+/* ── BUS STEPS ── */
 .bus-step {
   background: var(--white);
   border: 1.5px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   margin-bottom: 10px;
 }
@@ -239,70 +398,59 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 15px 16px;
+  padding: 16px 16px;
   border-bottom: 1px solid var(--teal-light);
 }
 .bus-row:last-child { border-bottom: none; }
 .bus-num {
-  width: 28px;
-  height: 28px;
+  width: 28px; height: 28px;
   border-radius: 50%;
   background: var(--teal);
   color: #fff;
   font-size: 13px;
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  margin-top: 1px;
+  margin-top: 2px;
 }
 .bus-body { flex: 1; }
-.bus-title { font-size: 15px; font-weight: 500; color: var(--text-dark); line-height: 1.35; }
-.bus-desc  { font-size: 13px; color: var(--text-mid); margin-top: 4px; line-height: 1.65; font-weight: 300; }
-.bus-tag   { display:inline-flex; align-items:center; gap:5px; background: var(--teal); color:#fff; font-size:13px; font-weight:500; padding:4px 11px; border-radius:20px; margin-top:6px; }
+.bus-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.35;
+  font-family: 'Noto Serif TC', serif;
+}
+.bus-desc {
+  font-size: 14px;
+  color: var(--text-mid);
+  margin-top: 5px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.bus-tag { display:inline-flex; align-items:center; gap:5px; background: var(--teal); color:#fff; font-size:13px; font-weight:500; padding:4px 11px; border-radius:20px; margin-top:6px; }
 
+/* ── LANG VISIBILITY ── */
+[data-lang] { display: none; }
+.lang-zh [data-lang="zh"],
+.lang-en [data-lang="en"],
+.lang-ja [data-lang="ja"],
+.lang-ko [data-lang="ko"] { display: inline; }
+
+/* ── FOOTER ── */
 .footer {
-  padding: 24px 16px 40px;
+  padding: 24px 16px 44px;
   text-align: center;
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 300;
-  line-height: 1.8;
+  line-height: 1.9;
   border-top: 1.5px solid var(--teal-light);
   margin-top: 10px;
 }
-.footer strong { color: var(--teal); font-weight: 500; }
+.footer strong { color: var(--teal); font-weight: 600; font-family: 'Noto Serif TC', serif; }
 
-.header-addr-label {
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  color: rgba(255,255,255,0.5);
-  text-transform: uppercase;
-  margin: 14px 0 6px;
-}
-.header-nav-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--gold);
-  border-radius: 12px;
-  padding: 13px 16px;
-  text-decoration: none;
-  transition: opacity 0.15s;
-}
-.header-nav-btn:active { opacity: 0.85; }
-.nav-btn-left {
-  width: 40px; height: 40px;
-  background: rgba(0,0,0,0.12);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.nav-btn-body { flex: 1; }
-.nav-btn-title { font-size: 15px; font-weight: 700; color: #0a1628; line-height: 1.3; }
-.nav-btn-addr  { font-size: 12px; color: rgba(10,22,40,0.65); margin-top: 2px; }
-.nav-btn-arrow { flex-shrink: 0; }
+/* ── ANIMATIONS ── */
 .fade-in { animation: fadeUp 0.35s ease both; }
 .s1{animation-delay:.05s}.s2{animation-delay:.1s}.s3{animation-delay:.15s}.s4{animation-delay:.2s}
 @keyframes fadeUp {
@@ -311,53 +459,145 @@ body {
 }
 </style>
 </head>
-<body>
+<body class="lang-zh">
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <span class="lang-bar-label">🌐</span>
+  <button class="lang-btn active" onclick="setLang('zh')">中文</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+  <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+</div>
 
 <!-- HEADER -->
 <div class="page-header">
-  <div class="header-eyebrow">Finders Hotel · Traffic Info</div>
-  <div class="header-title">路境行旅<br>花蓮文化館<br><span class="gold">交通資訊</span></div>
-  <div class="header-addr-label">旅店地址</div>
+  <div class="header-inner">
+    <div class="header-accent-line"></div>
+    <div style="flex:1">
+      <div class="header-eyebrow">Finders Hotel · Traffic Info</div>
+      <div class="header-title">
+        路境行旅<br>花蓮文化館<br>
+        <span class="gold">
+          <span data-lang="zh">交通資訊</span>
+          <span data-lang="en">Traffic Info</span>
+          <span data-lang="ja">交通案内</span>
+          <span data-lang="ko">교통 안내</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-addr-label">
+    <span data-lang="zh">旅店地址 &amp; 聯絡</span>
+    <span data-lang="en">Address &amp; Contact</span>
+    <span data-lang="ja">住所・連絡先</span>
+    <span data-lang="ko">주소 및 연락처</span>
+  </div>
   <a class="header-nav-btn" href="https://maps.google.com/?q=路境行旅花蓮文化館&ll=23.9755989,121.6109726" target="_blank">
     <div class="nav-btn-left">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a1628" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
     </div>
     <div class="nav-btn-body">
-      <div class="nav-btn-title">開啟 Google 導航前往旅店</div>
-      <div class="nav-btn-addr">花蓮市福建街 512 號</div>
+      <div class="nav-btn-title">
+        <span data-lang="zh">開啟 Google 導航前往旅店</span>
+        <span data-lang="en">Open Google Maps Navigation</span>
+        <span data-lang="ja">Google ナビで行く</span>
+        <span data-lang="ko">Google 지도로 길 찾기</span>
+      </div>
+      <div class="nav-btn-addr">花蓮縣花蓮市民族里9鄰福建街512號</div>
     </div>
     <div class="nav-btn-arrow">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a1628" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+  </a>
+  <a class="header-call-btn" href="tel:038320021">
+    <div class="nav-btn-left" style="background:rgba(255,255,255,0.12)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.61 19 19.45 19.45 0 0 1 5 12.39 19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </div>
+    <div class="nav-btn-body">
+      <div class="nav-btn-title" style="color:#ffffff">
+        <span data-lang="zh">致電旅店</span>
+        <span data-lang="en">Call the Hotel</span>
+        <span data-lang="ja">ホテルに電話する</span>
+        <span data-lang="ko">호텔 전화하기</span>
+      </div>
+      <div class="nav-btn-addr" style="color:rgba(255,255,255,0.65)">03-832-0021</div>
+    </div>
+    <div class="nav-btn-arrow">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </div>
   </a>
 </div>
 
 <!-- 停車資訊 -->
 <div class="section fade-in s1">
-  <div class="sec-label">停車資訊</div>
+  <div class="sec-label">
+    <span data-lang="zh">停車資訊</span>
+    <span data-lang="en">Parking</span>
+    <span data-lang="ja">駐車場</span>
+    <span data-lang="ko">주차 안내</span>
+  </div>
 
   <div class="notice n-red">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b83030" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
     <div>
-      <div class="n-title">本館無提供停車位，請旅客自理</div>
-      <div class="n-desc">路邊收費停車格 <strong>1小時 NT$20</strong><br>晚上 10 點 至 隔日早上 10 點 免費停車</div>
+      <div class="n-title">
+        <span data-lang="zh">本館無提供停車位，請旅客自理</span>
+        <span data-lang="en">No on-site parking — guests arrange independently</span>
+        <span data-lang="ja">館内に駐車場なし。各自でご手配ください</span>
+        <span data-lang="ko">관내 주차장 없음. 개별 준비 필요</span>
+      </div>
+      <div class="n-desc">
+        <span data-lang="zh">路邊收費停車格 <strong>1小時 NT$20</strong><br>晚上 10 點 至 隔日早上 10 點 免費停車</span>
+        <span data-lang="en">Metered street parking <strong>NT$20/hr</strong><br>Free 10 PM – 10 AM next day</span>
+        <span data-lang="ja">路上有料駐車 <strong>NT$20/時間</strong><br>夜22時〜翌10時は無料</span>
+        <span data-lang="ko">노상 유료 주차 <strong>NT$20/시간</strong><br>밤 10시〜다음날 10시 무료</span>
+      </div>
     </div>
   </div>
 
   <div class="notice n-info">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00656E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    <div>
-      <div class="n-title">東大門福町夜市旁免費停車位</div>
-      <div class="n-desc">先到先得，縣政府所有土地。<br>若縣府辦理活動，該區域可能暫停使用，請留意。</div>
+    <div style="flex:1">
+      <div class="n-title">
+        <span data-lang="zh">東大門福町夜市旁免費停車位</span>
+        <span data-lang="en">Free parking near Dongdamen Night Market</span>
+        <span data-lang="ja">東大門夜市近くの無料駐車場</span>
+        <span data-lang="ko">동따먼 야시장 근처 무료 주차</span>
+      </div>
+      <div class="n-desc">
+        <span data-lang="zh">先到先得，縣政府所有土地（中山路與重慶路交叉路口）。<br>若縣府辦理活動，該區域可能暫停使用，請留意。</span>
+        <span data-lang="en">First come, first served — county gov. land (intersection of Zhongshan Rd &amp; Chongqing Rd).<br>May close during county events.</span>
+        <span data-lang="ja">先着順。県有地（中山路と重慶路の交差点）。<br>イベント時は閉鎖の場合あり。</span>
+        <span data-lang="ko">선착순. 군유지（중산로와 충칭로 교차로）.<br>군 행사 시 일시 폐쇄 가능.</span>
+      </div>
+      <a href="https://maps.app.goo.gl/3u7rS345QPwF7WZo8" target="_blank" class="map-btn map-btn-free" style="display:inline-flex;margin-top:10px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span data-lang="zh">開啟導航</span>
+        <span data-lang="en">Navigate</span>
+        <span data-lang="ja">ナビ起動</span>
+        <span data-lang="ko">길 찾기</span>
+      </a>
     </div>
   </div>
 
-  <div class="sec-label" style="margin-top:6px">附近停車場資訊</div>
+  <div class="sec-label" style="margin-top:6px">
+    <span data-lang="zh">附近停車場資訊</span>
+    <span data-lang="en">Nearby Car Parks</span>
+    <span data-lang="ja">近隣の駐車場</span>
+    <span data-lang="ko">근처 주차장</span>
+  </div>
 
   <div class="notice n-warn" style="margin-bottom:10px">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a07000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
     <div>
-      <div class="n-desc">私人停車場收費標準請進場前自行確認，本館不負停車責任。</div>
+      <div class="n-desc">
+        <span data-lang="zh">私人停車場收費標準請進場前自行確認，本館不負停車責任。</span>
+        <span data-lang="en">Confirm private car park fees before entering. Hotel is not liable for parking.</span>
+        <span data-lang="ja">民間駐車場の料金は入場前にご確認ください。当館は責任を負いません。</span>
+        <span data-lang="ko">민간 주차장 요금은 입차 전 확인. 호텔은 주차 책임을 지지 않습니다.</span>
+      </div>
     </div>
   </div>
 
@@ -368,9 +608,12 @@ body {
       </div>
       <div class="it">
         <div class="it-title">PP 停車場</div>
-        <div class="it-desc">付費 · 點擊開啟 Google 導航</div>
+        <div class="it-desc"><span data-lang="zh">付費</span><span data-lang="en">Paid</span><span data-lang="ja">有料</span><span data-lang="ko">유료</span></div>
       </div>
-      <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      <span class="map-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span data-lang="zh">導航</span><span data-lang="en">Map</span><span data-lang="ja">ナビ</span><span data-lang="ko">지도</span>
+      </span>
     </a>
     <a class="card-item" href="https://maps.app.goo.gl/2hgj8R939Uejxgdv5" target="_blank">
       <div class="icon-box ic-teal">
@@ -378,19 +621,25 @@ body {
       </div>
       <div class="it">
         <div class="it-title">花蓮福町停車場</div>
-        <div class="it-desc">付費 · 點擊開啟 Google 導航</div>
+        <div class="it-desc"><span data-lang="zh">付費</span><span data-lang="en">Paid</span><span data-lang="ja">有料</span><span data-lang="ko">유료</span></div>
       </div>
-      <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      <span class="map-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span data-lang="zh">導航</span><span data-lang="en">Map</span><span data-lang="ja">ナビ</span><span data-lang="ko">지도</span>
+      </span>
     </a>
     <a class="card-item" href="https://maps.app.goo.gl/i3qrztppNkFh4gYZ8" target="_blank">
       <div class="icon-box ic-green">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M9 16V8h4a2 2 0 0 1 0 4H9"/></svg>
       </div>
       <div class="it">
-        <div class="it-title">停車場(石來運轉噴水池)</div>
-        <div class="it-desc">免費／先到先得 · 點擊開啟 Google 導航</div>
+        <div class="it-title">停車場（石來運轉噴水池）</div>
+        <div class="it-desc"><span data-lang="zh">免費／先到先得</span><span data-lang="en">Free / first come</span><span data-lang="ja">無料／先着順</span><span data-lang="ko">무료/선착순</span></div>
       </div>
-      <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      <span class="map-btn map-btn-free">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span data-lang="zh">導航</span><span data-lang="en">Map</span><span data-lang="ja">ナビ</span><span data-lang="ko">지도</span>
+      </span>
     </a>
     <a class="card-item" href="https://maps.app.goo.gl/32Xq4CD6kGKXSDtk6" target="_blank">
       <div class="icon-box ic-green">
@@ -398,28 +647,56 @@ body {
       </div>
       <div class="it">
         <div class="it-title">東大門夜市重慶市場免費停車場</div>
-        <div class="it-desc">免費／先到先得 · 點擊開啟 Google 導航</div>
+        <div class="it-desc">
+          <span data-lang="zh">免費／先到先得 · 步行至旅店約 10–15 分</span>
+          <span data-lang="en">Free / first come · ~10–15 min walk to hotel</span>
+          <span data-lang="ja">無料／先着順 · 旅店まで徒歩約10〜15分</span>
+          <span data-lang="ko">무료/선착순 · 호텔까지 도보 약 10~15분</span>
+        </div>
       </div>
-      <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      <span class="map-btn map-btn-free">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span data-lang="zh">導航</span><span data-lang="en">Map</span><span data-lang="ja">ナビ</span><span data-lang="ko">지도</span>
+      </span>
     </a>
   </div>
 </div>
 
 <!-- 叫車服務 -->
 <div class="section fade-in s2">
-  <div class="sec-label">叫車服務</div>
+  <div class="sec-label">
+    <span data-lang="zh">叫車服務</span>
+    <span data-lang="en">Taxi & Ride</span>
+    <span data-lang="ja">タクシー</span>
+    <span data-lang="ko">택시 서비스</span>
+  </div>
 
   <div class="notice n-warn" style="margin-bottom:12px">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a07000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
     <div>
-      <div class="n-title">雨天請提早 30 分鐘以上叫車</div>
-      <div class="n-desc">花蓮以私家計程車為大宗。有習慣使用 APP 叫車的旅客可參考下方選項。<br>目前花蓮暫無 Uber 服務。</div>
+      <div class="n-title">
+        <span data-lang="zh">雨天請提早 30 分鐘以上叫車</span>
+        <span data-lang="en">On rainy days, book 30+ min in advance</span>
+        <span data-lang="ja">雨天時は30分以上前に呼んでください</span>
+        <span data-lang="ko">우천 시 30분 이상 미리 호출하세요</span>
+      </div>
+      <div class="n-desc">
+        <span data-lang="zh">花蓮以私家計程車為大宗。有習慣使用 APP 叫車的旅客可參考下方選項。<br>目前花蓮暫無 Uber 服務。</span>
+        <span data-lang="en">Hualien is mainly served by private taxis. App options listed below. No Uber currently in Hualien.</span>
+        <span data-lang="ja">花蓮は主に個人タクシー。アプリ利用の方は下記参照。現在 Uber のサービスなし。</span>
+        <span data-lang="ko">화롄은 주로 개인 택시. 앱 이용 시 아래 참고. 현재 화롄에 Uber 없음.</span>
+      </div>
     </div>
   </div>
 
-  <div class="sec-label" style="margin-top:4px">APP 叫車</div>
+  <div class="sec-label" style="margin-top:4px">
+    <span data-lang="zh">APP 叫車</span>
+    <span data-lang="en">App Hailing</span>
+    <span data-lang="ja">アプリ配車</span>
+    <span data-lang="ko">앱 호출</span>
+  </div>
   <div class="app-grid">
-    <a class="app-card" href="tel:55688" >
+    <a class="app-card" href="tel:55688">
       <div class="app-ico ic-gold">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="8" width="22" height="12" rx="2"/><path d="M5 8V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/><circle cx="7.5" cy="15.5" r="1"/><circle cx="16.5" cy="15.5" r="1"/></svg>
       </div>
@@ -434,66 +711,131 @@ body {
       </div>
       <div>
         <div class="app-name">LINE GO</div>
-        <div class="app-sub">LINE GO 網頁下載APP</div>
+        <div class="app-sub">
+          <span data-lang="zh">LINE GO 網頁下載APP</span>
+          <span data-lang="en">Download LINE GO app</span>
+          <span data-lang="ja">LINE GO アプリDL</span>
+          <span data-lang="ko">LINE GO 앱 다운로드</span>
+        </div>
       </div>
     </a>
   </div>
 
-  <div class="sec-label" style="margin-top:4px">花蓮在地計程車</div>
+  <div class="sec-label" style="margin-top:4px">
+    <span data-lang="zh">花蓮在地計程車</span>
+    <span data-lang="en">Local Taxis</span>
+    <span data-lang="ja">地元タクシー</span>
+    <span data-lang="ko">현지 택시</span>
+  </div>
   <div class="taxi-grid">
     <a class="taxi-card" href="tel:038346666">
       <div class="tx-name">美美計程車行</div>
       <div class="tx-phone">03-834-6666</div>
-      <div class="tx-hint">點擊直撥</div>
+      <div class="tx-call-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.61 19 19.45 19.45 0 0 1 5 12.39 19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-lang="zh">直撥</span><span data-lang="en">Call</span><span data-lang="ja">電話</span><span data-lang="ko">전화</span>
+      </div>
     </a>
     <a class="taxi-card" href="tel:0800659659">
       <div class="tx-name">統一計程車行</div>
       <div class="tx-phone">0800-659-659</div>
-      <div class="tx-hint">點擊直撥</div>
+      <div class="tx-call-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.61 19 19.45 19.45 0 0 1 5 12.39 19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-lang="zh">直撥</span><span data-lang="en">Call</span><span data-lang="ja">電話</span><span data-lang="ko">전화</span>
+      </div>
     </a>
     <a class="taxi-card" href="tel:0800509509">
       <div class="tx-name">大豐計程車行</div>
       <div class="tx-phone">0800-509-509</div>
-      <div class="tx-hint">點擊直撥</div>
+      <div class="tx-call-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.61 19 19.45 19.45 0 0 1 5 12.39 19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-lang="zh">直撥</span><span data-lang="en">Call</span><span data-lang="ja">電話</span><span data-lang="ko">전화</span>
+      </div>
     </a>
     <a class="taxi-card" href="tel:0800337337">
       <div class="tx-name">國聲計程車行</div>
       <div class="tx-phone">0800-337-337</div>
-      <div class="tx-hint">點擊直撥</div>
+      <div class="tx-call-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.61 19 19.45 19.45 0 0 1 5 12.39 19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-lang="zh">直撥</span><span data-lang="en">Call</span><span data-lang="ja">電話</span><span data-lang="ko">전화</span>
+      </div>
     </a>
   </div>
 </div>
 
 <!-- 大眾交通 -->
 <div class="section fade-in s3">
-  <div class="sec-label">大眾交通</div>
+  <div class="sec-label">
+    <span data-lang="zh">大眾交通</span>
+    <span data-lang="en">Public Transit</span>
+    <span data-lang="ja">公共交通</span>
+    <span data-lang="ko">대중교통</span>
+  </div>
 
-  <!-- 火車 -->
-  <div class="sec-label" style="margin-top:2px">🚆 搭火車前來</div>
+  <div class="sec-label" style="margin-top:2px">🚆
+    <span data-lang="zh">搭火車前來</span>
+    <span data-lang="en">By Train</span>
+    <span data-lang="ja">電車でお越しの方</span>
+    <span data-lang="ko">기차 이용</span>
+  </div>
   <div class="notice n-info" style="margin-bottom:10px">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00656E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><circle cx="8.5" cy="17.5" r="1.5"/><circle cx="15.5" cy="17.5" r="1.5"/><path d="M8.5 19l-2 2"/><path d="M15.5 19l2 2"/></svg>
     <div>
-      <div class="n-title">在【花蓮站】下車，從前站出口出來</div>
-      <div class="n-desc">前站（東出口・國聯一路）外圍有排班計程車，車資跳表計價，車程約15–20 分鐘(依路況)即可抵達路境行旅花蓮文化館。</div>
+      <div class="n-title">
+        <span data-lang="zh">在【花蓮站】下車，從前站出口出來</span>
+        <span data-lang="en">Alight at Hualien Station, use the front exit</span>
+        <span data-lang="ja">【花蓮駅】下車、前駅出口からお出ください</span>
+        <span data-lang="ko">【화롄역】 하차, 정면 출구로 나오세요</span>
+      </div>
+      <div class="n-desc">
+        <span data-lang="zh">前站（東出口・國聯一路）外圍有排班計程車，車資跳表計價，車程約15–20 分鐘（依路況）即可抵達路境行旅花蓮文化館。</span>
+        <span data-lang="en">Metered taxis queue at the front (east) exit. About 15–20 min to Finders Hotel (traffic-dependent).</span>
+        <span data-lang="ja">前駅（東口）にタクシー乗り場あり。メーター制。路境行旅まで約15〜20分（道路状況による）。</span>
+        <span data-lang="ko">정면(동쪽) 출구에 미터 택시 대기. 로징 호텔까지 약 15〜20분 (교통 상황에 따라).</span>
+      </div>
     </div>
   </div>
 
-  <!-- 公車 -->
-  <div class="sec-label" style="margin-top:2px">🚌 搭公車前來</div>
+  <div class="sec-label" style="margin-top:2px">🚌
+    <span data-lang="zh">搭公車前來</span>
+    <span data-lang="en">By Bus</span>
+    <span data-lang="ja">バスでお越しの方</span>
+    <span data-lang="ko">버스 이용</span>
+  </div>
   <div class="bus-step">
     <div class="bus-row">
       <div class="bus-num">1</div>
       <div class="bus-body">
-        <div class="bus-title">在「花蓮轉運站」搭車</div>
-        <div class="bus-desc">從火車站步行至斜對面的花蓮轉運站，搭乘 <strong>301、308 或 310</strong>，直達東大門夜市站。</div>
-        <span class="tag tag-teal" style="margin-top:6px">301 ／ 308 ／ 310</span>
+        <div class="bus-title">
+          <span data-lang="zh">在「花蓮轉運站」搭車</span>
+          <span data-lang="en">Board at Hualien Bus Terminal</span>
+          <span data-lang="ja">「花蓮バスターミナル」乗車</span>
+          <span data-lang="ko">「화롄 버스 터미널」승차</span>
+        </div>
+        <div class="bus-desc">
+          <span data-lang="zh">從火車站步行至斜對面的花蓮轉運站，搭乘 <strong>301、308 或 310</strong>，直達東大門夜市站。</span>
+          <span data-lang="en">Walk across from the train station to the bus terminal. Take <strong>301, 308 or 310</strong> to Dongdamen Night Market stop.</span>
+          <span data-lang="ja">駅から徒歩で花蓮バスターミナルへ。<strong>301・308・310</strong>に乗り、東大門夜市駅まで。</span>
+          <span data-lang="ko">기차역에서 도보로 터미널로 이동. <strong>301, 308, 310</strong> 탑승 → 동따먼 야시장 정류장.</span>
+        </div>
+        <span class="bus-tag">301 ／ 308 ／ 310</span>
       </div>
     </div>
     <div class="bus-row" style="border-bottom:none">
       <div class="bus-num">2</div>
       <div class="bus-body">
-        <div class="bus-title">東大門夜市站下車，步行 5 分鐘到旅館</div>
-        <div class="bus-desc">花蓮公車班次較少，建議出發前查詢即時動態。</div>
+        <div class="bus-title">
+          <span data-lang="zh">東大門夜市站下車，步行 5 分鐘到旅館</span>
+          <span data-lang="en">Alight at Dongdamen, walk 5 min to hotel</span>
+          <span data-lang="ja">東大門夜市駅下車、徒歩5分でホテル着</span>
+          <span data-lang="ko">동따먼 야시장 정류장 하차, 도보 5분</span>
+        </div>
+        <div class="bus-desc">
+          <span data-lang="zh">花蓮公車班次較少，建議出發前查詢即時動態。</span>
+          <span data-lang="en">Hualien buses run infrequently — check real-time info before departing.</span>
+          <span data-lang="ja">花蓮のバスは本数が少なめ。出発前に時刻確認を。</span>
+          <span data-lang="ko">화롄 버스는 배차 간격이 길어요. 출발 전 실시간 정보 확인 필수.</span>
+        </div>
         <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
           <a href="https://110traffic.hl.gov.tw/" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:var(--teal);color:#fff;font-size:13px;font-weight:500;padding:6px 14px;border-radius:20px;text-decoration:none">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -511,13 +853,28 @@ body {
 
 <!-- 租車提醒 -->
 <div class="section fade-in s4">
-  <div class="sec-label">租車服務</div>
+  <div class="sec-label">
+    <span data-lang="zh">租車服務</span>
+    <span data-lang="en">Car Rental</span>
+    <span data-lang="ja">レンタカー</span>
+    <span data-lang="ko">렌터카</span>
+  </div>
 
   <div class="notice n-red" style="margin-bottom:10px">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b83030" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
     <div>
-      <div class="n-title">市區與旅店周邊目前無租車服務</div>
-      <div class="n-desc">若抵達旅店後才決定租車，需額外花費時間與計程車費折返火車站，造成行程不便。</div>
+      <div class="n-title">
+        <span data-lang="zh">市區與旅店周邊目前無租車服務</span>
+        <span data-lang="en">No rental shops near the hotel — rent at the train station</span>
+        <span data-lang="ja">ホテル周辺にレンタカー店なし。駅周辺でご利用ください</span>
+        <span data-lang="ko">호텔 주변 렌터카 없음. 기차역에서 이용하세요</span>
+      </div>
+      <div class="n-desc">
+        <span data-lang="zh">若抵達旅店後才決定租車，需額外花費時間與計程車費折返火車站，造成行程不便。</span>
+        <span data-lang="en">Deciding to rent after arriving at the hotel means a costly taxi trip back to the station.</span>
+        <span data-lang="ja">旅店到着後に決める場合、駅まで戻るタクシー代が余分にかかります。</span>
+        <span data-lang="ko">호텔 도착 후 결정하면 역으로 돌아가는 택시비가 추가로 발생합니다.</span>
+      </div>
     </div>
   </div>
 
@@ -527,8 +884,18 @@ body {
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="8" width="22" height="12" rx="2"/><path d="M5 8V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/><circle cx="7.5" cy="15.5" r="1"/><circle cx="16.5" cy="15.5" r="1"/></svg>
       </div>
       <div class="it">
-        <div class="it-title">請在花蓮火車站周邊先租車</div>
-        <div class="it-desc">前站與後站出口皆有眾多租車行，前站選擇較多，機能非常便利。</div>
+        <div class="it-title">
+          <span data-lang="zh">請在花蓮火車站周邊先租車</span>
+          <span data-lang="en">Rent a car near Hualien Train Station</span>
+          <span data-lang="ja">花蓮駅周辺でレンタカーをどうぞ</span>
+          <span data-lang="ko">화롄 기차역 근처에서 렌터카 이용</span>
+        </div>
+        <div class="it-desc">
+          <span data-lang="zh">前站與後站出口皆有眾多租車行，前站選擇較多，機能非常便利。</span>
+          <span data-lang="en">Both front and rear exits have rental shops; front exit has more options.</span>
+          <span data-lang="ja">前後どちらの出口にもあり。前出口の方が選択肢が多い。</span>
+          <span data-lang="ko">앞뒤 출구 모두 렌터카 있음. 앞 출구가 선택지 더 많음.</span>
+        </div>
       </div>
     </div>
   </div>
@@ -536,21 +903,46 @@ body {
   <div class="notice n-warn">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a07000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
     <div>
-      <div class="n-title">外籍旅客小提醒</div>
-      <div class="n-desc">非台灣國籍旅客在台租車，請務必攜帶並出示<strong>「國際駕照」</strong>與<strong>護照</strong>。</div>
+      <div class="n-title">
+        <span data-lang="zh">外籍旅客小提醒</span>
+        <span data-lang="en">Note for foreign visitors</span>
+        <span data-lang="ja">外国籍のお客様へ</span>
+        <span data-lang="ko">외국인 여행자 안내</span>
+      </div>
+      <div class="n-desc">
+        <span data-lang="zh">非台灣國籍旅客在台租車，請務必攜帶並出示<strong>「國際駕照」</strong>與<strong>護照</strong>。</span>
+        <span data-lang="en">Non-Taiwanese visitors must present an <strong>International Driving Permit</strong> and <strong>passport</strong> when renting.</span>
+        <span data-lang="ja">台湾非在住の方は<strong>国際運転免許証</strong>と<strong>パスポート</strong>が必要です。</span>
+        <span data-lang="ko">외국인은 <strong>국제 운전 면허증</strong>과 <strong>여권</strong>을 반드시 제시해야 합니다.</span>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- 航運 -->
 <div class="section fade-in s4">
-  <div class="sec-label">航運</div>
+  <div class="sec-label">
+    <span data-lang="zh">航運</span>
+    <span data-lang="en">By Air</span>
+    <span data-lang="ja">航空</span>
+    <span data-lang="ko">항공편</span>
+  </div>
 
   <div class="notice n-info" style="margin-bottom:12px">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00656E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
     <div>
-      <div class="n-title">飛抵花蓮機場後</div>
-      <div class="n-desc">建議搭乘計程車前往旅店，車資跳表計價。</div>
+      <div class="n-title">
+        <span data-lang="zh">飛抵花蓮機場後</span>
+        <span data-lang="en">After landing at Hualien Airport</span>
+        <span data-lang="ja">花蓮空港到着後</span>
+        <span data-lang="ko">화롄 공항 도착 후</span>
+      </div>
+      <div class="n-desc">
+        <span data-lang="zh">建議搭乘計程車前往旅店，車資跳表計價。</span>
+        <span data-lang="en">Take a metered taxi to the hotel.</span>
+        <span data-lang="ja">タクシー（メーター制）でホテルへ。</span>
+        <span data-lang="ko">미터 택시로 호텔까지 이동.</span>
+      </div>
     </div>
   </div>
 
@@ -561,8 +953,15 @@ body {
       </div>
       <div class="it">
         <div class="it-title">立榮航空</div>
-        <div class="it-desc">北部 → 花蓮 · 點擊前往官網訂票</div>
-        <span class="tag tag-teal">北部出發</span>
+        <div class="it-desc">
+          <span data-lang="zh">北部 → 花蓮 · 點擊前往官網訂票</span>
+          <span data-lang="en">Northern Taiwan → Hualien · Tap to book</span>
+          <span data-lang="ja">北部 → 花蓮 · タップで公式サイトへ</span>
+          <span data-lang="ko">북부 → 화롄 · 탭하여 예약</span>
+        </div>
+        <span class="tag tag-teal">
+          <span data-lang="zh">北部出發</span><span data-lang="en">From North</span><span data-lang="ja">北部発</span><span data-lang="ko">북부 출발</span>
+        </span>
       </div>
       <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </a>
@@ -572,28 +971,60 @@ body {
       </div>
       <div class="it">
         <div class="it-title">華信航空</div>
-        <div class="it-desc">南部 → 花蓮 · 點擊前往官網訂票</div>
-        <span class="tag tag-gold">南部出發</span>
+        <div class="it-desc">
+          <span data-lang="zh">南部 → 花蓮 · 點擊前往官網訂票</span>
+          <span data-lang="en">Southern Taiwan → Hualien · Tap to book</span>
+          <span data-lang="ja">南部 → 花蓮 · タップで公式サイトへ</span>
+          <span data-lang="ko">남부 → 화롄 · 탭하여 예약</span>
+        </div>
+        <span class="tag tag-gold">
+          <span data-lang="zh">南部出發</span><span data-lang="en">From South</span><span data-lang="ja">南部発</span><span data-lang="ko">남부 출발</span>
+        </span>
       </div>
       <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </a>
   </div>
 
-  <div class="notice n-warn">
+  <div class="notice n-warn" style="margin-top:10px">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a07000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
     <div>
-      <div class="n-title">抵達花蓮機場後叫車</div>
-      <div class="n-desc">出航廈後可在排班計程車區搭乘，或使用 55688 / LINE GO APP 叫車，前往旅店約 20-30 分鐘車程(依路況)。</div>
+      <div class="n-title">
+        <span data-lang="zh">抵達花蓮機場後叫車</span>
+        <span data-lang="en">Getting a taxi from the airport</span>
+        <span data-lang="ja">空港からのタクシー</span>
+        <span data-lang="ko">공항에서 택시 이용</span>
+      </div>
+      <div class="n-desc">
+        <span data-lang="zh">出航廈後可在排班計程車區搭乘，或使用 55688 / LINE GO APP 叫車，前往旅店約 20–30 分鐘車程（依路況）。</span>
+        <span data-lang="en">Join the taxi queue outside the terminal, or use 55688 / LINE GO. About 20–30 min to the hotel (traffic-dependent).</span>
+        <span data-lang="ja">ターミナル外のタクシー乗り場か、55688 / LINE GO アプリで。ホテルまで約20〜30分。</span>
+        <span data-lang="ko">터미널 밖 택시 대기줄 또는 55688 / LINE GO 앱 이용. 호텔까지 약 20〜30분.</span>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="footer">
   <strong>路境行旅花蓮文化館</strong><br>
-  花蓮市福建街 512 號<br>
-  如有其他交通問題，歡迎直接留言詢問<br><br>
+  花蓮縣花蓮市民族里9鄰福建街512號<br>
+  花蓮縣旅館142號<br>
+  <span data-lang="zh">如有其他交通問題，歡迎直接留言詢問</span>
+  <span data-lang="en">For other transport questions, feel free to message us</span>
+  <span data-lang="ja">交通に関するご質問はお気軽にメッセージを</span>
+  <span data-lang="ko">교통 관련 문의는 메시지로 편하게 보내주세요</span>
+  <br><br>
   <span style="font-size:12px;color:var(--text-muted);opacity:0.7">© 2026 路境行旅花蓮文化館　All rights reserved.<br>本頁面內容著作權歸路境行旅花蓮文化館所有，未經授權不得轉載或複製。</span>
 </div>
- 
+
+<script>
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.remove('active');
+  });
+  var idx = ['zh','en','ja','ko'].indexOf(lang);
+  document.querySelectorAll('.lang-btn')[idx].classList.add('active');
+}
+</script>
 </body>
 </html>
