@@ -173,6 +173,95 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
 .date-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
 .date-sub-label{font-size:0.78rem;font-weight:500;color:var(--ink-soft);margin-bottom:0.4rem;display:block;}
 
+/* ── 自訂日期選擇器（iOS Safari 相容）── */
+.date-display{
+  width:100%;
+  border:2px solid var(--border);
+  border-radius:10px;
+  padding:0.75rem 0.9rem;
+  font-size:1rem;
+  font-family:'Noto Sans TC',sans-serif;
+  color:var(--ink); background:white;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:space-between;
+  user-select:none; -webkit-user-select:none;
+  transition:border-color 0.2s, box-shadow 0.2s;
+}
+.date-display.placeholder{color:#aaa;}
+.date-display.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(192,57,43,0.1)!important;}
+.date-display:active{border-color:var(--teal);}
+.date-display-icon{font-size:1rem;flex-shrink:0;}
+
+/* Picker 下拉 */
+.date-picker-wrap{position:relative;}
+.date-picker-dropdown{
+  display:none;
+  position:absolute; top:calc(100% + 6px); left:0; right:0;
+  background:white;
+  border:2px solid var(--teal);
+  border-radius:12px;
+  box-shadow:0 8px 32px rgba(0,101,110,0.18);
+  z-index:200;
+  overflow:hidden;
+}
+.date-picker-dropdown.open{display:block;}
+
+/* 月份導航 */
+.dp-nav{
+  display:flex; align-items:center; justify-content:space-between;
+  background:var(--teal-dark); color:white;
+  padding:0.65rem 0.75rem;
+}
+.dp-nav-btn{
+  background:rgba(255,255,255,0.15); border:none; color:white;
+  width:32px; height:32px; border-radius:8px;
+  font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:background 0.15s;
+}
+.dp-nav-btn:active{background:rgba(255,255,255,0.3);}
+.dp-nav-title{font-size:0.92rem;font-weight:700;letter-spacing:0.06em;}
+
+/* 星期列 */
+.dp-weekdays{
+  display:grid; grid-template-columns:repeat(7,1fr);
+  background:var(--teal-pale);
+  padding:0.4rem 0.5rem 0.3rem;
+  gap:2px;
+}
+.dp-wd{
+  text-align:center; font-size:0.7rem; font-weight:600;
+  color:var(--ink-muted); padding:0.2rem 0;
+}
+.dp-wd:first-child{color:#c0392b;}
+.dp-wd:last-child{color:#2980b9;}
+
+/* 日期格 */
+.dp-days{
+  display:grid; grid-template-columns:repeat(7,1fr);
+  padding:0.4rem 0.5rem 0.6rem;
+  gap:3px;
+}
+.dp-day{
+  text-align:center;
+  font-size:0.88rem;
+  padding:0.45rem 0.1rem;
+  border-radius:8px;
+  cursor:pointer;
+  transition:all 0.12s;
+  color:var(--ink);
+  border:none; background:none;
+}
+.dp-day:hover:not(.past):not(.empty){background:var(--teal-light);color:var(--teal-dark);}
+.dp-day.today{font-weight:700;color:var(--teal);outline:2px solid var(--teal-light);}
+.dp-day.selected{background:var(--teal);color:white!important;font-weight:700;}
+.dp-day.in-range{background:var(--teal-light);color:var(--teal-dark);}
+.dp-day.past{color:#ccc;cursor:not-allowed;}
+.dp-day.empty{cursor:default;}
+.dp-day.sun{color:#e74c3c;}
+.dp-day.sat{color:#2980b9;}
+.dp-day.selected.sun,.dp-day.selected.sat{color:white!important;}
+
+
 /* ── 手機號碼狀態 ── */
 .phone-status{
   display:none;
@@ -428,16 +517,49 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
     <div class="field">
       <label class="field-label">入住 / 退房日期 <span class="req">*</span></label>
       <div class="date-row">
-        <div>
+        <div class="date-picker-wrap" id="ciWrap">
           <span class="date-sub-label">📅 入住日期</span>
-          <input type="date" id="checkIn" required>
+          <div class="date-display placeholder" id="ciDisplay" tabindex="0">
+            <span id="ciText">請選擇日期</span>
+            <span class="date-display-icon">📅</span>
+          </div>
+          <div class="date-picker-dropdown" id="ciDropdown">
+            <div class="dp-nav">
+              <button type="button" class="dp-nav-btn" id="ciPrev">&#8249;</button>
+              <span class="dp-nav-title" id="ciTitle"></span>
+              <button type="button" class="dp-nav-btn" id="ciNext">&#8250;</button>
+            </div>
+            <div class="dp-weekdays">
+              <div class="dp-wd">日</div><div class="dp-wd">一</div><div class="dp-wd">二</div>
+              <div class="dp-wd">三</div><div class="dp-wd">四</div><div class="dp-wd">五</div>
+              <div class="dp-wd">六</div>
+            </div>
+            <div class="dp-days" id="ciDays"></div>
+          </div>
         </div>
-        <div>
+        <div class="date-picker-wrap" id="coWrap">
           <span class="date-sub-label">📅 退房日期</span>
-          <input type="date" id="checkOut" required>
+          <div class="date-display placeholder" id="coDisplay" tabindex="0">
+            <span id="coText">請選擇日期</span>
+            <span class="date-display-icon">📅</span>
+          </div>
+          <div class="date-picker-dropdown" id="coDropdown">
+            <div class="dp-nav">
+              <button type="button" class="dp-nav-btn" id="coPrev">&#8249;</button>
+              <span class="dp-nav-title" id="coTitle"></span>
+              <button type="button" class="dp-nav-btn" id="coNext">&#8250;</button>
+            </div>
+            <div class="dp-weekdays">
+              <div class="dp-wd">日</div><div class="dp-wd">一</div><div class="dp-wd">二</div>
+              <div class="dp-wd">三</div><div class="dp-wd">四</div><div class="dp-wd">五</div>
+              <div class="dp-wd">六</div>
+            </div>
+            <div class="dp-days" id="coDays"></div>
+          </div>
         </div>
       </div>
       <div class="field-error" id="dateError">⚠ 退房日期須晚於入住日期</div>
+      <div id="nightsSummary" style="display:none;margin-top:0.5rem;padding:0.45rem 0.85rem;background:var(--teal-pale);border:1.5px solid var(--border-light);border-radius:8px;font-size:0.85rem;color:var(--teal-dark);font-weight:600;">🌙 共入住 <span id="nightsCount">0</span> 晚</div>
     </div>
 
     <div class="field">
@@ -477,9 +599,9 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
     </div>
   </div>
 
-  <!-- ══ 票券房型選擇 ══ -->
+  <!-- ══ 房型選擇 ══ -->
   <div class="section-card">
-    <div class="section-title">房型選擇</div>
+    <div class="section-title">票券房型選擇</div>
     <div class="field">
       <label class="field-label">入住房型 <span class="req">*</span><span class="hint-inline">（可複選）</span></label>
       <div class="room-rows" id="roomRows"></div>
@@ -539,7 +661,7 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
         新增票券照片
       </button>
       <div class="field-error" id="photoError">⚠ 請至少上傳一張票券照片</div>
-      <span class="hint" style="margin-top:0.5rem;">⚠️ 請至少上傳一張照片才可送出（若有多張可一次上傳，或後續補齊相對應的票券數量才可預訂）</span>
+      <span class="hint" style="margin-top:0.5rem;">⚠️ 請至少上傳一張照片才可送出，若有多張可一次上傳</span>
     </div>
     <div class="field">
       <label class="field-label" for="remarks">備註</label>
@@ -553,7 +675,7 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
     <ol>
       <li>入住當天未攜帶紙本票券或無法出示有效電子票券者，將以當日房價收取費用，方可入住。</li>
       <li>本館鄰近東大門夜市，無提供停車位及停車場，敬請自理。</li>
-      <li>本館為環保旅店，連續入住無提供續住打掃服務，採付費制，若有需要可現場洽詢櫃檯專員。</li>
+      <li>本館為環保旅店，連續入住無提供續住打掃服務，採付費制，若有需要可現場加價購。</li>
       <li>票券預訂無法與官網專案合併使用。</li>
       <li>送出後請耐心等待，專員將依序回覆訂房訊息。</li>
     </ol>
@@ -764,43 +886,150 @@ function addPhotoSlot(){
 document.getElementById("addPhotoBtn").addEventListener("click", addPhotoSlot);
 addPhotoSlot(); // 預設一個槽
 
-// ══ 日期：鎖過去日期 + 自動帶退房 ══
-(function(){
-  var ci = document.getElementById("checkIn");
-  var co = document.getElementById("checkOut");
-  function todayStr(){
-    var d = new Date();
-    return d.getFullYear()+"-"+
-      String(d.getMonth()+1).padStart(2,"0")+"-"+
-      String(d.getDate()).padStart(2,"0");
-  }
-  var td = todayStr();
-  ci.min = td; ci.max = "2099-12-31";
-  co.min = td; co.max = "2099-12-31";
+// ══ 自訂日期 Picker（iOS Safari 相容）══
+var ciValue = "";  // "YYYY-MM-DD"
+var coValue = "";
 
-  ci.addEventListener("change", function(){
-    hideErr('dateError');
-    ci.classList.remove('has-error');
-    co.classList.remove('has-error');
-    if(ci.value){
-      var nx = new Date(ci.value);
-      nx.setDate(nx.getDate()+1);
-      var ns = nx.getFullYear()+"-"+
-        String(nx.getMonth()+1).padStart(2,"0")+"-"+
-        String(nx.getDate()).padStart(2,"0");
-      co.min = ns;
-      if(!co.value || co.value <= ci.value){ co.value = ns; }
+(function(){
+  var today = new Date(); today.setHours(0,0,0,0);
+
+  function toYMD(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+  function fromYMD(s){ var p=s.split("-"); return new Date(+p[0],+p[1]-1,+p[2]); }
+  function fmtDisplay(s){
+    if(!s) return null;
+    var p=s.split("-");
+    return p[0]+"年"+Number(p[1])+"月"+Number(p[2])+"日";
+  }
+
+  // 每個 picker 的狀態
+  var pickers = {
+    ci:{ cur:new Date(today.getFullYear(),today.getMonth(),1), minDate:today, maxDate:new Date(2099,11,31) },
+    co:{ cur:new Date(today.getFullYear(),today.getMonth(),1), minDate:today, maxDate:new Date(2099,11,31) }
+  };
+  var openPicker = null;
+
+  function renderPicker(key){
+    var state = pickers[key];
+    var y = state.cur.getFullYear(), m = state.cur.getMonth();
+    document.getElementById(key+"Title").textContent = y+"年"+(m+1)+"月";
+
+    var first = new Date(y,m,1).getDay(); // 0=Sun
+    var daysInMonth = new Date(y,m+1,0).getDate();
+    var container = document.getElementById(key+"Days");
+    container.innerHTML = "";
+
+    var val = key==="ci" ? ciValue : coValue;
+
+    for(var i=0;i<first;i++){
+      var emp=document.createElement("div"); emp.className="dp-day empty"; container.appendChild(emp);
     }
-  });
-  co.addEventListener("change", function(){
-    if(ci.value && co.value && co.value <= ci.value){
-      showErr('dateError');
-      co.classList.add('has-error');
+    for(var d=1;d<=daysInMonth;d++){
+      var dt = new Date(y,m,d);
+      var btn = document.createElement("button");
+      btn.type="button"; btn.textContent=d;
+      var cls = ["dp-day"];
+      var dow = dt.getDay();
+      if(dow===0) cls.push("sun");
+      if(dow===6) cls.push("sat");
+      if(dt < state.minDate) cls.push("past");
+      if(toYMD(dt)===toYMD(today)) cls.push("today");
+      if(val && toYMD(dt)===val) cls.push("selected");
+      // 範圍標示
+      if(ciValue && coValue && toYMD(dt)>ciValue && toYMD(dt)<coValue) cls.push("in-range");
+      btn.className=cls.join(" ");
+      if(!cls.includes("past") && !cls.includes("empty")){
+        (function(dateStr){
+          btn.addEventListener("click", function(){
+            if(key==="ci"){
+              ciValue = dateStr;
+              // 退房自動設為隔天（若退房早於或等於入住）
+              if(!coValue || coValue <= ciValue){
+                var nx=fromYMD(ciValue); nx.setDate(nx.getDate()+1);
+                coValue=toYMD(nx);
+                pickers.co.minDate=fromYMD(coValue);
+                pickers.co.cur=new Date(fromYMD(coValue).getFullYear(),fromYMD(coValue).getMonth(),1);
+                updateDisplay("co");
+                renderPicker("co");
+              } else {
+                pickers.co.minDate = fromYMD(ciValue); pickers.co.minDate.setDate(pickers.co.minDate.getDate()+1);
+              }
+            } else {
+              coValue = dateStr;
+            }
+            updateDisplay(key);
+            hideErr("dateError");
+            document.getElementById(key+"Display").classList.remove("has-error");
+            updateNights();
+            closeAllPickers();
+            // 選完入住自動開退房
+            if(key==="ci" && !coValue){
+              setTimeout(function(){ openDp("co"); },120);
+            }
+            renderPicker("ci"); renderPicker("co");
+          });
+        })(toYMD(dt));
+      }
+      container.appendChild(btn);
+    }
+  }
+
+  function updateDisplay(key){
+    var val = key==="ci" ? ciValue : coValue;
+    var disp = document.getElementById(key+"Display");
+    var txt  = document.getElementById(key+"Text");
+    if(val){
+      txt.textContent = fmtDisplay(val);
+      disp.classList.remove("placeholder");
     } else {
-      hideErr('dateError');
-      co.classList.remove('has-error');
+      txt.textContent = "請選擇日期";
+      disp.classList.add("placeholder");
+    }
+  }
+
+  function openDp(key){
+    closeAllPickers();
+    openPicker = key;
+    document.getElementById(key+"Dropdown").classList.add("open");
+    renderPicker(key);
+  }
+  function closeAllPickers(){
+    ["ci","co"].forEach(function(k){
+      document.getElementById(k+"Dropdown").classList.remove("open");
+    });
+    openPicker = null;
+  }
+
+  function updateNights(){
+    var el = document.getElementById("nightsSummary");
+    if(ciValue && coValue && coValue > ciValue){
+      var diff = Math.round((new Date(coValue) - new Date(ciValue)) / 86400000);
+      document.getElementById("nightsCount").textContent = diff;
+      el.style.display = "block";
+    } else {
+      el.style.display = "none";
+    }
+  }
+
+  // 顯示欄點擊
+  document.getElementById("ciDisplay").addEventListener("click", function(){ openPicker==="ci" ? closeAllPickers() : openDp("ci"); });
+  document.getElementById("coDisplay").addEventListener("click", function(){ openPicker==="co" ? closeAllPickers() : openDp("co"); });
+
+  // 上下月
+  document.getElementById("ciPrev").addEventListener("click", function(e){ e.stopPropagation(); pickers.ci.cur.setMonth(pickers.ci.cur.getMonth()-1); renderPicker("ci"); });
+  document.getElementById("ciNext").addEventListener("click", function(e){ e.stopPropagation(); pickers.ci.cur.setMonth(pickers.ci.cur.getMonth()+1); renderPicker("ci"); });
+  document.getElementById("coPrev").addEventListener("click", function(e){ e.stopPropagation(); pickers.co.cur.setMonth(pickers.co.cur.getMonth()-1); renderPicker("co"); });
+  document.getElementById("coNext").addEventListener("click", function(e){ e.stopPropagation(); pickers.co.cur.setMonth(pickers.co.cur.getMonth()+1); renderPicker("co"); });
+
+  // 點外部關閉
+  document.addEventListener("click", function(e){
+    if(!document.getElementById("ciWrap").contains(e.target) &&
+       !document.getElementById("coWrap").contains(e.target)){
+      closeAllPickers();
     }
   });
+
+  // 初始渲染
+  renderPicker("ci"); renderPicker("co");
 })();
 
 // ══ 手機號碼防呆 ══
@@ -873,8 +1102,8 @@ async function uploadToCloudinary(file, slotId){
 document.getElementById("bookingForm").addEventListener("submit", async function(e){
   e.preventDefault();
 
-  var checkIn  = document.getElementById("checkIn").value;
-  var checkOut = document.getElementById("checkOut").value;
+  var checkIn  = ciValue;
+  var checkOut = coValue;
   var name     = document.getElementById("guestName").value.trim();
   var phone    = document.getElementById("guestPhone").value.trim();
   var selectedRooms = ROOM_TYPES.filter(function(r){ return roomState[r].checked; });
@@ -896,7 +1125,9 @@ document.getElementById("bookingForm").addEventListener("submit", async function
     }
   }
 
-  check(!checkIn || !checkOut || checkOut <= checkIn, 'dateError', null);
+  if(!checkIn){ showErr('dateError'); document.getElementById('ciDisplay').classList.add('has-error'); ok=false; } else { document.getElementById('ciDisplay').classList.remove('has-error'); }
+  if(!checkOut){ showErr('dateError'); document.getElementById('coDisplay').classList.add('has-error'); ok=false; } else { document.getElementById('coDisplay').classList.remove('has-error'); }
+  if(checkIn && checkOut && checkOut <= checkIn){ showErr('dateError'); ok=false; }
   check(!name,   'nameError',        'guestName');
   check(!/^09\d{8}$/.test(phone), 'phoneStatus', 'guestPhone');
   if(!/^09\d{8}$/.test(phone)){
