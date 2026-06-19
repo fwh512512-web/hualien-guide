@@ -199,7 +199,7 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
   position:absolute; top:calc(100% + 6px); left:0; right:0;
   background:white;
   border:2px solid var(--teal);
-  border-radius:12px;
+  border-radius:14px;
   box-shadow:0 8px 32px rgba(0,101,110,0.18);
   z-index:200;
   overflow:hidden;
@@ -210,27 +210,27 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
 .dp-nav{
   display:flex; align-items:center; justify-content:space-between;
   background:var(--teal-dark); color:white;
-  padding:0.65rem 0.75rem;
+  padding:0.85rem 1rem;
 }
 .dp-nav-btn{
   background:rgba(255,255,255,0.15); border:none; color:white;
-  width:32px; height:32px; border-radius:8px;
-  font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  width:42px; height:42px; border-radius:10px;
+  font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
   transition:background 0.15s;
 }
 .dp-nav-btn:active{background:rgba(255,255,255,0.3);}
-.dp-nav-title{font-size:0.92rem;font-weight:700;letter-spacing:0.06em;}
+.dp-nav-title{font-size:1.05rem;font-weight:700;letter-spacing:0.06em;}
 
 /* 星期列 */
 .dp-weekdays{
   display:grid; grid-template-columns:repeat(7,1fr);
   background:var(--teal-pale);
-  padding:0.4rem 0.5rem 0.3rem;
-  gap:2px;
+  padding:0.55rem 0.6rem 0.45rem;
+  gap:3px;
 }
 .dp-wd{
-  text-align:center; font-size:0.7rem; font-weight:600;
-  color:var(--ink-muted); padding:0.2rem 0;
+  text-align:center; font-size:0.82rem; font-weight:700;
+  color:var(--ink-muted); padding:0.25rem 0;
 }
 .dp-wd:first-child{color:#c0392b;}
 .dp-wd:last-child{color:#2980b9;}
@@ -238,18 +238,19 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
 /* 日期格 */
 .dp-days{
   display:grid; grid-template-columns:repeat(7,1fr);
-  padding:0.4rem 0.5rem 0.6rem;
-  gap:3px;
+  padding:0.5rem 0.6rem 0.8rem;
+  gap:5px;
 }
 .dp-day{
   text-align:center;
-  font-size:0.88rem;
-  padding:0.45rem 0.1rem;
-  border-radius:8px;
+  font-size:1rem;
+  padding:0.6rem 0.1rem;
+  border-radius:10px;
   cursor:pointer;
   transition:all 0.12s;
   color:var(--ink);
   border:none; background:none;
+  min-height:44px; display:flex; align-items:center; justify-content:center;
 }
 .dp-day:hover:not(.past):not(.empty){background:var(--teal-light);color:var(--teal-dark);}
 .dp-day.today{font-weight:700;color:var(--teal);outline:2px solid var(--teal-light);}
@@ -661,7 +662,7 @@ input.has-error{border-color:var(--error)!important;box-shadow:0 0 0 3px rgba(19
         新增票券照片
       </button>
       <div class="field-error" id="photoError">⚠ 請至少上傳一張票券照片</div>
-      <span class="hint" style="margin-top:0.5rem;">⚠️ 請至少上傳一張照片才可送出，（若有多張可一次上傳，或後續補齊相對應的票券數量才可預訂）</span>
+      <span class="hint" style="margin-top:0.5rem;">⚠️ 請至少上傳一張照片才可送出（若有多張可一次上傳，或後續補齊相對應的票券數量才可預訂）</span>
     </div>
     <div class="field">
       <label class="field-label" for="remarks">備註</label>
@@ -1160,7 +1161,7 @@ document.getElementById("bookingForm").addEventListener("submit", async function
     }).join("、");
 
     var msg = [
-      "📋【票券訂房預約申請】","──────────────",
+      "📋【票券訂房預約申請】","─────────────────",
       "🏨 入住日期："+checkIn,
       "🚪 退房日期："+checkOut+"（共 "+nights+" 晚）",
       "👤 訂房姓名："+name,
@@ -1169,9 +1170,9 @@ document.getElementById("bookingForm").addEventListener("submit", async function
       "🛏 入住房型："+roomSummary,
       "🎫 兌換方式："+voucher+(vCount?"（"+vCount+" 張）":""),
       remarks?"📝 備註："+remarks:null,
-      "──────────────",
+      "─────────────────",
       "🖼 票券照片：共 "+photos.length+" 張（將於下方傳送）",
-      "──────────────",
+      "─────────────────",
       "以上資料如有錯誤，請告知專員更正"
     ].filter(Boolean).join("\n");
 
