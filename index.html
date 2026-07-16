@@ -8,798 +8,738 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-:root {
-  --brand:       #00656E;
-  --brand-dark:  #004A52;
-  --brand-light: #E6F4F5;
-  --accent:      #FFC72C;
-  --accent-dark: #E0A800;
-  --bg:          #F2F9F9;
-  --text:        #1A2C2D;
+:root{
+  --brand:#00656E;
+  --brand-dk:#004A52;
+  --brand-lt:#E6F4F5;
+  --accent:#FFD97A;
+  --bg:#F2F9F9;
+  --text:#1A2C2D;
+  --muted:#5A7A7B;
+  --line:#C8E0E2;
 }
-
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{height:100%;overflow-x:hidden;}
+html,body{overflow-x:hidden;}
 body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);-webkit-tap-highlight-color:transparent;}
 
+/* ── 語言列 ── */
+.lang-bar{background:var(--brand-dk);display:flex;justify-content:flex-end;padding:6px 14px;gap:4px;}
+.lang-btn{padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.25);background:transparent;color:rgba(255,255,255,.55);font-size:11px;font-family:'Noto Sans TC',sans-serif;cursor:pointer;transition:all .15s;letter-spacing:.3px;}
+.lang-btn.on{background:var(--accent);border-color:var(--accent);color:var(--brand-dk);font-weight:700;}
+
 /* ── HERO ── */
-.hero{background:var(--brand);padding:28px 20px 20px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(0,50,60,.35);top:-50px;right:-40px;}
-.hero::after{content:'';position:absolute;width:140px;height:140px;border-radius:50%;background:rgba(255,199,44,.12);bottom:-30px;left:-20px;}
-.hero-eyebrow{font-size:10px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;position:relative;z-index:1;}
+.hero{background:var(--brand);padding:28px 20px 22px;position:relative;overflow:hidden;}
+.hero::after{content:'花蓮';position:absolute;right:-6px;bottom:-16px;font-family:'Noto Serif TC',serif;font-size:100px;font-weight:900;color:rgba(255,255,255,.07);line-height:1;pointer-events:none;user-select:none;}
+.hero-eyebrow{font-size:10px;letter-spacing:4px;color:rgba(255,255,255,.55);text-transform:uppercase;margin-bottom:10px;position:relative;z-index:1;}
 .hero-title{font-family:'Noto Serif TC',serif;font-size:30px;font-weight:900;color:#fff;line-height:1.2;position:relative;z-index:1;}
-.hero-title span{color:var(--accent);}
-.hero-sub{font-size:12px;color:rgba(255,255,255,.65);margin-top:6px;position:relative;z-index:1;letter-spacing:.5px;}
-.hero-hint{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:7px 14px;background:rgba(0,0,0,.2);border-radius:20px;font-size:11px;color:var(--accent);letter-spacing:.5px;position:relative;z-index:1;}
+.hero-title em{font-style:normal;color:var(--accent);}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:6px;position:relative;z-index:1;letter-spacing:.5px;}
 
 /* ── TABS ── */
-.tabs{display:flex;background:var(--brand-dark);position:sticky;top:0;z-index:100;border-bottom:2px solid rgba(255,199,44,.3);}
-.tab{flex:1;padding:13px 6px;border:none;background:transparent;font-family:'Noto Sans TC',sans-serif;font-size:12px;font-weight:500;color:rgba(255,255,255,.5);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;}
-.tab i{font-size:15px;flex-shrink:0;}
+.tabs{display:flex;background:var(--brand-dk);position:sticky;top:0;z-index:100;border-bottom:2px solid rgba(255,217,122,.3);overflow-x:auto;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex:1;min-width:64px;padding:13px 6px;border:none;background:transparent;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:500;color:rgba(255,255,255,.5);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap;}
+.tab i{font-size:14px;flex-shrink:0;}
 .tab.active{color:#fff;border-bottom-color:var(--accent);}
 
-/* ── FILTERS ── */
-.filters{display:flex;gap:8px;padding:14px 14px 12px;overflow-x:auto;background:var(--bg);}
-.filters::-webkit-scrollbar{display:none;}
-.chip{flex-shrink:0;padding:7px 16px;border-radius:50px;border:1.5px solid #9ACCCE;background:#fff;font-size:12px;font-weight:500;color:var(--brand);cursor:pointer;font-family:'Noto Sans TC',sans-serif;transition:all .2s;white-space:nowrap;box-shadow:0 1px 3px rgba(0,101,110,.08);}
-.chip.on{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 2px 8px rgba(0,101,110,.3);}
-
 /* ── CARDS ── */
-.cards{padding:4px 12px 0;display:flex;flex-direction:column;gap:10px;}
-
-.card{background:#fff;border-radius:18px;overflow:hidden;border:1.5px solid #C8E8EA;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s;position:relative;}
-.card.selected{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,199,44,.22);}
-.card:active{transform:scale(0.984);}
-
-.card-img{position:relative;height:88px;display:flex;align-items:center;justify-content:center;font-size:44px;}
-.c-scenery{background:linear-gradient(135deg,#A8D8EA,#6BAFC8);}
-.c-nature {background:linear-gradient(135deg,#98C880,#5A9E58);}
-.c-culture{background:linear-gradient(135deg,#D4B896,#B08060);}
-.c-food   {background:linear-gradient(135deg,#F5D080,#E8A030);}
-.c-local  {background:linear-gradient(135deg,#F0B0A0,#D87060);}
-.c-brunch {background:linear-gradient(135deg,#C8E0B8,#88B870);}
-.c-cafe   {background:linear-gradient(135deg,#C8B8A8,#907860);}
-.c-night  {background:linear-gradient(135deg,#8898C8,#5060A0);}
-.c-whale  {background:linear-gradient(135deg,#7ECBDE,#2A8FAA);}
-.c-rain   {background:linear-gradient(135deg,#B0BED8,#6878A8);}
-.c-museum {background:linear-gradient(135deg,#C0B4D4,#8070A0);}
-.c-art    {background:linear-gradient(135deg,#D4C0B0,#A08070);}
-.c-exp    {background:linear-gradient(135deg,#A8D4C0,#5A9A80);}
-.rain-tag{display:inline-flex;align-items:center;gap:3px;margin-top:5px;padding:2px 9px;border-radius:10px;background:rgba(80,110,190,.12);border:1px solid rgba(80,110,190,.3);font-size:10px;color:#3858a0;font-weight:500;}
-.copyright{text-align:center;padding:18px 16px 120px;font-size:10px;color:#7AACAE;opacity:0.7;letter-spacing:.3px;line-height:1.9;}
-
-.card-badge{position:absolute;top:8px;right:8px;padding:2px 9px;border-radius:10px;font-size:9px;font-weight:500;background:rgba(255,255,255,.88);color:#4A3020;letter-spacing:.3px;}
-.check-ring{position:absolute;top:8px;left:8px;width:24px;height:24px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.4);transition:all .2s;}
-.check-ring i{font-size:13px;color:var(--brand-dark);}
-.card.selected .check-ring{opacity:1;transform:scale(1);}
-
-.card-body{padding:11px 14px 12px;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.cards{padding:8px 12px 32px;display:flex;flex-direction:column;gap:9px;}
+.card{background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid var(--line);}
+.card:active{opacity:.82;}
+.card-head{display:flex;align-items:center;gap:10px;padding:12px 14px 8px;}
+.card-emoji{width:38px;height:38px;border-radius:10px;background:var(--brand-lt);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;line-height:1;}
+.card-meta-top{min-width:0;}
+.card-type{font-size:10px;color:var(--muted);letter-spacing:.5px;margin-bottom:1px;}
+.card-name{font-family:'Noto Serif TC',serif;font-size:15px;font-weight:600;color:var(--text);line-height:1.3;}
+.card-body{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:0 14px 12px;}
 .card-info{flex:1;min-width:0;}
-.card-name{font-family:'Noto Serif TC',serif;font-size:15px;font-weight:600;color:var(--text);margin-bottom:3px;}
-.card-desc{font-size:11px;color:#5A7A7B;line-height:1.6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.card-meta{display:flex;align-items:center;gap:10px;margin-top:7px;}
-.meta{display:flex;align-items:center;gap:3px;font-size:10px;color:#4A9EA0;}
-.meta i{font-size:12px;}
-
-/* special badge for seasonal */
-.badge-season{display:inline-flex;align-items:center;gap:3px;margin-top:6px;padding:2px 9px;border-radius:10px;background:rgba(255,199,44,.2);border:1px solid var(--accent);font-size:10px;color:#805000;font-weight:500;}
-
-.nav-btn{flex-shrink:0;width:44px;height:44px;border-radius:13px;background:var(--brand);color:var(--accent);border:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;text-decoration:none;transition:background .15s;}
+.card-desc{font-size:11px;color:var(--muted);line-height:1.6;}
+.card-tags{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:6px;}
+.tag{display:inline-flex;align-items:center;gap:3px;font-size:10px;color:var(--brand);}
+.tag i{font-size:12px;}
+.badge-season{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:10px;background:rgba(255,217,122,.25);border:1px solid rgba(200,160,0,.3);font-size:10px;color:#806000;font-weight:500;}
+.badge-desk{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:10px;background:var(--brand-lt);border:1px solid var(--line);font-size:10px;color:var(--brand);font-weight:500;}
+.badge-rain{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:10px;background:#EEF3FF;border:1px solid #C8D8F8;font-size:10px;color:#3858A0;font-weight:500;}
+.nav-btn{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:var(--brand);color:var(--accent);border:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;text-decoration:none;transition:opacity .15s;}
 .nav-btn i{font-size:18px;}
 .nav-btn span{font-size:8px;letter-spacing:.5px;font-family:'Noto Sans TC',sans-serif;}
+.nav-btn:active{opacity:.7;}
 
-/* contact tag */
-.contact-tag{display:inline-flex;align-items:center;gap:4px;margin-top:5px;padding:3px 10px;border-radius:10px;background:var(--brand-light);font-size:10px;color:var(--brand);font-weight:500;}
-.contact-tag i{font-size:12px;}
+/* ── 花蓮限定 特殊區塊 ── */
+.special-section{padding:10px 12px 32px;display:flex;flex-direction:column;gap:16px;}
 
-/* ── PLAN BAR ── */
-.plan-bar{position:fixed;bottom:0;left:0;right:0;background:var(--brand-dark);padding:10px 14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:2px solid var(--accent);z-index:200;}
-.plan-bar-left{display:flex;align-items:center;gap:8px;flex:1;min-width:0;}
-.plan-count{width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--brand-dark);font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.plan-text{min-width:0;}
-.plan-label{font-size:11px;color:var(--accent);font-weight:500;}
-.plan-names{font-size:10px;color:rgba(255,255,255,.5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px;}
-.plan-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
-.clear-btn{background:none;border:none;color:rgba(255,255,255,.4);cursor:pointer;font-size:10px;text-decoration:underline;font-family:'Noto Sans TC',sans-serif;display:none;}
-.go-btn{display:flex;align-items:center;gap:5px;padding:10px 16px;border-radius:22px;background:var(--accent);color:var(--brand-dark);border:none;font-family:'Noto Sans TC',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:opacity .2s;text-decoration:none;white-space:nowrap;}
-.go-btn i{font-size:14px;}
-.go-btn.disabled{opacity:.35;pointer-events:none;}
+.sp-card{background:#fff;border-radius:16px;border:1.5px solid var(--line);overflow:hidden;}
+.sp-header{background:var(--brand);padding:14px 16px;display:flex;align-items:center;gap:10px;}
+.sp-header-emoji{font-size:24px;line-height:1;}
+.sp-header-text{color:#fff;}
+.sp-header-title{font-family:'Noto Serif TC',serif;font-size:17px;font-weight:900;line-height:1.2;}
+.sp-header-sub{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px;}
 
-.page-footer{text-align:center;padding:6px 16px 6px;font-size:10px;color:#7AACAE;letter-spacing:.5px;}
+/* 注意事項區 */
+.notice-box{margin:14px 14px 0;padding:12px 14px;background:#FFFBEA;border-radius:10px;border:1px solid #F0D060;}
+.notice-title{font-size:12px;font-weight:700;color:#805000;margin-bottom:6px;display:flex;align-items:center;gap:5px;}
+.notice-row{font-size:11px;color:#5A4010;line-height:1.8;display:flex;align-items:baseline;gap:5px;}
+.notice-row b{color:#C03000;}
+
+/* 航班時刻 */
+.schedule-block{margin:12px 14px 0;display:flex;gap:8px;}
+.schedule-item{flex:1;background:var(--brand-lt);border-radius:8px;padding:10px 12px;}
+.schedule-label{font-size:10px;color:var(--muted);letter-spacing:.5px;margin-bottom:4px;}
+.schedule-times{font-size:13px;font-weight:700;color:var(--brand);line-height:1.6;}
+
+/* 票價表 */
+.price-table{margin:12px 14px 0;border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+.price-thead{display:grid;grid-template-columns:repeat(3,1fr);background:var(--brand);}
+.price-thead div{padding:9px 0;text-align:center;font-size:11px;font-weight:700;color:#fff;}
+.price-tbody{display:grid;grid-template-columns:repeat(3,1fr);background:var(--brand-lt);}
+.price-tbody div{padding:12px 0;text-align:center;font-size:16px;font-weight:900;color:var(--brand);}
+
+/* 提示條列 */
+.tip-list{margin:12px 14px 0;display:flex;flex-direction:column;gap:6px;}
+.tip-row{font-size:11px;color:var(--muted);line-height:1.6;display:flex;gap:6px;}
+.tip-row span:first-child{flex-shrink:0;}
+
+/* 分隔線 */
+.sp-divider{height:1px;background:var(--line);margin:12px 14px 0;}
+
+/* 路線卡 */
+.route-cards{margin:12px 14px 0;display:flex;flex-direction:column;gap:8px;}
+.route-card{background:var(--brand-lt);border-radius:10px;padding:12px;}
+.route-title{font-size:13px;font-weight:700;color:var(--brand);margin-bottom:5px;display:flex;align-items:center;gap:5px;}
+.route-stops{font-size:11px;color:var(--muted);line-height:1.7;}
+.route-prices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.route-price-item{background:#fff;border-radius:8px;padding:10px 12px;text-align:center;}
+.route-price-seat{font-size:10px;color:var(--muted);margin-bottom:3px;}
+.route-price-num{font-size:18px;font-weight:900;color:var(--brand);}
+.route-price-dur{font-size:10px;color:var(--muted);margin-top:2px;}
+
+/* 底部備註 */
+.sp-footer-notes{margin:12px 14px 14px;display:flex;flex-direction:column;gap:5px;}
+.sp-note{font-size:11px;color:var(--muted);line-height:1.6;display:flex;gap:6px;}
+.sp-note span:first-child{flex-shrink:0;}
+.sp-note b{color:var(--brand);}
+
+.footer{text-align:center;padding:20px 16px max(32px,env(safe-area-inset-bottom));font-size:10px;color:var(--muted);opacity:.7;letter-spacing:.3px;line-height:2;}
 .hidden{display:none!important;}
 </style>
 </head>
 <body>
 
+<!-- ── 語言切換列 ── -->
+<div class="lang-bar">
+  <button class="lang-btn on" onclick="setLang('zh')">中文</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+  <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+</div>
+
+<!-- ── HERO ── -->
 <div class="hero">
-  <p class="hero-eyebrow">✦ Hualien Travel Guide</p>
-  <h1 class="hero-title">花蓮<span>旅遊</span><br>人氣名單</h1>
-  <p class="hero-sub">精選景點 × 在地美食 × 一鍵規劃行程</p>
-  <div class="hero-hint"><i class="ti ti-circle-plus"></i> 點卡片加入行程，底部一鍵開啟導航</div>
+  <p class="hero-eyebrow">Hualien Travel Guide</p>
+  <h1 class="hero-title" data-i18n="hero-title">花蓮<em>旅遊</em><br>人氣名單</h1>
+  <p class="hero-sub" data-i18n="hero-sub">精選景點 × 在地美食 × 點擊直接導航</p>
 </div>
 
 <div class="tabs">
-  <button class="tab active" onclick="switchTab('spots')" id="t-spots"><i class="ti ti-mountain"></i>觀光景點</button>
-  <button class="tab" onclick="switchTab('rainy')" id="t-rainy"><i class="ti ti-cloud-rain"></i>雨天備案</button>
-  <button class="tab" onclick="switchTab('food')"   id="t-food"><i class="ti ti-bowl"></i>花蓮美食</button>
-  <button class="tab" onclick="switchTab('brunch')" id="t-brunch"><i class="ti ti-egg-fried"></i>早午餐</button>
-  <button class="tab" onclick="switchTab('cafe')"   id="t-cafe"><i class="ti ti-coffee"></i>咖啡下午茶</button>
+  <button class="tab active" onclick="switchTab('spots')" id="t-spots"><i class="ti ti-mountain"></i><span data-i18n="tab-spots">觀光景點</span></button>
+  <button class="tab" onclick="switchTab('special')" id="t-special"><i class="ti ti-star"></i><span data-i18n="tab-special">花蓮限定</span></button>
+  <button class="tab" onclick="switchTab('rainy')" id="t-rainy"><i class="ti ti-cloud-rain"></i><span data-i18n="tab-rainy">雨天備案</span></button>
+  <button class="tab" onclick="switchTab('food')" id="t-food"><i class="ti ti-bowl"></i><span data-i18n="tab-food">花蓮美食</span></button>
+  <button class="tab" onclick="switchTab('brunch')" id="t-brunch"><i class="ti ti-egg-fried"></i><span data-i18n="tab-brunch">早午餐</span></button>
+  <button class="tab" onclick="switchTab('cafe')" id="t-cafe"><i class="ti ti-coffee"></i><span data-i18n="tab-cafe">咖啡下午茶</span></button>
 </div>
+
 
 <!-- ═══ 觀光景點 ═══ -->
 <div id="sec-spots">
-  <div class="filters">
-    <button class="chip on" onclick="filter('all',this,'g-spots')">全部</button>
-    <button class="chip" onclick="filter('scenery',this,'g-spots')">海岸風光</button>
-    <button class="chip" onclick="filter('nature',this,'g-spots')">山林自然</button>
-    <button class="chip" onclick="filter('culture',this,'g-spots')">文化歷史</button>
-    <button class="chip" onclick="filter('leisure',this,'g-spots')">休閒體驗</button>
+<div class="cards">
+
+  <div class="card" data-name="東大門國際觀光夜市" data-addr="花蓮縣花蓮市重慶路572號">
+    <div class="card-head"><div class="card-emoji">🌃</div><div class="card-meta-top"><div class="card-type" data-i18n="type-nightmarket">夜市</div><div class="card-name" data-i18n="name-dongdamen">東大門國際觀光夜市</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-dongdamen">東台灣最大夜市，原住民料理、在地小吃眾多攤位集結</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="time-dongdamen">18:00–22:30</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
   </div>
-  <div class="cards" id="g-spots">
 
-    <div class="card" data-c="night" data-name="東大門夜市" data-addr="花蓮縣花蓮市重慶路572號" onclick="toggleCard(this)">
-      <div class="card-img c-night">🌃<span class="card-badge">夜市</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">東大門國際觀光夜市</div>
-          <div class="card-desc">東台灣最大夜市，眾多攤位集結，原住民料理、在地小吃</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>18:00–22:30</span><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="scenery" data-name="太平洋公園" data-addr="23.966389,121.609167" onclick="toggleCard(this)">
-      <div class="card-img c-scenery">🌊<span class="card-badge">海岸</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">太平洋公園</div>
-          <div class="card-desc">超長絕美海岸線，自行車步道&沿岸夕陽、散步好地方</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="culture" data-name="松園別館" data-addr="花蓮市松園街65號" onclick="toggleCard(this)">
-      <div class="card-img c-culture">🌲<span class="card-badge">文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">松園別館</div>
-          <div class="card-desc">日治時代老建築，百年松林環繞，眺望花蓮溪出海口絕景</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>09:00–18:00</span><span class="meta"><i class="ti ti-coin"></i>收費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="culture" data-name="花蓮文化創意產業園區" data-addr="花蓮縣花蓮市主工里中華路144號" onclick="toggleCard(this)">
-      <div class="card-img c-culture">🎨<span class="card-badge">文創</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">花蓮文化創意產業園區</div>
-          <div class="card-desc">前身日治時期花蓮酒廠，老倉庫改建，週末常有市集藝文活動</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="culture" data-name="花蓮將軍府1936" data-addr="花蓮縣花蓮市民生里中正路622巷6號" onclick="toggleCard(this)">
-      <div class="card-img c-culture">🏯<span class="card-badge">日式老宅</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">花蓮將軍府1936</div>
-          <div class="card-desc">1936年日式木造宿舍群，16家特色美食品牌</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>10:00-22:30</span><span class="meta"><i class="ti ti-coin"></i>免費入園</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="culture" data-name="吉安慶修院" data-addr="花蓮縣吉安鄉吉安村中興路345-1號" onclick="toggleCard(this)">
-      <div class="card-img c-culture">⛩<span class="card-badge">日式神社</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">吉安慶修院</div>
-          <div class="card-desc">日治時期保存最完整的真言宗寺廟，八十八尊石佛環繞</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>08:30–17:00，週一休息</span><span class="meta"><i class="ti ti-coin"></i>付費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="culture" data-name="花蓮鐵道文化園區" data-addr="花蓮縣花蓮市民族里中山路71號" onclick="toggleCard(this)">
-      <div class="card-img c-culture">🚂<span class="card-badge">文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">花蓮鐵道文化園區</div>
-          <div class="card-desc">台灣保存最完整窄軌鐵道遺址，舊車頭、日式建築，適合拍照</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>10:00–18:00</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="leisure" data-name="花蓮觀光糖廠(光復糖廠)" data-addr=" 花蓮縣光復鄉糖廠街19號" onclick="toggleCard(this)">
-      <div class="card-img c-food">🍦<span class="card-badge">觀光工廠</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">花蓮觀光糖廠</div>
-          <div class="card-desc">光復鄉必訪，必吃冰淇淋！舊糖廠建築保存完整，親子友善</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>08:00–18:00</span><span class="meta"><i class="ti ti-coin"></i>免費入園</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="leisure" data-name="遠雄海洋公園" data-addr="花蓮縣壽豐鄉鹽寮村福德189號" onclick="toggleCard(this)">
-      <div class="card-img c-scenery">🐬<span class="card-badge">主題樂園</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">遠雄海洋公園</div>
-          <div class="card-desc">海洋生態主題樂園，海豚表演、水上設施、美人魚實境秀</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>09:00–17:00</span><span class="meta"><i class="ti ti-coin"></i>收費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="scenery" data-name="七星潭" data-addr="24.043050,121.622493" onclick="toggleCard(this)">
-      <div class="card-img c-scenery">🌙<span class="card-badge">海岸</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">七星潭（七星潭海岸風景區）</div>
-          <div class="card-desc">弧形礫石月牙灣，清晨日出最美，花蓮縣唯一縣級風景區</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="nature" data-name="知卡宣綠森林親水公園" data-addr="花蓮縣吉安鄉仁和村中正路二段299號" onclick="toggleCard(this)">
-      <div class="card-img c-nature">🌳<span class="card-badge">自然</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">知卡宣綠森林親水公園</div>
-          <div class="card-desc">吉安鄉11公頃大型公園，大型遊戲場、大片花園，暑期熱門</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="scenery" data-name="北濱公園" data-addr="23.975589,121.617064" onclick="toggleCard(this)">
-      <div class="card-img c-scenery">🌅<span class="card-badge">公園</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">北濱公園</div>
-          <div class="card-desc">緊鄰太平洋，散步賞海，傍晚夕陽與海浪聲令人放鬆</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="nature" data-name="雲山水夢幻湖" data-addr="花蓮縣壽豐鄉豐坪路二段2巷201弄18號" onclick="toggleCard(this)">
-      <div class="card-img c-nature">🦆<span class="card-badge">湖景</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">花蓮雲山水夢幻湖</div>
-          <div class="card-desc">薄霧繚繞的蒂芬妮藍牛奶湖，落羽松倒影，如夢似幻私人農場</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="scenery" data-name="石梯坪" data-addr="23.482922,121.507537" onclick="toggleCard(this)">
-      <div class="card-img c-scenery">🪨<span class="card-badge">海岸</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">石梯坪</div>
-          <div class="card-desc">天然海蝕台地，形成階梯狀奇岩，夕陽絕美，海岸線秘境</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="culture" data-name="林田山林業文化園區" data-addr="花蓮縣鳳林鎮森榮里林森路99巷99號" onclick="toggleCard(this)">
-      <div class="card-img c-culture">🪵<span class="card-badge">文化園區</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">林田山林業文化園區</div>
-          <div class="card-desc">東部最大林場遺址，日式員工宿舍群保存完整，林業歷史展</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>08:00–17:00</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="scenery" data-name="四八高地戰備坑道" data-addr="24.025641,121.630255" onclick="toggleCard(this)">
-      <div class="card-img c-scenery">🔭<span class="card-badge">景觀</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">四八高地戰備坑道</div>
-          <div class="card-desc">軍事遺址改建，一窺戰時緊繃氣氛</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放(導覽需預約)</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="nature" data-name="鯉魚潭" data-addr="台灣花蓮縣壽豐鄉池南村環潭北路100號" onclick="toggleCard(this)">
-      <div class="card-img c-nature">🚣<span class="card-badge">湖景</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">鯉魚潭</div>
-          <div class="card-desc">東台灣最大內陸湖，可租船、環湖單車道，山景倒影美如畫</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="leisure" data-name="立川漁場" data-addr="花蓮縣壽豐鄉共和村魚池45號" onclick="toggleCard(this)">
-      <div class="card-img c-nature">🦐<span class="card-badge">體驗</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">立川漁場</div>
-          <div class="card-desc">親子體驗挖蛤蜊、摸蜆，現撈現煮，趣味農漁體驗</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>09:00–18:00</span><span class="meta"><i class="ti ti-coin"></i>收費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="scenery" data-name="鹽寮海岸" data-addr="花蓮縣壽豐鄉鹽寮村花東海岸公路10號" onclick="toggleCard(this)">
-      <div class="card-img c-scenery">🌊<span class="card-badge">看海放空</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">鹽寮海岸</div>
-          <div class="card-desc">湛藍色海岸線一望無際，觀賞銀河好去處</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="nature" data-name="六十石山" data-addr="23.218788,121.317725" onclick="toggleCard(this)">
-      <div class="card-img c-nature">🌼<span class="card-badge">金針花</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">六十石山</div>
-          <div class="card-desc">金針花海季節限定（7–9月），萬畝金黃花海俯瞰縱谷平原</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="nature" data-name="大農大富平地森林公園" data-addr="花蓮縣光復鄉大全村農場路32號" onclick="toggleCard(this)">
-      <div class="card-img c-nature">🌿<span class="card-badge">森林</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">大農大富平地森林公園</div>
-          <div class="card-desc">全台最大螢火蟲棲息地，油菜花海、楓葉，四季各有景色</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="scenery" data-name="奇萊鼻燈塔" data-addr="24.015934,121.643866" onclick="toggleCard(this)">
-      <div class="card-img c-scenery">🏠<span class="card-badge">燈塔</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">奇萊鼻燈塔眺望平台</div>
-          <div class="card-desc">花蓮港北側制高點，俯瞰花蓮市區與太平洋，夕陽絕美</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="scenery" data-name="清水斷崖" data-addr="24.218889,121.693056" onclick="toggleCard(this)">
-      <div class="card-img c-scenery">⛰<span class="card-badge">絕景</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">清水斷崖</div>
-          <div class="card-desc">世界最壯觀海岸斷崖之一，千尺懸崖直落太平洋，壯闊震撼</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="scenery" data-name="芭崎瞭望台" data-addr="23.731001,121.558698" onclick="toggleCard(this)">
-      <div class="card-img c-scenery">🌅<span class="card-badge">瞭望</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">芭崎休息區（瞭望台）</div>
-          <div class="card-desc">俯瞰花蓮海岸制高點，藍色太平洋盡收眼底，路途必停</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="nature" data-name="大石鼻山步道" data-addr="23.696860,121.550903" onclick="toggleCard(this)">
-      <div class="card-img c-nature">🥾<span class="card-badge">步道</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">大石鼻山步道</div>
-          <div class="card-desc">短程步道，山頂可俯瞰太平洋，視野開闊</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天開放</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <div class="card" data-c="leisure" data-name="TAROKO太魯閣國家公園" data-addr="花蓮縣秀林鄉富世村富世291號" onclick="toggleCard(this)">
-      <div class="card-img c-nature">🌳<span class="card-badge">鬼斧神工的峽谷景觀</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">TAROKO太魯閣國家公園</div>
-          <div class="card-desc">以大理岩峽谷景觀聞名，0403震後重建之路漫長，僅開放部分景點</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>08:30–17:30</span><span class="meta"><i class="ti ti-coin"></i>免費入場</span></div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <!-- 賞鯨 -->
-    <div class="card" data-c="leisure" data-name="鯨世界賞鯨" data-addr="23.993738,121.632125" onclick="toggleCard(this)">
-      <div class="card-img c-whale">🐋<span class="card-badge">季節限定</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">賞鯨｜鯨世界</div>
-          <div class="card-desc">花蓮外海賞鯨豚，近距離接觸大自然，季節限定珍稀體驗</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>季節出發</span><span class="meta"><i class="ti ti-coin"></i>收費</span></div>
-          <div class="badge-season"><i class="ti ti-clock"></i> 季節限定</div>
-          <div class="contact-tag"><i class="ti ti-phone"></i> 報名請洽櫃台</div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
-    <!-- 迷你TOUR -->
-    <div class="card" data-c="leisure" data-name="迷你TOUR一日遊" data-addr="花蓮市福建街512號" onclick="toggleCard(this)">
-      <div class="card-img c-brunch">🚐<span class="card-badge">包車自由行</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body">
-        <div class="card-info">
-          <div class="card-name">迷你TOUR 一日遊</div>
-          <div class="card-desc">包車自由行，依您的步調探索花蓮，彈性規劃個人專屬行程</div>
-          <div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全日出發</span><span class="meta"><i class="ti ti-coin"></i>收費</span></div>
-          <div class="contact-tag"><i class="ti ti-phone"></i> 報名請洽櫃台</div>
-        </div>
-        <a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a>
-      </div>
-    </div>
-
+  <div class="card" data-name="太平洋公園" data-addr="23.966389,121.609167">
+    <div class="card-head"><div class="card-emoji">🌊</div><div class="card-meta-top"><div class="card-type" data-i18n="type-coast">海岸</div><div class="card-name" data-i18n="name-pacific">太平洋公園</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-pacific">超長絕美海岸線，自行車步道沿岸夕陽，散步好地方</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
   </div>
+
+  <div class="card" data-name="松園別館" data-addr="花蓮市松園街65號">
+    <div class="card-head"><div class="card-emoji">🌲</div><div class="card-meta-top"><div class="card-type" data-i18n="type-culture">文化歷史</div><div class="card-name" data-i18n="name-songyuan">松園別館</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-songyuan">日治時代老建築，百年松林環繞，眺望花蓮溪出海口絕景</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>09:00–18:00</span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="paid">收費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="花蓮文化創意產業園區" data-addr="花蓮縣花蓮市主工里中華路144號">
+    <div class="card-head"><div class="card-emoji">🏭</div><div class="card-meta-top"><div class="card-type" data-i18n="type-culture">文化歷史</div><div class="card-name" data-i18n="name-cultural-park">花蓮文化創意產業園區</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-cultural-park">前身日治時期花蓮酒廠，老倉庫改建，週末常有市集藝文活動</div><div class="card-tags"><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="花蓮將軍府1936" data-addr="花蓮縣花蓮市民生里中正路622巷6號">
+    <div class="card-head"><div class="card-emoji">🏯</div><div class="card-meta-top"><div class="card-type" data-i18n="type-culture">文化歷史</div><div class="card-name" data-i18n="name-general">花蓮將軍府1936</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-general">1936年日式木造宿舍群，16家特色美食品牌進駐</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>10:00–22:30</span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free-entry">免費入園</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="吉安慶修院" data-addr="花蓮縣吉安鄉吉安村中興路345-1號">
+    <div class="card-head"><div class="card-emoji">⛩️</div><div class="card-meta-top"><div class="card-type" data-i18n="type-culture">文化歷史</div><div class="card-name" data-i18n="name-jian">吉安慶修院</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-jian">日治時期保存最完整的真言宗寺廟，八十八尊石佛環繞</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="time-jian">08:30–17:00，週一休</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="paid">收費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="花蓮鐵道文化園區" data-addr="花蓮縣花蓮市民族里中山路71號">
+    <div class="card-head"><div class="card-emoji">🚂</div><div class="card-meta-top"><div class="card-type" data-i18n="type-culture">文化歷史</div><div class="card-name" data-i18n="name-railway">花蓮鐵道文化園區</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-railway">台灣保存最完整窄軌鐵道遺址，舊車頭、日式建築，適合拍照</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>10:00–18:00</span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="花蓮觀光糖廠" data-addr="花蓮縣光復鄉糖廠街19號">
+    <div class="card-head"><div class="card-emoji">🍦</div><div class="card-meta-top"><div class="card-type" data-i18n="type-leisure">休閒體驗</div><div class="card-name" data-i18n="name-sugar">花蓮觀光糖廠（光復糖廠）</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-sugar">光復鄉必訪，必吃冰淇淋！舊糖廠建築保存完整，親子友善</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>08:00–18:00</span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free-entry">免費入園</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="遠雄海洋公園" data-addr="花蓮縣壽豐鄉鹽寮村福德189號">
+    <div class="card-head"><div class="card-emoji">🐬</div><div class="card-meta-top"><div class="card-type" data-i18n="type-leisure">休閒體驗</div><div class="card-name" data-i18n="name-ocean">遠雄海洋公園</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-ocean">海洋生態主題樂園，海豚表演、水上設施、美人魚實境秀</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>09:00–17:00</span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="paid">收費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="七星潭" data-addr="24.043050,121.622493">
+    <div class="card-head"><div class="card-emoji">🌙</div><div class="card-meta-top"><div class="card-type" data-i18n="type-coast">海岸</div><div class="card-name" data-i18n="name-qixingtan">七星潭（七星潭海岸風景區）</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-qixingtan">弧形礫石月牙灣，清晨日出最美，花蓮縣唯一縣級風景區</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="知卡宣綠森林親水公園" data-addr="花蓮縣吉安鄉仁和村中正路二段299號">
+    <div class="card-head"><div class="card-emoji">🌳</div><div class="card-meta-top"><div class="card-type" data-i18n="type-nature">山林自然</div><div class="card-name" data-i18n="name-jikasuwan">知卡宣綠森林親水公園</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-jikasuwan">吉安鄉11公頃大型公園，大型遊戲場、大片花園，暑期熱門</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="北濱公園" data-addr="23.975589,121.617064">
+    <div class="card-head"><div class="card-emoji">🌅</div><div class="card-meta-top"><div class="card-type" data-i18n="type-coast">海岸</div><div class="card-name" data-i18n="name-beibhin">北濱公園</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-beibhin">緊鄰太平洋，散步賞海，傍晚夕陽與海浪聲令人放鬆</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="花蓮雲山水夢幻湖" data-addr="花蓮縣壽豐鄉豐坪路二段2巷201弄18號">
+    <div class="card-head"><div class="card-emoji">🦆</div><div class="card-meta-top"><div class="card-type" data-i18n="type-nature">山林自然</div><div class="card-name" data-i18n="name-yunshan">花蓮雲山水夢幻湖</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-yunshan">薄霧繚繞的蒂芬妮藍牛奶湖，落羽松倒影，如夢似幻私人農場</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="石梯坪" data-addr="23.482922,121.507537">
+    <div class="card-head"><div class="card-emoji">🪨</div><div class="card-meta-top"><div class="card-type" data-i18n="type-coast">海岸</div><div class="card-name" data-i18n="name-shiti">石梯坪</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-shiti">天然海蝕台地，形成階梯狀奇岩，夕陽絕美，海岸線秘境</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="林田山林業文化園區" data-addr="花蓮縣鳳林鎮森榮里林森路99巷99號">
+    <div class="card-head"><div class="card-emoji">🪵</div><div class="card-meta-top"><div class="card-type" data-i18n="type-culture">文化歷史</div><div class="card-name" data-i18n="name-lintian">林田山林業文化園區</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-lintian">東部最大林場遺址，日式員工宿舍群保存完整，林業歷史展</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>08:00–17:00</span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="四八高地戰備坑道" data-addr="24.025641,121.630255">
+    <div class="card-head"><div class="card-emoji">🔭</div><div class="card-meta-top"><div class="card-type" data-i18n="type-scenic">海岸景觀</div><div class="card-name" data-i18n="name-48">四八高地戰備坑道</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-48">軍事遺址改建，一窺戰時緊繃氣氛</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="time-48">全天（導覽需預約）</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="鯉魚潭" data-addr="台灣花蓮縣壽豐鄉池南村環潭北路100號">
+    <div class="card-head"><div class="card-emoji">🚣</div><div class="card-meta-top"><div class="card-type" data-i18n="type-nature">山林自然</div><div class="card-name" data-i18n="name-liyu">鯉魚潭</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-liyu">東台灣最大內陸湖，可租船、環湖單車道，山景倒影美如畫</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="立川漁場" data-addr="花蓮縣壽豐鄉共和村魚池45號">
+    <div class="card-head"><div class="card-emoji">🦐</div><div class="card-meta-top"><div class="card-type" data-i18n="type-leisure">休閒體驗</div><div class="card-name" data-i18n="name-lichuan">立川漁場</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-lichuan">親子體驗挖蛤蜊、摸蜆，現撈現煮，趣味農漁體驗</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>09:00–18:00</span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="paid">收費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="鹽寮海岸" data-addr="花蓮縣壽豐鄉鹽寮村花東海岸公路10號">
+    <div class="card-head"><div class="card-emoji">🌊</div><div class="card-meta-top"><div class="card-type" data-i18n="type-coast">海岸</div><div class="card-name" data-i18n="name-yanliao">鹽寮海岸</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-yanliao">湛藍色海岸線一望無際，觀賞銀河好去處</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="六十石山" data-addr="23.218788,121.317725">
+    <div class="card-head"><div class="card-emoji">🌼</div><div class="card-meta-top"><div class="card-type" data-i18n="type-nature">山林自然</div><div class="card-name" data-i18n="name-liushishishan">六十石山</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-liushishishan">金針花海季節限定（7–9月），萬畝金黃花海俯瞰縱谷平原</div><div class="card-tags"><span class="badge-season">🕐 <span data-i18n="seasonal">季節限定</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="大農大富平地森林公園" data-addr="花蓮縣光復鄉大全村農場路32號">
+    <div class="card-head"><div class="card-emoji">🌿</div><div class="card-meta-top"><div class="card-type" data-i18n="type-nature">山林自然</div><div class="card-name" data-i18n="name-dafu">大農大富平地森林公園</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-dafu">全台最大螢火蟲棲息地，油菜花海、楓葉，四季各有景色</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="奇萊鼻燈塔眺望平台" data-addr="24.015934,121.643866">
+    <div class="card-head"><div class="card-emoji">🏠</div><div class="card-meta-top"><div class="card-type" data-i18n="type-scenic">海岸景觀</div><div class="card-name" data-i18n="name-qilai">奇萊鼻燈塔眺望平台</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-qilai">花蓮港北側制高點，俯瞰花蓮市區與太平洋，夕陽絕美</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="清水斷崖" data-addr="24.218889,121.693056">
+    <div class="card-head"><div class="card-emoji">⛰️</div><div class="card-meta-top"><div class="card-type" data-i18n="type-scenic">海岸景觀</div><div class="card-name" data-i18n="name-qingshui">清水斷崖</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-qingshui">世界最壯觀海岸斷崖之一，千尺懸崖直落太平洋，壯闊震撼</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="芭崎休息區（瞭望台）" data-addr="23.731001,121.558698">
+    <div class="card-head"><div class="card-emoji">👀</div><div class="card-meta-top"><div class="card-type" data-i18n="type-scenic">海岸景觀</div><div class="card-name" data-i18n="name-baji">芭崎休息區（瞭望台）</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-baji">俯瞰花蓮海岸制高點，藍色太平洋盡收眼底，路途必停</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="大石鼻山步道" data-addr="23.696860,121.550903">
+    <div class="card-head"><div class="card-emoji">🥾</div><div class="card-meta-top"><div class="card-type" data-i18n="type-nature">山林自然</div><div class="card-name" data-i18n="name-dashibi">大石鼻山步道</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-dashibi">短程步道，山頂可俯瞰太平洋，視野開闊</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="allday">全天開放</span></span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+  <div class="card" data-name="TAROKO太魯閣國家公園" data-addr="花蓮縣秀林鄉富世村富世291號">
+    <div class="card-head"><div class="card-emoji">🏔️</div><div class="card-meta-top"><div class="card-type" data-i18n="type-nature">山林自然</div><div class="card-name" data-i18n="name-taroko">TAROKO 太魯閣國家公園</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-taroko">大理岩峽谷景觀聞名，0403震後重建，僅開放部分景點</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>08:30–17:30</span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free-entry">免費入場</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+
+</div>
 </div>
 
-<!-- ═══ 花蓮美食 ═══ -->
-<div id="sec-food" class="hidden">
-  <div class="filters">
-    <button class="chip on" onclick="filter('all',this,'g-food')">全部</button>
-    <button class="chip" onclick="filter('seafood',this,'g-food')">海鮮料理</button>
-    <button class="chip" onclick="filter('local',this,'g-food')">在地小吃</button>
-    <button class="chip" onclick="filter('noodle',this,'g-food')">麵食湯品</button>
-    <button class="chip" onclick="filter('bbq',this,'g-food')">燒肉居酒屋</button>
-  </div>
-  <div class="cards" id="g-food">
-    <div class="card" data-c="seafood" data-name="欣欣麵館" data-addr="花蓮縣花蓮市國威里民國路125號" onclick="toggleCard(this)">
-      <div class="card-img c-food">🦞<span class="card-badge">海鮮</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">欣欣麵館</div><div class="card-desc">花蓮必吃海鮮名店，活海產、生魚片、龍蝦火鍋，建議提前訂位</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>海鮮名店・需訂位</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+
+<!-- ═══ 花蓮限定 ═══ -->
+<div id="sec-special" class="hidden">
+<div class="special-section">
+
+  <!-- 賞鯨 -->
+  <div class="sp-card">
+    <div class="sp-header">
+      <div class="sp-header-emoji">🐋</div>
+      <div class="sp-header-text">
+        <div class="sp-header-title" data-i18n="whale-title">賞鯨｜鯨世界</div>
+        <div class="sp-header-sub" data-i18n="whale-sub">花蓮外海賞鯨豚體驗</div>
+      </div>
     </div>
-    <div class="card" data-c="local" data-name="歐桑米粉湯" data-addr="花蓮縣花蓮市主力里和平路466號" onclick="toggleCard(this)">
-      <div class="card-img c-local">🍲<span class="card-badge">在地</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">歐桑米粉湯</div><div class="card-desc">平民食堂，招牌金沙蝦仁炒飯、鮮蚵大腸、滷肉飯界的愛馬仕</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>在地老店・全天營業</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+
+    <div class="notice-box">
+      <div class="notice-title">⚠️ <span data-i18n="whale-notice-title">出發前請注意</span></div>
+      <div class="notice-row">📋 <span data-i18n="whale-notice-1">航班時間請先洽櫃台，船班時間會依據海況有所調整。以下時間<b>僅供參考</b>，以實際出航為準。</span></div>
+      <div class="notice-row">📱 <span data-i18n="whale-notice-2">報名時間為<b>下午五點以前</b></span></div>
+      <div class="notice-row">🚫 <span data-i18n="whale-notice-3">已報名後<b>不退費</b>，請確認後再報名。</span></div>
     </div>
-    <div class="card" data-c="local" data-name="金蘭號" data-addr="花蓮縣花蓮市民生里公正街13號" onclick="toggleCard(this)">
-      <div class="card-img c-food">🍖<span class="card-badge">在地</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">金蘭號</div><div class="card-desc">必點排骨飯、炒麵配味噌湯，在地人真愛</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>在地老店・40年歷史</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+
+    <div class="schedule-block">
+      <div class="schedule-item">
+        <div class="schedule-label" data-i18n="morning-flight">上午航班</div>
+        <div class="schedule-times">06:00 ／ 08:00 ／ 10:00</div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-label" data-i18n="afternoon-flight">下午航班</div>
+        <div class="schedule-times">13:30 ／ 15:00</div>
+      </div>
     </div>
-    <div class="card" data-c="noodle" data-name="京湘排骨麵" data-addr="花蓮縣花蓮市民族里中山路145號" onclick="toggleCard(this)">
-      <div class="card-img c-food">🍜<span class="card-badge">麵食</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">京湘排骨麵</div><div class="card-desc">中山路人氣麵店，招牌排骨酥麵，香軟不爛，翻桌率高不用等太久</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>人氣麵店</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+
+    <div class="price-table">
+      <div class="price-thead">
+        <div data-i18n="adult">成人 ADT</div>
+        <div data-i18n="child">孩童 CHD</div>
+        <div data-i18n="infant">嬰兒 INF</div>
+      </div>
+      <div class="price-tbody">
+        <div>NT$ 900</div>
+        <div>NT$ 700</div>
+        <div>NT$ 300</div>
+      </div>
     </div>
-    <div class="card" data-c="noodle" data-name="來成排骨麵" data-addr="花蓮縣花蓮市主工里中正路477號" onclick="toggleCard(this)">
-      <div class="card-img c-food">🍜<span class="card-badge">麵食</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">來成排骨麵</div><div class="card-desc">花蓮在地排骨麵名店，湯頭鮮甜，份量紮實，口碑相傳(公休看臉書)</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>在地老店</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+
+    <div class="tip-list">
+      <div class="tip-row"><span>🌊</span><span data-i18n="whale-tip-1">船位有限，以實際出航為準，請事先詢問</span></div>
+      <div class="tip-row"><span>⏰</span><span data-i18n="whale-tip-2">請提早 30 分鐘到達賞鯨碼頭，完成安全示範說明及點名登船</span></div>
+      <div class="tip-row"><span>🐬</span><span data-i18n="whale-tip-3">花蓮夏季賞豚率高達 90%，鯨魚 7–8 月最易出沒，祝大家都能看到鯨魚！</span></div>
     </div>
-    <div class="card" data-c="local" data-name="林記明禮路蔥油餅" data-addr="花蓮縣花蓮市國光里明禮路18-3號" onclick="toggleCard(this)">
-      <div class="card-img c-local">🧅<span class="card-badge">小吃</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">林記明禮路蔥油餅</div><div class="card-desc">炸彈蔥油餅，酥脆外皮，花蓮必吃街頭小食</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>排隊名攤・限量售完</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="local" data-name="家咖哩將軍府店" data-addr="花蓮縣花蓮市民生里中正路618巷" onclick="toggleCard(this)">
-      <div class="card-img c-food">🍛<span class="card-badge">咖哩</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">家咖哩（將軍府店）</div><div class="card-desc">人氣咖哩飯，古蹟內老味不變，更添風味</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>人氣餐廳</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="noodle" data-name="職饗雞湯小卷米粉" data-addr="花蓮縣花蓮市國聯里國聯五路121號" onclick="toggleCard(this)">
-      <div class="card-img c-local">🦑<span class="card-badge">米粉湯</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">職饗雞湯小卷米粉</div><div class="card-desc">清甜雞湯底，鮮嫩小卷配米粉，花蓮特有暖心湯品</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>在地特色・暖心湯品</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="bbq" data-name="老時光燒肉酒肴" data-addr="花蓮縣花蓮市國治里民國路88-1號" onclick="toggleCard(this)">
-      <div class="card-img c-food">🥩<span class="card-badge">燒肉</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">老時光燒肉酒肴</div><div class="card-desc">花蓮人氣燒肉居酒屋，肉質新鮮，環境有質感，需訂位</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>人氣居酒屋・需訂位</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="local" data-name="公正包子" data-addr="花蓮縣花蓮市主睦里仁愛街46號" onclick="toggleCard(this)">
-      <div class="card-img c-local">🥟<span class="card-badge">小吃</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">公正包子</div><div class="card-desc">花蓮名店，酸辣湯麵飯，應有盡有，包子味美價廉</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>排隊名店</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="local" data-name="周家蒸餃" data-addr="花蓮縣花蓮市民生里公正街4-20號" onclick="toggleCard(this)">
-      <div class="card-img c-local">🥟<span class="card-badge">小吃</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">周家蒸餃</div><div class="card-desc">在地人老店蒸餃，酸辣湯麵飯，應有盡有，包子味美價廉</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>排隊名店・在地必吃</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="seafood" data-name="定置漁場三代目" data-addr="花蓮縣花蓮市國安里建國路23號1樓" onclick="toggleCard(this)">
-      <div class="card-img c-food">🐟<span class="card-badge">海鮮</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">定置漁場三代目</div><div class="card-desc">新鮮現撈漁獲直送，柚香拉麵清爽甘美，在地漁業文化</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>新鮮漁獲，日式風味</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="local" data-name="玉里橋頭臭豆腐" data-addr="花蓮縣花蓮市主和里和平路55號" onclick="toggleCard(this)">
-      <div class="card-img c-local">🧡<span class="card-badge">小吃</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">玉里橋頭臭豆腐</div><div class="card-desc">玉里必吃臭豆腐，花蓮市區展店，不必跑太遠！外酥內嫩臭豆腐，配上特製泡菜，香氣逼人</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>玉里鎮</span><span class="meta"><i class="ti ti-tag"></i>在地名攤・限量售完</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="local" data-name="鵝肉先生" data-addr="花蓮縣花蓮市國威里林森路224號" onclick="toggleCard(this)">
-      <div class="card-img c-food">🍽<span class="card-badge">鵝肉</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">鵝肉先生</div><div class="card-desc">花蓮人氣鵝肉專賣，鵝肉嫩滑清甜，快炒菜色眾多</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>在地老店・鵝肉專賣</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="local" data-name="海埔蚵仔煎" data-addr="花蓮縣花蓮市主工里民國路8號" onclick="toggleCard(this)">
-      <div class="card-img c-local">🍳<span class="card-badge">小吃</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">海埔蚵仔煎</div><div class="card-desc">新鮮肥美蚵仔，蛋液Q彈，醬料香濃，花蓮在地人氣小吃</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>在地小吃・新鮮蚵仔</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="local" data-name="美琪烤玉米" data-addr="花蓮縣花蓮市主睦里信義街71號" onclick="toggleCard(this)">
-      <div class="card-img c-local">🌽<span class="card-badge">小吃</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">美琪烤玉米</div><div class="card-desc">現烤香甜玉米，刷上特製醬料，花蓮街頭最暖心的小食</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>街頭小食・現烤現賣</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
+
+    <div class="sp-divider"></div>
+
+    <div class="sp-footer-notes">
+      <div class="sp-note"><span>💊</span><span data-i18n="whale-note-1">搭船前請自備暈船藥提前服下</span></div>
+      <div class="sp-note"><span>⏱️</span><span data-i18n="whale-note-2">整體行程約 2 小時，依實際風浪及鯨豚觀察情況調整</span></div>
+      <div class="sp-note"><span>✅</span><span data-i18n="whale-note-3">價格含接送、導覽、意外險　<b>報名請洽櫃檯人員</b></span></div>
     </div>
   </div>
+
+  <!-- 包車 -->
+  <div class="sp-card">
+    <div class="sp-header">
+      <div class="sp-header-emoji">🚐</div>
+      <div class="sp-header-text">
+        <div class="sp-header-title" data-i18n="car-title">迷你TOUR 一日遊</div>
+        <div class="sp-header-sub" data-i18n="car-sub">包車自由行，依您的步調探索花蓮</div>
+      </div>
+    </div>
+
+    <div class="route-cards">
+      <div class="route-card">
+        <div class="route-title">🌊 <span data-i18n="route-coast-title">花蓮海岸線</span></div>
+        <div class="route-stops" data-i18n="route-coast-stops">飯店出發 ▸ 洄瀾貨櫃星巴克 ▸ 薯薯寮 ▸ 芭崎瞭望台 ▸ 大石鼻山步道 ▸ 新社梯田 ▸ 石門洞 ▸ 石梯坪風景區 ▸ 賦歸</div>
+        <div class="route-prices">
+          <div class="route-price-item">
+            <div class="route-price-seat" data-i18n="seat5">5 人座</div>
+            <div class="route-price-num">$3,500<span style="font-size:13px;font-weight:500" data-i18n="from">起</span></div>
+            <div class="route-price-dur" data-i18n="8hr">一日遊 8hr</div>
+          </div>
+          <div class="route-price-item">
+            <div class="route-price-seat" data-i18n="seat9">9 人座</div>
+            <div class="route-price-num">$5,000<span style="font-size:13px;font-weight:500" data-i18n="from">起</span></div>
+            <div class="route-price-dur" data-i18n="8hr">一日遊 8hr</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-title">🏔️ <span data-i18n="route-valley-title">花蓮縱谷線</span></div>
+        <div class="route-stops" data-i18n="route-valley-stops">飯店出發 ▸ 理想星巴克（或鯉魚潭）▸ 雲山水 ▸ 林田山林業文化園區 ▸ 吉利潭 ▸ 光復糖廠 ▸ 賦歸</div>
+        <div class="route-prices">
+          <div class="route-price-item">
+            <div class="route-price-seat" data-i18n="seat5">5 人座</div>
+            <div class="route-price-num">$3,500<span style="font-size:13px;font-weight:500" data-i18n="from">起</span></div>
+            <div class="route-price-dur" data-i18n="8hr">一日遊 8hr</div>
+          </div>
+          <div class="route-price-item">
+            <div class="route-price-seat" data-i18n="seat9">9 人座</div>
+            <div class="route-price-num">$5,000<span style="font-size:13px;font-weight:500" data-i18n="from">起</span></div>
+            <div class="route-price-dur" data-i18n="8hr">一日遊 8hr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-footer-notes">
+      <div class="sp-note"><span>📋</span><span data-i18n="car-note-1">以上行程僅供參考，可在合理範圍內調整，歡迎客製化。</span></div>
+      <div class="sp-note"><span>🧒</span><span data-i18n="car-note-2">小孩亦算 1 人；5 人座最多搭乘 4 人，建議 3 人最舒適。需兒童安全座椅請提前預約並另計費用。</span></div>
+      <div class="sp-note"><span>🌐</span><span><b data-i18n="car-note-3-bold">外語導覽</b><span data-i18n="car-note-3"> 另外計算</span></span></div>
+      <div class="sp-note"><span>📅</span><span><b data-i18n="car-note-4-bold">客製行程</b><span data-i18n="car-note-4"> 請洽櫃檯專員</span></span></div>
+    </div>
+  </div>
+
+</div>
 </div>
 
-<!-- ═══ 早午餐 ═══ -->
-<div id="sec-brunch" class="hidden">
-  <div class="filters">
-    <button class="chip on" onclick="filter('all',this,'g-brunch')">全部</button>
-    <button class="chip" onclick="filter('oldhouse',this,'g-brunch')">老宅風格</button>
-    <button class="chip" onclick="filter('western',this,'g-brunch')">西式早午餐</button>
-  </div>
-  <div class="cards" id="g-brunch">
-    <div class="card" data-c="oldhouse" data-name="時光1939" data-addr="花蓮縣花蓮市國治里民國路80巷16號" onclick="toggleCard(this)">
-      <div class="card-img c-brunch">🌿<span class="card-badge">日式老宅</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">時光1939</div><div class="card-desc">昭和時期日式老宅改建，蔬食早午餐，店貓相伴，靜謐慢時光</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>日式老宅・蔬食料理</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="western" data-name="take a bread 光復店" data-addr="花蓮縣花蓮市國威里光復街91號" onclick="toggleCard(this)">
-      <div class="card-img c-brunch">🥐<span class="card-badge">麵包早餐</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">take a bread 光復店</div><div class="card-desc">選用在地食材製作麵包，美好從早晨開始</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>光復鄉</span><span class="meta"><i class="ti ti-tag"></i>在地麵包・現烤新鮮</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="western" data-name="再吃一口早午餐" data-addr="花蓮縣花蓮市大同街17-1號" onclick="toggleCard(this)">
-      <div class="card-img c-brunch">🍳<span class="card-badge">早午餐</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">再吃一口早午餐</div><div class="card-desc">份量十足，餐點豐盛令人忍不住再多吃一口</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>份量十足・人氣推薦</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="oldhouse" data-name="森山舍" data-addr="花蓮縣花蓮市國風里林政街10號" onclick="toggleCard(this)">
-      <div class="card-img c-brunch">🌲<span class="card-badge">老宅</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">森山舎</div><div class="card-desc">花蓮知名老宅早午餐，林政街上的靜謐角落</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>老宅咖啡・文青風格</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="western" data-name="COUNTRY MOTHER'S" data-addr="花蓮縣花蓮市民勤里府前路34號" onclick="toggleCard(this)">
-      <div class="card-img c-brunch">🧺<span class="card-badge">西式</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">COUNTRY MOTHER'S</div><div class="card-desc">美式風格早午餐，麵包紮實，人氣口袋名單</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>獨特風格・優閒氣氛</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="western" data-name="Jam Kitchen" data-addr="花蓮縣花蓮市國威里中山路349號" onclick="toggleCard(this)">
-      <div class="card-img c-brunch">🫙<span class="card-badge">西式</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">jam kitchen 花蓮中山棧</div><div class="card-desc">健身營養餐盒，美味與健康兼具</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>選項眾多・補充優質蛋白</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="western" data-name="萊迦早午餐" data-addr="花蓮縣花蓮市主勤里博愛街185號" onclick="toggleCard(this)">
-      <div class="card-img c-brunch">☀️<span class="card-badge">早午餐</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">萊迦早午餐</div><div class="card-desc">花蓮在地早午餐，餐點豐盛</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>在地人氣・親子愛店</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="western" data-name="MP BRUNCH" data-addr="花蓮縣花蓮市國威里新港街79-4號" onclick="toggleCard(this)">
-      <div class="card-img c-brunch">🍽<span class="card-badge">早午餐</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">MP BRUNCH 早午餐</div><div class="card-desc">質感小空間搭配美味早午餐，餐點精緻</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>優質服務・薯泥美味</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="western" data-name="小和山谷" data-addr="花蓮縣壽豐鄉壽豐村壽文路43號" onclick="toggleCard(this)">
-      <div class="card-img c-brunch">🌱<span class="card-badge">早午餐</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">小和山谷</div><div class="card-desc">隱身壽豐的沉穩系早午餐，餐點融入在地特色</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市區</span><span class="meta"><i class="ti ti-tag"></i>老宅沉穩・特色餐點</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ 咖啡下午茶 ═══ -->
-<div id="sec-cafe" class="hidden">
-  <div class="filters">
-    <button class="chip on" onclick="filter('all',this,'g-cafe')">全部</button>
-    <button class="chip" onclick="filter('coffee',this,'g-cafe')">精品咖啡</button>
-    <button class="chip" onclick="filter('dessert',this,'g-cafe')">甜點茶飲</button>
-    <button class="chip" onclick="filter('oldhouse',this,'g-cafe')">老宅風格</button>
-  </div>
-  <div class="cards" id="g-cafe">
-    <div class="card" data-c="coffee" data-name="Caffe Fiore珈琲花" data-addr="花蓮縣花蓮市主信里忠孝街79號" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">☕<span class="card-badge">手沖咖啡</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">Caffe Fiore珈琲花</div><div class="card-desc">老屋老宅，有店貓，適合慵懶的午後</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>不定時</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="coffee" data-name="浮室咖啡" data-addr="花蓮縣花蓮市主義里成功街280號1樓" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🫧<span class="card-badge">咖啡</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">浮室咖啡 soave plan</div><div class="card-desc">放慢步調，每口蛋糕都會帶來充盈的滿足感</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>09:00–18:00</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="dessert" data-name="雨林Scone&Coffee" data-addr="花蓮縣花蓮市主義里明義街55號" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🫖<span class="card-badge">司康</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">雨林Scone&Coffee 司康專賣</div><div class="card-desc">花蓮唯一司康專賣，自由街香榭大道旁，搭咖啡絕配</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>11:00–18:00，週四休息</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="dessert" data-name="Miyu蜜語甜點" data-addr="花蓮縣吉安鄉北昌村莊敬路267巷3號" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🍰<span class="card-badge">甜點</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">Miyu蜜語甜點</div><div class="card-desc">每日限量手作精品甜點，外型精緻賞心悅目，售完為止</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>11:00–18:00，週四休息</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="coffee" data-name="河狸咖啡" data-addr="花蓮縣花蓮市國風里建林街6號" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🦫<span class="card-badge">咖啡</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">河狸咖啡</div><div class="card-desc">自家烘焙豆，療癒的河狸主題空間，花蓮特色咖啡廳</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>12:30–19:00</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="coffee" data-name="朝露珈琲" data-addr="花蓮縣花蓮市國風里林森路205號" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🌤<span class="card-badge">咖啡</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">朝露珈琲</div><div class="card-desc">多種豆種可選，總有一款屬於你，配上爵士樂，清淌下午一抹流光</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>11:00–18:00，週一休息</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="coffee" data-name="Giocare義式手沖咖啡" data-addr="花蓮縣花蓮市民族里樹人街7號" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🇮🇹<span class="card-badge">義式</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">Giocare義式．手沖咖啡</div><div class="card-desc">手工陶瓷杯加上自烘豆，自成一方天地的小角落</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>14:00–17:00，不定時公休</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="oldhouse" data-name="昭和五八" data-addr="花蓮縣花蓮市主勤里成功街306號" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🏮<span class="card-badge">老宅</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">昭和五八</div><div class="card-desc">昭和氛圍，茶飲甜點有質感</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>13:00–19:00，不定時公休</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="oldhouse" data-name="舊抽屜咖啡" data-addr="花蓮縣花蓮市進豐街22巷15號1樓" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🪵<span class="card-badge">老宅</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">舊抽屜咖啡</div><div class="card-desc">早午餐到晚餐，包容你一天的疲憊</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>09:00–18:00</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="dessert" data-name="歪歪歪甜點 YYY" data-addr="花蓮縣花蓮市主商里南京街328號" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🍮<span class="card-badge">甜點</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">歪歪歪甜點 YYY Dessert</div><div class="card-desc">天然食材，給舌尖上的你，地表最強蛋黃酥之亂</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>12:00–19:00</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="dessert" data-name="找到了可頌小売所" data-addr="花蓮縣花蓮市民權里菁華街35巷1弄18號" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🥐<span class="card-badge">可頌</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">找到了可頌小売所</div><div class="card-desc">花蓮可頌專賣，酥脆層次分明，每日限量，早去才搶得到</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>14:00–售完</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="coffee" data-name="Stroll 散步咖啡" data-addr="花蓮縣花蓮市主信里忠孝街70號" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🚶<span class="card-badge">咖啡</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">Stroll 散步咖啡</div><div class="card-desc">肉桂捲配上咖啡，巷弄中慢慢散步，嚐一口人生的苦</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>1:00–18:00，週五休息</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="dessert" data-name="小和好點 dot.dot." data-addr="花蓮縣壽豐鄉平和村平和一街119號" onclick="toggleCard(this)">
-      <div class="card-img c-cafe">🎂<span class="card-badge">烘焙</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">小和好點 dot.dot. Bakery & Cafe</div><div class="card-desc">人氣烘焙咖啡廳，肉桂捲、鍋煮奶茶香甜迷人</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>13:00–17:00，不定時公休，售完為止</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.stopPropagation();this.href=getNavUrl(this.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-  </div>
-</div>
 
 <!-- ═══ 雨天備案 ═══ -->
 <div id="sec-rainy" class="hidden">
-  <div class="filters">
-    <button class="chip on" onclick="filter('all',this,'g-rainy')">全部</button>
-    <button class="chip" onclick="filter('hist',this,'g-rainy')">🏛 歷史文化</button>
-    <button class="chip" onclick="filter('art',this,'g-rainy')">🖼 藝術展覽</button>
-    <button class="chip" onclick="filter('sci',this,'g-rainy')">🔬 博物館・科教</button>
-    <button class="chip" onclick="filter('exp',this,'g-rainy')">🌿 體驗・DIY</button>
+<div class="cards">
+  <div class="card" data-name="將軍府1936" data-addr="https://maps.app.goo.gl/nhmK4X3TwYJWD8Jg9">
+    <div class="card-head"><div class="card-emoji">🏯</div><div class="card-meta-top"><div class="card-type" data-i18n="type-hist">歷史文化</div><div class="card-name" data-i18n="name-general-mansion">將軍府1936</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-general-mansion">日治時期將軍官邸，重新規劃的日式建築群，走進昭和時代的花蓮</div><div class="card-tags"><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/nhmK4X3TwYJWD8Jg9" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
   </div>
-  <div class="cards" id="g-rainy">
-    <div class="card" data-c="hist" data-name="將軍府1936" data-addr="https://maps.app.goo.gl/nhmK4X3TwYJWD8Jg9" onclick="toggleCard(this)">
-      <div class="card-img c-rain">🏯<span class="card-badge">歷史文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">將軍府1936</div><div class="card-desc">日治時期將軍官邸，重新規劃空間的日式建築群，走進昭和時代的花蓮</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/nhmK4X3TwYJWD8Jg9" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="hist" data-name="又一村文創園區" data-addr="https://maps.app.goo.gl/MrTrKEgKjX6aqopJA" onclick="toggleCard(this)">
-      <div class="card-img c-rain">🏘<span class="card-badge">歷史文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">又一村文創園區</div><div class="card-desc">老眷村改建的文創基地，保留濃厚眷村記憶，藝文展覽、特色小店</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/MrTrKEgKjX6aqopJA" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="hist" data-name="花蓮文化創意產業園區" data-addr="https://maps.app.goo.gl/YDQPCageA7UhpynM6" onclick="toggleCard(this)">
-      <div class="card-img c-rain">🎨<span class="card-badge">歷史文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">花蓮文化創意產業園區</div><div class="card-desc">前身日治時期酒廠，老倉庫改建，不定期藝文市集與展覽</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>全天</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/YDQPCageA7UhpynM6" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="hist" data-name="花蓮鐵道文化園區" data-addr="https://maps.app.goo.gl/uxSXBujutG498FRT7" onclick="toggleCard(this)">
-      <div class="card-img c-rain">🚂<span class="card-badge">歷史文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">花蓮鐵道文化園區</div><div class="card-desc">台灣保存最完整窄軌鐵道遺址，舊車頭與日式建築群，室內外皆宜</div><div class="card-meta"><span class="meta"><i class="ti ti-clock"></i>10:00–18:00</span><span class="meta"><i class="ti ti-coin"></i>免費</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/uxSXBujutG498FRT7" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="hist" data-name="大陳故事館" data-addr="https://maps.app.goo.gl/58snfpYpBaSwByVx8" onclick="toggleCard(this)">
-      <div class="card-img c-rain">📖<span class="card-badge">歷史文化</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">大陳故事館</div><div class="card-desc">花蓮市大陳一村的真君廟，走入歷史，了解這段被遺忘的記憶</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/58snfpYpBaSwByVx8" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="art" data-name="花蓮美術館" data-addr="https://maps.app.goo.gl/PAHLRJmRpCUoxckr7" onclick="toggleCard(this)">
-      <div class="card-img c-art">🖼<span class="card-badge">藝術展覽</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">花蓮美術館</div><div class="card-desc">花蓮唯一縣立美術館，不定期特展，本土與國際藝術作品常設展示</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/PAHLRJmRpCUoxckr7" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="art" data-name="光隆博物館" data-addr="https://maps.app.goo.gl/k6CLBocSttjJ3bZV9" onclick="toggleCard(this)">
-      <div class="card-img c-art">🏺<span class="card-badge">藝術展覽</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">光隆博物館</div><div class="card-desc">私人典藏博物館，展示東方藝術瑰寶，陶瓷、古玩、珍奇文物薈萃</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/k6CLBocSttjJ3bZV9" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="art" data-name="花蓮縣石雕博物館" data-addr="https://maps.app.goo.gl/Xs8zVo8RNdGBfjQCA" onclick="toggleCard(this)">
-      <div class="card-img c-art">🪨<span class="card-badge">藝術展覽</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">花蓮縣石雕博物館</div><div class="card-desc">全台唯一石雕主題博物館，展示花蓮大理石與當代石雕創作精華</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/Xs8zVo8RNdGBfjQCA" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="sci" data-name="花蓮縣考古博物館" data-addr="https://maps.app.goo.gl/3Huu4YbkzjzwbQVv8" onclick="toggleCard(this)">
-      <div class="card-img c-museum">🦴<span class="card-badge">博物館</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">花蓮縣考古博物館</div><div class="card-desc">台灣東部考古文化重鎮，展示花蓮史前文化遺址出土文物，互動豐富</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/3Huu4YbkzjzwbQVv8" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="sci" data-name="花蓮防災教育館" data-addr="https://maps.app.goo.gl/36VEcCXfae6ek6e6A" onclick="toggleCard(this)">
-      <div class="card-img c-museum">🪖<span class="card-badge">博物館</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">花蓮防災教育館</div><div class="card-desc">寓教於樂的防災體驗館，地震、颱風模擬體驗，適合親子同遊</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/36VEcCXfae6ek6e6A" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="sci" data-name="台肥海洋深層水園區" data-addr="https://maps.app.goo.gl/ALSMCKpR3oZV1Vee7" onclick="toggleCard(this)">
-      <div class="card-img c-museum">🌊<span class="card-badge">博物館</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">台肥海洋深層水園區（台灣海礦館）</div><div class="card-desc">全台唯一深層海水主題館，展示深海資源與海洋科技，免費參觀</div><div class="card-meta"><span class="meta"><i class="ti ti-coin"></i>免費</span><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/ALSMCKpR3oZV1Vee7" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="exp" data-name="七星柴魚博物館" data-addr="https://maps.app.goo.gl/cX9QynvA6YMD2dAB6" onclick="toggleCard(this)">
-      <div class="card-img c-exp">🐟<span class="card-badge">體驗・DIY</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">七星柴魚博物館</div><div class="card-desc">全台唯一柴魚主題館，了解柴魚製程、DIY 體驗，現場試吃超新鮮</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮市</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/cX9QynvA6YMD2dAB6" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
-    <div class="card" data-c="exp" data-name="地耕味 玩味蕃樂園" data-addr="https://maps.app.goo.gl/BKnyiZ2Mv6xuVX6e7" onclick="toggleCard(this)">
-      <div class="card-img c-exp">🍅<span class="card-badge">體驗・DIY</span><div class="check-ring"><i class="ti ti-check"></i></div></div>
-      <div class="card-body"><div class="card-info"><div class="card-name">地耕味 玩味蕃樂園</div><div class="card-desc">舊台灣復古時光，一樓有齊全的伴手禮購買，親子同樂好去處</div><div class="card-meta"><span class="meta"><i class="ti ti-map-pin"></i>花蓮縣</span></div><span class="rain-tag">☂ 適合雨天</span></div><a class="nav-btn" href="https://maps.app.goo.gl/BKnyiZ2Mv6xuVX6e7" target="_blank" onclick="event.stopPropagation()"><i class="ti ti-navigation"></i><span>導航</span></a></div>
-    </div>
+  <div class="card" data-name="又一村文創園區" data-addr="https://maps.app.goo.gl/MrTrKEgKjX6aqopJA">
+    <div class="card-head"><div class="card-emoji">🏘️</div><div class="card-meta-top"><div class="card-type" data-i18n="type-hist">歷史文化</div><div class="card-name" data-i18n="name-youyicun">又一村文創園區</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-youyicun">老眷村改建的文創基地，保留濃厚眷村記憶，藝文展覽、特色小店</div><div class="card-tags"><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/MrTrKEgKjX6aqopJA" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+  <div class="card" data-name="花蓮文化創意產業園區" data-addr="https://maps.app.goo.gl/YDQPCageA7UhpynM6">
+    <div class="card-head"><div class="card-emoji">🏭</div><div class="card-meta-top"><div class="card-type" data-i18n="type-hist">歷史文化</div><div class="card-name" data-i18n="name-cultural-park">花蓮文化創意產業園區</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-cultural-park">前身日治時期酒廠，老倉庫改建，不定期藝文市集與展覽</div><div class="card-tags"><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/YDQPCageA7UhpynM6" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+  <div class="card" data-name="花蓮鐵道文化園區" data-addr="https://maps.app.goo.gl/uxSXBujutG498FRT7">
+    <div class="card-head"><div class="card-emoji">🚂</div><div class="card-meta-top"><div class="card-type" data-i18n="type-hist">歷史文化</div><div class="card-name" data-i18n="name-railway">花蓮鐵道文化園區</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-railway-rainy">台灣保存最完整窄軌鐵道遺址，舊車頭與日式建築群，室內外皆宜</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>10:00–18:00</span><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/uxSXBujutG498FRT7" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+  <div class="card" data-name="大陳故事館" data-addr="https://maps.app.goo.gl/58snfpYpBaSwByVx8">
+    <div class="card-head"><div class="card-emoji">📖</div><div class="card-meta-top"><div class="card-type" data-i18n="type-hist">歷史文化</div><div class="card-name" data-i18n="name-dachen">大陳故事館</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-dachen">花蓮市大陳一村的真君廟，走入歷史，了解這段被遺忘的記憶</div><div class="card-tags"><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/58snfpYpBaSwByVx8" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+  <div class="card" data-name="花蓮美術館" data-addr="https://maps.app.goo.gl/PAHLRJmRpCUoxckr7">
+    <div class="card-head"><div class="card-emoji">🖼️</div><div class="card-meta-top"><div class="card-type" data-i18n="type-art">藝術展覽</div><div class="card-name" data-i18n="name-artmuseum">花蓮美術館</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-artmuseum">花蓮唯一縣立美術館，不定期特展，本土與國際藝術作品常設展示</div><div class="card-tags"><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/PAHLRJmRpCUoxckr7" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+  <div class="card" data-name="光隆博物館" data-addr="https://maps.app.goo.gl/k6CLBocSttjJ3bZV9">
+    <div class="card-head"><div class="card-emoji">🏺</div><div class="card-meta-top"><div class="card-type" data-i18n="type-art">藝術展覽</div><div class="card-name" data-i18n="name-guanglong">光隆博物館</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-guanglong">私人典藏博物館，展示東方藝術瑰寶，陶瓷、古玩、珍奇文物薈萃</div><div class="card-tags"><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/k6CLBocSttjJ3bZV9" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+  <div class="card" data-name="花蓮縣石雕博物館" data-addr="https://maps.app.goo.gl/Xs8zVo8RNdGBfjQCA">
+    <div class="card-head"><div class="card-emoji">🪨</div><div class="card-meta-top"><div class="card-type" data-i18n="type-art">藝術展覽</div><div class="card-name" data-i18n="name-stonemuseum">花蓮縣石雕博物館</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-stonemuseum">全台唯一石雕主題博物館，展示花蓮大理石與當代石雕創作精華</div><div class="card-tags"><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/Xs8zVo8RNdGBfjQCA" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+  <div class="card" data-name="花蓮縣考古博物館" data-addr="https://maps.app.goo.gl/3Huu4YbkzjzwbQVv8">
+    <div class="card-head"><div class="card-emoji">🦴</div><div class="card-meta-top"><div class="card-type" data-i18n="type-museum">博物館</div><div class="card-name" data-i18n="name-archeo">花蓮縣考古博物館</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-archeo">台灣東部考古文化重鎮，花蓮史前文化遺址出土文物，互動豐富</div><div class="card-tags"><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/3Huu4YbkzjzwbQVv8" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+  <div class="card" data-name="花蓮防災教育館" data-addr="https://maps.app.goo.gl/36VEcCXfae6ek6e6A">
+    <div class="card-head"><div class="card-emoji">⛑️</div><div class="card-meta-top"><div class="card-type" data-i18n="type-museum">博物館</div><div class="card-name" data-i18n="name-disaster">花蓮防災教育館</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-disaster">寓教於樂的防災體驗館，地震、颱風模擬體驗，適合親子同遊</div><div class="card-tags"><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/36VEcCXfae6ek6e6A" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+  <div class="card" data-name="台肥海洋深層水園區" data-addr="https://maps.app.goo.gl/ALSMCKpR3oZV1Vee7">
+    <div class="card-head"><div class="card-emoji">🌊</div><div class="card-meta-top"><div class="card-type" data-i18n="type-museum">博物館</div><div class="card-name" data-i18n="name-deepwater">台肥海洋深層水園區</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-deepwater">全台唯一深層海水主題館，展示深海資源與海洋科技，免費參觀</div><div class="card-tags"><span class="tag"><i class="ti ti-coin"></i><span data-i18n="free">免費</span></span><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/ALSMCKpR3oZV1Vee7" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+  <div class="card" data-name="七星柴魚博物館" data-addr="https://maps.app.goo.gl/cX9QynvA6YMD2dAB6">
+    <div class="card-head"><div class="card-emoji">🐟</div><div class="card-meta-top"><div class="card-type" data-i18n="type-exp">體驗 DIY</div><div class="card-name" data-i18n="name-bonito">七星柴魚博物館</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-bonito">全台唯一柴魚主題館，了解柴魚製程、DIY 體驗，現場試吃超新鮮</div><div class="card-tags"><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/cX9QynvA6YMD2dAB6" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
+  </div>
+  <div class="card" data-name="地耕味 玩味蕃樂園" data-addr="https://maps.app.goo.gl/BKnyiZ2Mv6xuVX6e7">
+    <div class="card-head"><div class="card-emoji">🍅</div><div class="card-meta-top"><div class="card-type" data-i18n="type-exp">體驗 DIY</div><div class="card-name" data-i18n="name-digengwei">地耕味 玩味蕃樂園</div></div></div>
+    <div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-digengwei">舊台灣復古時光，一樓有齊全的伴手禮購買，親子同樂好去處</div><div class="card-tags"><span class="badge-rain">☂️ <span data-i18n="rainy-ok">雨天適合</span></span></div></div><a class="nav-btn" href="https://maps.app.goo.gl/BKnyiZ2Mv6xuVX6e7" target="_blank"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div>
   </div>
 </div>
+</div>
 
-<p class="page-footer">✦ 點卡片選取 · 導航按鈕直接開地圖 ✦</p>
-<div class="copyright">
+
+<!-- ═══ 花蓮美食 ═══ -->
+<div id="sec-food" class="hidden">
+<div class="cards">
+  <div class="card" data-name="欣欣麵館" data-addr="花蓮縣花蓮市國威里民國路125號"><div class="card-head"><div class="card-emoji">🦞</div><div class="card-meta-top"><div class="card-type" data-i18n="type-seafood">海鮮料理</div><div class="card-name" data-i18n="name-xinxin">欣欣麵館</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-xinxin">花蓮必吃海鮮名店，活海產、生魚片、龍蝦火鍋，建議提前訂位</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="歐桑米粉湯" data-addr="花蓮縣花蓮市主力里和平路466號"><div class="card-head"><div class="card-emoji">🍲</div><div class="card-meta-top"><div class="card-type" data-i18n="type-local">在地小吃</div><div class="card-name" data-i18n="name-oosang">歐桑米粉湯</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-oosang">平民食堂，招牌金沙蝦仁炒飯、鮮蚵大腸、滷肉飯界的愛馬仕</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="金蘭號" data-addr="花蓮縣花蓮市民生里公正街13號"><div class="card-head"><div class="card-emoji">🍖</div><div class="card-meta-top"><div class="card-type" data-i18n="type-local">在地小吃</div><div class="card-name" data-i18n="name-jinlan">金蘭號</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-jinlan">必點排骨飯、炒麵配味噌湯，在地人真愛</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="京湘排骨麵" data-addr="花蓮縣花蓮市民族里中山路145號"><div class="card-head"><div class="card-emoji">🍜</div><div class="card-meta-top"><div class="card-type" data-i18n="type-noodle">麵食湯品</div><div class="card-name" data-i18n="name-jingxiang">京湘排骨麵</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-jingxiang">中山路人氣麵店，招牌排骨酥麵，香軟不爛，翻桌率高不用等太久</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="來成排骨麵" data-addr="花蓮縣花蓮市主工里中正路477號"><div class="card-head"><div class="card-emoji">🍜</div><div class="card-meta-top"><div class="card-type" data-i18n="type-noodle">麵食湯品</div><div class="card-name" data-i18n="name-laicheng">來成排骨麵</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-laicheng">花蓮在地排骨麵名店，湯頭鮮甜，份量紮實（公休看臉書）</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="林記明禮路蔥油餅" data-addr="花蓮縣花蓮市國光里明禮路18-3號"><div class="card-head"><div class="card-emoji">🧅</div><div class="card-meta-top"><div class="card-type" data-i18n="type-local">在地小吃</div><div class="card-name" data-i18n="name-linji">林記明禮路蔥油餅</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-linji">炸彈蔥油餅，酥脆外皮，花蓮必吃街頭小食</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="家咖哩（將軍府店）" data-addr="花蓮縣花蓮市民生里中正路618巷"><div class="card-head"><div class="card-emoji">🍛</div><div class="card-meta-top"><div class="card-type" data-i18n="type-local">在地小吃</div><div class="card-name" data-i18n="name-curry">家咖哩（將軍府店）</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-curry">人氣咖哩飯，古蹟內老味不變，更添風味</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="職饗雞湯小卷米粉" data-addr="花蓮縣花蓮市國聯里國聯五路121號"><div class="card-head"><div class="card-emoji">🦑</div><div class="card-meta-top"><div class="card-type" data-i18n="type-noodle">麵食湯品</div><div class="card-name" data-i18n="name-zhixiang">職饗雞湯小卷米粉</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-zhixiang">清甜雞湯底，鮮嫩小卷配米粉，花蓮特有暖心湯品</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="老時光燒肉酒肴" data-addr="花蓮縣花蓮市國治里民國路88-1號"><div class="card-head"><div class="card-emoji">🥩</div><div class="card-meta-top"><div class="card-type" data-i18n="type-bbq">燒肉居酒屋</div><div class="card-name" data-i18n="name-laoshiguang">老時光燒肉酒肴</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-laoshiguang">花蓮人氣燒肉居酒屋，肉質新鮮，環境有質感，需訂位</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="公正包子" data-addr="花蓮縣花蓮市主睦里仁愛街46號"><div class="card-head"><div class="card-emoji">🥟</div><div class="card-meta-top"><div class="card-type" data-i18n="type-local">在地小吃</div><div class="card-name" data-i18n="name-gongzheng">公正包子</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-gongzheng">花蓮名店，酸辣湯麵飯應有盡有，包子味美價廉</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="周家蒸餃" data-addr="花蓮縣花蓮市民生里公正街4-20號"><div class="card-head"><div class="card-emoji">🥟</div><div class="card-meta-top"><div class="card-type" data-i18n="type-local">在地小吃</div><div class="card-name" data-i18n="name-zhoujia">周家蒸餃</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-zhoujia">在地人老店蒸餃，皮薄餡鮮，排隊才吃得到</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="定置漁場三代目" data-addr="花蓮縣花蓮市國安里建國路23號1樓"><div class="card-head"><div class="card-emoji">🐟</div><div class="card-meta-top"><div class="card-type" data-i18n="type-seafood">海鮮料理</div><div class="card-name" data-i18n="name-dingzhi">定置漁場三代目</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-dingzhi">新鮮現撈漁獲直送，柚香拉麵清爽甘美，在地漁業文化</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="玉里橋頭臭豆腐" data-addr="花蓮縣花蓮市主和里和平路55號"><div class="card-head"><div class="card-emoji">🧡</div><div class="card-meta-top"><div class="card-type" data-i18n="type-local">在地小吃</div><div class="card-name" data-i18n="name-yuli">玉里橋頭臭豆腐</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-yuli">玉里必吃臭豆腐市區展店，外酥內嫩配特製泡菜，不必跑太遠</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="鵝肉先生" data-addr="花蓮縣花蓮市國威里林森路224號"><div class="card-head"><div class="card-emoji">🍽️</div><div class="card-meta-top"><div class="card-type" data-i18n="type-local">在地小吃</div><div class="card-name" data-i18n="name-goose">鵝肉先生</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-goose">花蓮人氣鵝肉專賣，鵝肉嫩滑清甜，快炒菜色眾多</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="海埔蚵仔煎" data-addr="花蓮縣花蓮市主工里民國路8號"><div class="card-head"><div class="card-emoji">🍳</div><div class="card-meta-top"><div class="card-type" data-i18n="type-local">在地小吃</div><div class="card-name" data-i18n="name-haipu">海埔蚵仔煎</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-haipu">新鮮肥美蚵仔，蛋液Q彈，醬料香濃，花蓮在地人氣小吃</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="美琪烤玉米" data-addr="花蓮縣花蓮市主睦里信義街71號"><div class="card-head"><div class="card-emoji">🌽</div><div class="card-meta-top"><div class="card-type" data-i18n="type-local">在地小吃</div><div class="card-name" data-i18n="name-meiqi">美琪烤玉米</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-meiqi">現烤香甜玉米，刷上特製醬料，花蓮街頭最暖心的小食</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+</div>
+</div>
+
+
+<!-- ═══ 早午餐 ═══ -->
+<div id="sec-brunch" class="hidden">
+<div class="cards">
+  <div class="card" data-name="時光1939" data-addr="花蓮縣花蓮市國治里民國路80巷16號"><div class="card-head"><div class="card-emoji">🌿</div><div class="card-meta-top"><div class="card-type" data-i18n="type-oldhouse">老宅風格</div><div class="card-name" data-i18n="name-shiguang">時光1939</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-shiguang">昭和時期日式老宅改建，蔬食早午餐，店貓相伴，靜謐慢時光</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="take a bread 光復店" data-addr="花蓮縣花蓮市國威里光復街91號"><div class="card-head"><div class="card-emoji">🥐</div><div class="card-meta-top"><div class="card-type" data-i18n="type-brunch">早午餐</div><div class="card-name" data-i18n="name-takebread">take a bread 光復店</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-takebread">選用在地食材製作麵包，美好從早晨開始</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="再吃一口早午餐" data-addr="花蓮縣花蓮市大同街17-1號"><div class="card-head"><div class="card-emoji">🍳</div><div class="card-meta-top"><div class="card-type" data-i18n="type-brunch">早午餐</div><div class="card-name" data-i18n="name-zaichi">再吃一口早午餐</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-zaichi">份量十足，餐點豐盛令人忍不住再多吃一口</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="森山舎" data-addr="花蓮縣花蓮市國風里林政街10號"><div class="card-head"><div class="card-emoji">🌲</div><div class="card-meta-top"><div class="card-type" data-i18n="type-oldhouse">老宅風格</div><div class="card-name" data-i18n="name-senzan">森山舎</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-senzan">花蓮知名老宅早午餐，林政街上的靜謐角落</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="COUNTRY MOTHER'S" data-addr="花蓮縣花蓮市民勤里府前路34號"><div class="card-head"><div class="card-emoji">🧺</div><div class="card-meta-top"><div class="card-type" data-i18n="type-western">西式早午餐</div><div class="card-name" data-i18n="name-country">COUNTRY MOTHER'S</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-country">美式風格早午餐，麵包紮實，人氣口袋名單</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="jam kitchen 花蓮中山棧" data-addr="花蓮縣花蓮市國威里中山路349號"><div class="card-head"><div class="card-emoji">🫙</div><div class="card-meta-top"><div class="card-type" data-i18n="type-western">西式早午餐</div><div class="card-name" data-i18n="name-jamkitchen">jam kitchen 花蓮中山棧</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-jamkitchen">健身營養餐盒，美味與健康兼具，補充優質蛋白</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="萊迦早午餐" data-addr="花蓮縣花蓮市主勤里博愛街185號"><div class="card-head"><div class="card-emoji">☀️</div><div class="card-meta-top"><div class="card-type" data-i18n="type-brunch">早午餐</div><div class="card-name" data-i18n="name-laijia">萊迦早午餐</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-laijia">花蓮在地早午餐，餐點豐盛，親子愛店</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="MP BRUNCH 早午餐" data-addr="花蓮縣花蓮市國威里新港街79-4號"><div class="card-head"><div class="card-emoji">🍽️</div><div class="card-meta-top"><div class="card-type" data-i18n="type-western">西式早午餐</div><div class="card-name" data-i18n="name-mp">MP BRUNCH 早午餐</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-mp">質感小空間搭配美味早午餐，餐點精緻，薯泥美味</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="小和山谷" data-addr="花蓮縣壽豐鄉壽豐村壽文路43號"><div class="card-head"><div class="card-emoji">🌱</div><div class="card-meta-top"><div class="card-type" data-i18n="type-brunch">早午餐</div><div class="card-name" data-i18n="name-xiaohe">小和山谷</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-xiaohe">隱身壽豐的沉穩系早午餐，餐點融入在地特色</div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+</div>
+</div>
+
+
+<!-- ═══ 咖啡下午茶 ═══ -->
+<div id="sec-cafe" class="hidden">
+<div class="cards">
+  <div class="card" data-name="Caffe Fiore珈琲花" data-addr="花蓮縣花蓮市主信里忠孝街79號"><div class="card-head"><div class="card-emoji">☕</div><div class="card-meta-top"><div class="card-type" data-i18n="type-coffee">精品咖啡</div><div class="card-name" data-i18n="name-caffe">Caffe Fiore 珈琲花</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-caffe">老屋老宅，有店貓，適合慵懶的午後</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="irregular">不定時</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="浮室咖啡" data-addr="花蓮縣花蓮市主義里成功街280號1樓"><div class="card-head"><div class="card-emoji">🫧</div><div class="card-meta-top"><div class="card-type" data-i18n="type-coffee">精品咖啡</div><div class="card-name" data-i18n="name-fushi">浮室咖啡 soave plan</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-fushi">放慢步調，每口蛋糕都會帶來充盈的滿足感</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>09:00–18:00</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="雨林Scone&Coffee" data-addr="花蓮縣花蓮市主義里明義街55號"><div class="card-head"><div class="card-emoji">🫖</div><div class="card-meta-top"><div class="card-type" data-i18n="type-dessert">甜點茶飲</div><div class="card-name" data-i18n="name-yulin">雨林 Scone &amp; Coffee</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-yulin">花蓮唯一司康專賣，自由街香榭大道旁，搭咖啡絕配</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="time-yulin">11:00–18:00，週四休</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="Miyu蜜語甜點" data-addr="花蓮縣吉安鄉北昌村莊敬路267巷3號"><div class="card-head"><div class="card-emoji">🍰</div><div class="card-meta-top"><div class="card-type" data-i18n="type-dessert">甜點茶飲</div><div class="card-name" data-i18n="name-miyu">Miyu 蜜語甜點</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-miyu">每日限量手作精品甜點，外型精緻賞心悅目，售完為止</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="time-miyu">11:00–18:00，週四休</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="河狸咖啡" data-addr="花蓮縣花蓮市國風里建林街6號"><div class="card-head"><div class="card-emoji">🦫</div><div class="card-meta-top"><div class="card-type" data-i18n="type-coffee">精品咖啡</div><div class="card-name" data-i18n="name-beaver">河狸咖啡</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-beaver">自家烘焙豆，療癒的河狸主題空間，花蓮特色咖啡廳</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>12:30–19:00</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="朝露珈琲" data-addr="花蓮縣花蓮市國風里林森路205號"><div class="card-head"><div class="card-emoji">🌤️</div><div class="card-meta-top"><div class="card-type" data-i18n="type-coffee">精品咖啡</div><div class="card-name" data-i18n="name-chaolu">朝露珈琲</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-chaolu">多種豆種可選，搭爵士樂，清淌下午一抹流光</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="time-chaolu">11:00–18:00，週一休</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="Giocare義式手沖咖啡" data-addr="花蓮縣花蓮市民族里樹人街7號"><div class="card-head"><div class="card-emoji">🇮🇹</div><div class="card-meta-top"><div class="card-type" data-i18n="type-coffee">精品咖啡</div><div class="card-name" data-i18n="name-giocare">Giocare 義式．手沖咖啡</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-giocare">手工陶瓷杯加上自烘豆，自成一方天地的小角落</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="time-giocare">14:00–17:00，不定時休</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="昭和五八" data-addr="花蓮縣花蓮市主勤里成功街306號"><div class="card-head"><div class="card-emoji">🏮</div><div class="card-meta-top"><div class="card-type" data-i18n="type-oldhouse-cafe">老宅風格</div><div class="card-name" data-i18n="name-showa">昭和五八</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-showa">昭和氛圍，茶飲甜點有質感</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="time-showa">13:00–19:00，不定時休</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="舊抽屜咖啡" data-addr="花蓮縣花蓮市進豐街22巷15號1樓"><div class="card-head"><div class="card-emoji">🪵</div><div class="card-meta-top"><div class="card-type" data-i18n="type-oldhouse-cafe">老宅風格</div><div class="card-name" data-i18n="name-drawer">舊抽屜咖啡</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-drawer">早午餐到晚餐，包容你一天的疲憊</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>09:00–18:00</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="歪歪歪甜點 YYY" data-addr="花蓮縣花蓮市主商里南京街328號"><div class="card-head"><div class="card-emoji">🍮</div><div class="card-meta-top"><div class="card-type" data-i18n="type-dessert">甜點茶飲</div><div class="card-name" data-i18n="name-yyy">歪歪歪甜點 YYY Dessert</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-yyy">天然食材，地表最強蛋黃酥之亂</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i>12:00–19:00</span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="找到了可頌小売所" data-addr="花蓮縣花蓮市民權里菁華街35巷1弄18號"><div class="card-head"><div class="card-emoji">🥐</div><div class="card-meta-top"><div class="card-type" data-i18n="type-dessert">甜點茶飲</div><div class="card-name" data-i18n="name-croissant">找到了可頌小売所</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-croissant">花蓮可頌專賣，酥脆層次分明，每日限量，早去才搶得到</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="time-croissant">14:00–售完</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="Stroll 散步咖啡" data-addr="花蓮縣花蓮市主信里忠孝街70號"><div class="card-head"><div class="card-emoji">🚶</div><div class="card-meta-top"><div class="card-type" data-i18n="type-coffee">精品咖啡</div><div class="card-name" data-i18n="name-stroll">Stroll 散步咖啡</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-stroll">肉桂捲配上咖啡，巷弄中慢慢散步，嚐一口人生的苦</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="time-stroll">11:00–18:00，週五休</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+  <div class="card" data-name="小和好點 dot.dot." data-addr="花蓮縣壽豐鄉平和村平和一街119號"><div class="card-head"><div class="card-emoji">🎂</div><div class="card-meta-top"><div class="card-type" data-i18n="type-dessert">甜點茶飲</div><div class="card-name" data-i18n="name-dotdot">小和好點 dot.dot.</div></div></div><div class="card-body"><div class="card-info"><div class="card-desc" data-i18n="desc-dotdot">人氣烘焙咖啡廳，肉桂捲、鍋煮奶茶香甜迷人</div><div class="card-tags"><span class="tag"><i class="ti ti-clock"></i><span data-i18n="time-dotdot">13:00–17:00，不定時休</span></span></div></div><a class="nav-btn" href="#" target="_blank" onclick="event.currentTarget.href=getNavUrl(event.currentTarget.closest('.card').dataset.addr)"><i class="ti ti-navigation"></i><span data-i18n="nav">導航</span></a></div></div>
+</div>
+</div>
+
+<div class="footer">
   © 2026 路境行旅花蓮文化館　All rights reserved.<br>
   本頁面內容著作權歸路境行旅花蓮文化館所有，未經授權不得轉載或複製。
 </div>
 
-<div class="plan-bar">
-  <div class="plan-bar-left">
-    <div class="plan-count" id="plan-count">0</div>
-    <div class="plan-text">
-      <div class="plan-label">我的行程</div>
-      <div class="plan-names" id="plan-names">尚未選擇地點</div>
-    </div>
-  </div>
-  <div class="plan-actions">
-    <button class="clear-btn" id="clear-btn" onclick="clearAll()">清除</button>
-    <a class="go-btn disabled" id="go-btn" href="#" target="_blank"><i class="ti ti-map-2"></i> 開啟地圖</a>
-  </div>
-</div>
-
 <script>
-const selected = new Map();
-function getNavUrl(addr) {
-  if (/^-?\d+\.\d+,-?\d+\.\d+$/.test(addr)) {
-    return 'https://www.google.com/maps/dir/?api=1&destination=' + addr + '&travelmode=driving';
-  }
-  return 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(addr) + '&travelmode=driving';
+/* ── 導航 ── */
+function getNavUrl(addr){
+  if(/^https?:\/\//.test(addr)) return addr;
+  if(/^-?\d+\.\d+,-?\d+\.\d+$/.test(addr))
+    return 'https://www.google.com/maps/dir/?api=1&destination='+addr+'&travelmode=driving';
+  return 'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(addr)+'&travelmode=driving';
 }
-function toggleCard(card){
-  const name=card.dataset.name, addr=card.dataset.addr;
-  if(selected.has(name)){selected.delete(name);card.classList.remove('selected');}
-  else{selected.set(name,addr);card.classList.add('selected');}
-  updateBar();
-}
-function updateBar(){
-  const count=selected.size;
-  document.getElementById('plan-count').textContent=count;
-  const names=[...selected.keys()];
-  document.getElementById('plan-names').textContent=count===0?'尚未選擇地點':names.join(' → ');
-  const cb=document.getElementById('clear-btn'), gb=document.getElementById('go-btn');
-  cb.style.display=count>0?'block':'none';
-  if(count===0){gb.classList.add('disabled');gb.href='#';return;}
-  const addrs=[...selected.values()];
-  let url;
-  // Use /coord/coord/ format - most reliable for Google Maps multi-stop
-  const parts = addrs.map(a => /^-?\d+\.\d+,-?\d+\.\d+$/.test(a) ? a : encodeURIComponent(a));
-  url = 'https://www.google.com/maps/dir/' + parts.join('/') + '/';
-  gb.href=url; gb.classList.remove('disabled');
-}
-function clearAll(){
-  selected.clear();
-  document.querySelectorAll('.card.selected').forEach(c=>c.classList.remove('selected'));
-  updateBar();
-}
+
+/* ── Tab 切換 ── */
 function switchTab(t){
-  ['spots','food','brunch','cafe','rainy'].forEach(s=>{
+  ['spots','special','rainy','food','brunch','cafe'].forEach(s=>{
     document.getElementById('sec-'+s).classList.toggle('hidden',s!==t);
     document.getElementById('t-'+s).classList.toggle('active',s===t);
   });
 }
-function filter(cat,btn,gridId){
-  document.getElementById(gridId).querySelectorAll('.card').forEach(c=>{
-    c.classList.toggle('hidden',cat!=='all'&&c.dataset.c!==cat);
+
+/* ══════════════════════════════════════════
+   語言系統
+   新增翻譯：在下方 LANG 物件各語言區新增
+   key 與 HTML 的 data-i18n 屬性對應
+══════════════════════════════════════════ */
+const LANG = {
+  zh: {
+    'hero-title':'花蓮<em>旅遊</em><br>人氣名單',
+    'hero-sub':'精選景點 × 在地美食 × 點擊直接導航',
+    'tab-spots':'觀光景點','tab-special':'花蓮限定','tab-rainy':'雨天備案',
+    'tab-food':'花蓮美食','tab-brunch':'早午餐','tab-cafe':'咖啡下午茶',
+    'nav':'導航','allday':'全天開放','free':'免費','free-entry':'免費入園',
+    'paid':'收費','seasonal':'季節限定','rainy-ok':'雨天適合','irregular':'不定時',
+    'type-nightmarket':'夜市','type-coast':'海岸','type-culture':'文化歷史',
+    'type-leisure':'休閒體驗','type-nature':'山林自然','type-scenic':'海岸景觀',
+    'type-hist':'歷史文化','type-art':'藝術展覽','type-museum':'博物館','type-exp':'體驗 DIY',
+    'type-seafood':'海鮮料理','type-local':'在地小吃','type-noodle':'麵食湯品',
+    'type-bbq':'燒肉居酒屋','type-oldhouse':'老宅風格','type-brunch':'早午餐',
+    'type-western':'西式早午餐','type-coffee':'精品咖啡','type-dessert':'甜點茶飲',
+    'type-oldhouse-cafe':'老宅風格',
+    'whale-title':'賞鯨｜鯨世界','whale-sub':'花蓮外海賞鯨豚體驗',
+    'whale-notice-title':'出發前請注意',
+    'whale-notice-1':'航班時間請先洽櫃台，船班時間會依據海況有所調整。以下時間<b>僅供參考</b>，以實際出航為準。',
+    'whale-notice-2':'報名時間為<b>下午五點以前</b>',
+    'whale-notice-3':'已報名後<b>不退費</b>，請確認後再報名。',
+    'morning-flight':'上午航班','afternoon-flight':'下午航班',
+    'adult':'成人 ADT','child':'孩童 CHD','infant':'嬰兒 INF',
+    'whale-tip-1':'船位有限，以實際出航為準，請事先詢問',
+    'whale-tip-2':'請提早 30 分鐘到達賞鯨碼頭，完成安全示範說明及點名登船',
+    'whale-tip-3':'花蓮夏季賞豚率高達 90%，鯨魚 7–8 月最易出沒，祝大家都能看到鯨魚！',
+    'whale-note-1':'搭船前請自備暈船藥提前服下',
+    'whale-note-2':'整體行程約 2 小時，依實際風浪及鯨豚觀察情況調整',
+    'whale-note-3':'價格含接送、導覽、意外險　<b>報名請洽櫃檯人員</b>',
+    'car-title':'迷你TOUR 一日遊','car-sub':'包車自由行，依您的步調探索花蓮',
+    'route-coast-title':'花蓮海岸線',
+    'route-coast-stops':'飯店出發 ▸ 洄瀾貨櫃星巴克 ▸ 薯薯寮 ▸ 芭崎瞭望台 ▸ 大石鼻山步道 ▸ 新社梯田 ▸ 石門洞 ▸ 石梯坪風景區 ▸ 賦歸',
+    'route-valley-title':'花蓮縱谷線',
+    'route-valley-stops':'飯店出發 ▸ 理想星巴克（或鯉魚潭）▸ 雲山水 ▸ 林田山林業文化園區 ▸ 吉利潭 ▸ 光復糖廠 ▸ 賦歸',
+    'seat5':'5 人座','seat9':'9 人座','from':'起','8hr':'一日遊 8hr',
+    'car-note-1':'以上行程僅供參考，可在合理範圍內調整，歡迎客製化。',
+    'car-note-2':'小孩亦算 1 人；5 人座最多搭乘 4 人，建議 3 人最舒適。需兒童安全座椅請提前預約並另計費用。',
+    'car-note-3-bold':'外語導覽','car-note-3':' 另外計算',
+    'car-note-4-bold':'客製行程','car-note-4':' 請洽櫃檯專員',
+    'time-dongdamen':'18:00–22:30','time-jian':'08:30–17:00，週一休',
+    'time-48':'全天（導覽需預約）','time-yulin':'11:00–18:00，週四休',
+    'time-miyu':'11:00–18:00，週四休','time-chaolu':'11:00–18:00，週一休',
+    'time-giocare':'14:00–17:00，不定時休','time-showa':'13:00–19:00，不定時休',
+    'time-croissant':'14:00–售完','time-stroll':'11:00–18:00，週五休',
+    'time-dotdot':'13:00–17:00，不定時休',
+  },
+  en: {
+    'hero-title':'Hualien <em>Travel</em><br>Popular List',
+    'hero-sub':'Curated Spots × Local Food × Tap to Navigate',
+    'tab-spots':'Attractions','tab-special':'Hualien Exclusive','tab-rainy':'Rainy Day',
+    'tab-food':'Local Food','tab-brunch':'Brunch','tab-cafe':'Café & Dessert',
+    'nav':'Map','allday':'Open 24hrs','free':'Free','free-entry':'Free Entry',
+    'paid':'Paid','seasonal':'Seasonal','rainy-ok':'Great for Rainy Days','irregular':'Hours Vary',
+    'type-nightmarket':'Night Market','type-coast':'Coastal','type-culture':'History & Culture',
+    'type-leisure':'Activities','type-nature':'Nature','type-scenic':'Scenic Overlook',
+    'type-hist':'History','type-art':'Art & Exhibition','type-museum':'Museum','type-exp':'Experience',
+    'type-seafood':'Seafood','type-local':'Local Eats','type-noodle':'Noodles & Soup',
+    'type-bbq':'BBQ & Izakaya','type-oldhouse':'Heritage House','type-brunch':'Brunch',
+    'type-western':'Western Brunch','type-coffee':'Specialty Coffee','type-dessert':'Desserts & Tea',
+    'type-oldhouse-cafe':'Heritage Café',
+    'whale-title':'Whale Watching | Jing World','whale-sub':'Whale & Dolphin Tour off Hualien Coast',
+    'whale-notice-title':'Before You Go',
+    'whale-notice-1':'Please confirm departure time with the front desk. Schedules may change based on sea conditions. Times below are <b>for reference only</b>.',
+    'whale-notice-2':'Registration deadline: <b>before 5:00 PM</b>',
+    'whale-notice-3':'<b>No refunds</b> after registration. Please confirm before signing up.',
+    'morning-flight':'Morning Departures','afternoon-flight':'Afternoon Departures',
+    'adult':'Adult ADT','child':'Child CHD','infant':'Infant INF',
+    'whale-tip-1':'Limited seats — subject to actual departure. Please inquire in advance.',
+    'whale-tip-2':'Arrive 30 minutes early at the whale watching pier for safety briefing and roll call.',
+    'whale-tip-3':'90% dolphin sighting rate in summer! Whales most active July–August. Good luck!',
+    'whale-note-1':'Please take seasickness medication before boarding.',
+    'whale-note-2':'Tour is approximately 2 hours, adjusted based on sea conditions.',
+    'whale-note-3':'Price includes transfer, guide & insurance. <b>Book at front desk.</b>',
+    'car-title':'Mini TOUR Day Trip','car-sub':'Private car tour at your own pace',
+    'route-coast-title':'Hualien Coast Route',
+    'route-coast-stops':'Hotel ▸ Hualien Container Starbucks ▸ Shushu Liao ▸ Baji Lookout ▸ Dashibi Trail ▸ Xinsha Terraces ▸ Shimen Cave ▸ Shiti Scenic Area ▸ Return',
+    'route-valley-title':'Hualien Valley Route',
+    'route-valley-stops':'Hotel ▸ Ideal Starbucks (or Liyu Lake) ▸ Yun Mountain Water ▸ Lintianshan Forestry Park ▸ Jili Lake ▸ Guangfu Sugar Factory ▸ Return',
+    'seat5':'5-Seater','seat9':'9-Seater','from':'+','8hr':'Full Day 8hr',
+    'car-note-1':'Itineraries are flexible and customizable within reason.',
+    'car-note-2':'Children count as 1 person. 5-seater fits max 4; 3 recommended. Child seats available with advance booking (extra charge).',
+    'car-note-3-bold':'Foreign language guide','car-note-3':' charged separately',
+    'car-note-4-bold':'Custom itinerary','car-note-4':' — ask our front desk',
+    'time-dongdamen':'18:00–22:30','time-jian':'08:30–17:00, Closed Mon',
+    'time-48':'Open 24hr (tour by appointment)','time-yulin':'11:00–18:00, Closed Thu',
+    'time-miyu':'11:00–18:00, Closed Thu','time-chaolu':'11:00–18:00, Closed Mon',
+    'time-giocare':'14:00–17:00, Irregular hours','time-showa':'13:00–19:00, Irregular hours',
+    'time-croissant':'14:00–Sold Out','time-stroll':'11:00–18:00, Closed Fri',
+    'time-dotdot':'13:00–17:00, Irregular hours',
+  },
+  ja: {
+    'hero-title':'花蓮<em>観光</em><br>人気スポット一覧',
+    'hero-sub':'厳選観光地 × 地元グルメ × タップでナビ',
+    'tab-spots':'観光スポット','tab-special':'花蓮限定','tab-rainy':'雨の日プラン',
+    'tab-food':'花蓮グルメ','tab-brunch':'ブランチ','tab-cafe':'カフェ・スイーツ',
+    'nav':'ナビ','allday':'終日開放','free':'無料','free-entry':'入園無料',
+    'paid':'有料','seasonal':'期間限定','rainy-ok':'雨の日におすすめ','irregular':'不定期',
+    'type-nightmarket':'夜市','type-coast':'海岸','type-culture':'文化・歴史',
+    'type-leisure':'レジャー','type-nature':'自然','type-scenic':'絶景スポット',
+    'type-hist':'歴史文化','type-art':'アート・展覧','type-museum':'博物館','type-exp':'体験 DIY',
+    'type-seafood':'シーフード','type-local':'地元グルメ','type-noodle':'麺・スープ',
+    'type-bbq':'焼肉・居酒屋','type-oldhouse':'古民家','type-brunch':'ブランチ',
+    'type-western':'洋風ブランチ','type-coffee':'スペシャルティコーヒー','type-dessert':'スイーツ・お茶',
+    'type-oldhouse-cafe':'古民家カフェ',
+    'whale-title':'ホエールウォッチング | 鯨世界','whale-sub':'花蓮沖でのイルカ・クジラ体験',
+    'whale-notice-title':'ご出発前のご注意',
+    'whale-notice-1':'出航時間はフロントへご確認ください。海況により変更される場合があります。下記時刻は<b>参考</b>であり、実際の出航時間とは異なる場合があります。',
+    'whale-notice-2':'お申し込みは<b>午後5時まで</b>',
+    'whale-notice-3':'お申し込み後の<b>キャンセル・返金不可</b>。ご確認の上お申し込みください。',
+    'morning-flight':'午前出航','afternoon-flight':'午後出航',
+    'adult':'大人 ADT','child':'子供 CHD','infant':'乳児 INF',
+    'whale-tip-1':'座席数に限りがあります。実際の出航状況をご確認ください。',
+    'whale-tip-2':'出発30分前にホエールウォッチング埠頭へお越しください。安全説明と点呼があります。',
+    'whale-tip-3':'夏季のイルカ遭遇率は最大90%！クジラは7〜8月が最も出没しやすい時期です。',
+    'whale-note-1':'乗船前に酔い止め薬をご自身でご準備・服用ください。',
+    'whale-note-2':'ツアー時間は約2時間（波や観察状況により変動）。',
+    'whale-note-3':'料金には送迎・ガイド・保険が含まれます。<b>お申し込みはフロントまで。</b>',
+    'car-title':'ミニTOUR 1日観光','car-sub':'チャーター車でマイペースに花蓮を探索',
+    'route-coast-title':'花蓮海岸線コース',
+    'route-coast-stops':'ホテル出発 ▸ コンテナスターバックス ▸ 薯薯寮 ▸ 芭崎展望台 ▸ 大石鼻山トレイル ▸ 新社棚田 ▸ 石門洞 ▸ 石梯坪 ▸ 帰還',
+    'route-valley-title':'花蓮縦谷線コース',
+    'route-valley-stops':'ホテル出発 ▸ 理想スターバックス（または鯉魚潭）▸ 雲山水 ▸ 林田山林業文化園区 ▸ 吉利潭 ▸ 光復糖廠 ▸ 帰還',
+    'seat5':'5人乗り','seat9':'9人乗り','from':'〜','8hr':'1日ツアー 8時間',
+    'car-note-1':'コースは参考例です。合理的な範囲内で自由にカスタマイズ可能です。',
+    'car-note-2':'お子様も1名としてカウント。5人乗りは最大4名（3名推奨）。チャイルドシートは事前予約・別途料金。',
+    'car-note-3-bold':'外国語ガイド','car-note-3':'は別途料金',
+    'car-note-4-bold':'カスタムコース','car-note-4':'はフロントまでご相談ください',
+    'time-dongdamen':'18:00–22:30','time-jian':'08:30–17:00、月曜休',
+    'time-48':'終日（ガイドツアーは要予約）','time-yulin':'11:00–18:00、木曜休',
+    'time-miyu':'11:00–18:00、木曜休','time-chaolu':'11:00–18:00、月曜休',
+    'time-giocare':'14:00–17:00、不定休','time-showa':'13:00–19:00、不定休',
+    'time-croissant':'14:00〜売り切れ次第終了','time-stroll':'11:00–18:00、金曜休',
+    'time-dotdot':'13:00–17:00、不定休',
+  },
+  ko: {
+    'hero-title':'화롄 <em>여행</em><br>인기 명소 리스트',
+    'hero-sub':'엄선 명소 × 현지 맛집 × 탭하면 바로 내비게이션',
+    'tab-spots':'관광 명소','tab-special':'화롄 한정','tab-rainy':'우천 대안',
+    'tab-food':'화롄 맛집','tab-brunch':'브런치','tab-cafe':'카페 & 디저트',
+    'nav':'내비','allday':'24시간 개방','free':'무료','free-entry':'입장 무료',
+    'paid':'유료','seasonal':'시즌 한정','rainy-ok':'우천 시 추천','irregular':'비정기',
+    'type-nightmarket':'야시장','type-coast':'해안','type-culture':'문화 역사',
+    'type-leisure':'레저 체험','type-nature':'자연','type-scenic':'경관 전망대',
+    'type-hist':'역사 문화','type-art':'예술 전시','type-museum':'박물관','type-exp':'체험 DIY',
+    'type-seafood':'해산물 요리','type-local':'현지 먹거리','type-noodle':'국수 & 탕',
+    'type-bbq':'야키니쿠 이자카야','type-oldhouse':'고택 스타일','type-brunch':'브런치',
+    'type-western':'서양식 브런치','type-coffee':'스페셜티 커피','type-dessert':'디저트 & 차',
+    'type-oldhouse-cafe':'고택 카페',
+    'whale-title':'고래 투어 | 鯨世界','whale-sub':'화롄 앞바다 고래·돌고래 체험',
+    'whale-notice-title':'출발 전 주의사항',
+    'whale-notice-1':'출항 시간은 프런트에 먼저 확인하세요. 해상 상황에 따라 변경될 수 있습니다. 아래 시간은 <b>참고용</b>이며 실제 출항 기준으로 합니다.',
+    'whale-notice-2':'신청 마감: <b>오후 5시 이전</b>',
+    'whale-notice-3':'예약 후 <b>환불 불가</b>. 확인 후 신청하세요.',
+    'morning-flight':'오전 출항','afternoon-flight':'오후 출항',
+    'adult':'성인 ADT','child':'어린이 CHD','infant':'영아 INF',
+    'whale-tip-1':'좌석이 한정되어 있습니다. 실제 출항 여부를 사전에 문의하세요.',
+    'whale-tip-2':'출발 30분 전에 선착장으로 오세요. 안전 교육 및 인원 점검이 있습니다.',
+    'whale-tip-3':'여름철 돌고래 목격률 최대 90%! 고래는 7~8월에 가장 많이 출몰합니다.',
+    'whale-note-1':'승선 전 멀미약을 미리 준비하여 복용하세요.',
+    'whale-note-2':'전체 일정은 약 2시간이며, 파도 및 고래 관찰 상황에 따라 조정됩니다.',
+    'whale-note-3':'가격에는 이동, 가이드, 여행자 보험 포함. <b>신청은 프런트 직원에게.</b>',
+    'car-title':'미니TOUR 당일치기 투어','car-sub':'전세 차량으로 나만의 화롄 여행',
+    'route-coast-title':'화롄 해안선 코스',
+    'route-coast-stops':'호텔 출발 ▸ 컨테이너 스타벅스 ▸ 슈슈랴오 ▸ 바지 전망대 ▸ 다스비 트레일 ▸ 신사 다랑이 논 ▸ 스먼동 ▸ 스티핑 경관구 ▸ 귀환',
+    'route-valley-title':'화롄 종곡 코스',
+    'route-valley-stops':'호텔 출발 ▸ 이상 스타벅스(또는 리위탄) ▸ 윈산수이 ▸ 린톈산 임업문화원 ▸ 지리탄 ▸ 광복 설탕공장 ▸ 귀환',
+    'seat5':'5인승','seat9':'9인승','from':'부터','8hr':'당일투어 8시간',
+    'car-note-1':'일정은 참고용이며 합리적인 범위 내에서 조정 및 맞춤 구성 가능합니다.',
+    'car-note-2':'어린이도 1인으로 계산. 5인승 최대 4명 탑승(3명 권장). 카시트는 사전 예약 및 추가 요금.',
+    'car-note-3-bold':'외국어 가이드','car-note-3':'는 별도 요금',
+    'car-note-4-bold':'맞춤 일정','car-note-4':'은 프런트 직원에게 문의',
+    'time-dongdamen':'18:00–22:30','time-jian':'08:30–17:00, 월요일 휴무',
+    'time-48':'상시 개방 (가이드 투어는 예약 필요)','time-yulin':'11:00–18:00, 목요일 휴무',
+    'time-miyu':'11:00–18:00, 목요일 휴무','time-chaolu':'11:00–18:00, 월요일 휴무',
+    'time-giocare':'14:00–17:00, 비정기 휴무','time-showa':'13:00–19:00, 비정기 휴무',
+    'time-croissant':'14:00~매진 시 종료','time-stroll':'11:00–18:00, 금요일 휴무',
+    'time-dotdot':'13:00–17:00, 비정기 휴무',
+  }
+};
+
+let currentLang = 'zh';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('on'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('on');
+  const dict = LANG[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
   });
-  btn.closest('.filters').querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
-  btn.classList.add('on');
 }
 </script>
 </body>
