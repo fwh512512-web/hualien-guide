@@ -130,21 +130,23 @@ body{
   letter-spacing:.22em;text-transform:uppercase;
   color:var(--ink-3);margin-bottom:5px;
 }
-.sec-h{display:flex;align-items:center;gap:14px;}
+.sec-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .sec-h-txt{
-  font:700 19px/1.2 'Noto Serif TC',serif;
-  color:var(--ink);white-space:nowrap;flex-shrink:0;
+  font:700 19px/1.25 'Noto Serif TC',serif;
+  color:var(--ink);flex-shrink:1;min-width:0;
 }
-.sec-h-line{flex:1;height:1px;background:var(--div);}
+.sec-h-line{flex:1 1 40px;min-width:24px;height:1px;background:var(--div);}
+.lang-en .sec-h-txt,.lang-ja .sec-h-txt{font-size:16px;}
 
 /* SUB-SECTION (train / bus) */
 .sec-sub{
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
   font:700 15px/1.4 'Noto Sans TC',sans-serif;
   color:var(--ink);margin:24px 0 14px;
 }
 .sec-sub svg{color:var(--teal);flex-shrink:0;}
-.sec-sub-line{flex:1;height:1px;background:var(--div);}
+.sec-sub-line{flex:1 1 20px;min-width:16px;height:1px;background:var(--div);}
+.lang-en .sec-sub,.lang-ja .sec-sub{font-size:13.5px;}
 
 /* NOTICES */
 .notice{
@@ -648,46 +650,6 @@ body{
       <p class="n-ttl"><span data-lang="zh">外籍旅客小提醒</span><span data-lang="en">Note for foreign visitors</span><span data-lang="ja">外国籍のお客様へ</span><span data-lang="ko">외국인 여행자 안내</span></p>
       <p class="n-dsc"><span data-lang="zh">非台灣國籍旅客在台租車，請務必攜帶並出示<strong>「國際駕照」</strong>與<strong>護照</strong>。</span><span data-lang="en">Non-Taiwanese visitors must present an <strong>International Driving Permit</strong> and <strong>passport</strong> when renting.</span><span data-lang="ja">台湾非在住の方は<strong>国際運転免許証</strong>と<strong>パスポート</strong>が必要です。</span><span data-lang="ko">외국인은 <strong>국제 운전 면허증</strong>과 <strong>여권</strong>을 반드시 제시해야 합니다.</span></p>
     </div>
-  </div>
-</div>
-
-<!-- 航運 -->
-<div class="section fade-in s4">
-  <div class="sec-hdr">
-    <p class="sec-eye">Air Travel</p>
-    <div class="sec-h">
-      <span class="sec-h-txt"><span data-lang="zh">航運</span><span data-lang="en">By Air</span><span data-lang="ja">航空</span><span data-lang="ko">항공편</span></span>
-      <span class="sec-h-line"></span>
-    </div>
-  </div>
-
-  <div class="notice n-info" style="margin-bottom:18px">
-    <span class="notice-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#006670" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19.5 2.5S18 2 16.5 3.5L13 7 4.8 5.2 3.2 6.8l6.6 3.5-3 2.9-1.5-.4-1.4 1.4 3 2 2 3 1.4-1.4-.4-1.5 2.9-3 3.5 6.6z"/></svg></span>
-    <div class="notice-body">
-      <p class="n-ttl"><span data-lang="zh">飛抵花蓮機場後</span><span data-lang="en">After landing at Hualien Airport</span><span data-lang="ja">花蓮空港到着後</span><span data-lang="ko">화롄 공항 도착 후</span></p>
-      <p class="n-dsc"><span data-lang="zh">建議搭乘計程車前往旅店，車資跳表計價，車程約 20–30 分鐘。</span><span data-lang="en">Take a metered taxi to the hotel. About 20–30 min (traffic-dependent).</span><span data-lang="ja">タクシー（メーター制）でホテルへ。約20〜30分。</span><span data-lang="ko">미터 택시로 호텔까지. 약 20〜30분.</span></p>
-    </div>
-  </div>
-
-  <div class="list-blk">
-    <a class="list-item" href="https://www.uniair.com.tw/rwd/index.aspx" target="_blank">
-      <div class="list-ico" style="color:#2c64c4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19.5 2.5S18 2 16.5 3.5L13 7 4.8 5.2 3.2 6.8l6.6 3.5-3 2.9-1.5-.4-1.4 1.4 3 2 2 3 1.4-1.4-.4-1.5 2.9-3 3.5 6.6z"/></svg></div>
-      <div class="list-body">
-        <div class="list-ttl">立榮航空</div>
-        <div class="list-sub"><span data-lang="zh">北部 → 花蓮 · 點擊前往官網訂票</span><span data-lang="en">Northern Taiwan → Hualien · Tap to book</span><span data-lang="ja">北部 → 花蓮 · タップで公式サイトへ</span><span data-lang="ko">북부 → 화롄 · 탭하여 예약</span></div>
-        <span class="tag tag-teal"><span data-lang="zh">北部出發</span><span data-lang="en">From North</span><span data-lang="ja">北部発</span><span data-lang="ko">북부 출발</span></span>
-      </div>
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#c8c4be" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-    </a>
-    <a class="list-item" href="https://www.mandarin-airlines.com/" target="_blank">
-      <div class="list-ico" style="color:#a42e2e"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19.5 2.5S18 2 16.5 3.5L13 7 4.8 5.2 3.2 6.8l6.6 3.5-3 2.9-1.5-.4-1.4 1.4 3 2 2 3 1.4-1.4-.4-1.5 2.9-3 3.5 6.6z"/></svg></div>
-      <div class="list-body">
-        <div class="list-ttl">華信航空</div>
-        <div class="list-sub"><span data-lang="zh">南部 → 花蓮 · 點擊前往官網訂票</span><span data-lang="en">Southern Taiwan → Hualien · Tap to book</span><span data-lang="ja">南部 → 花蓮 · タップで公式サイトへ</span><span data-lang="ko">남부 → 화롄 · 탭하여 예약</span></div>
-        <span class="tag tag-gold"><span data-lang="zh">南部出發</span><span data-lang="en">From South</span><span data-lang="ja">南部発</span><span data-lang="ko">남부 출발</span></span>
-      </div>
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#c8c4be" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-    </a>
   </div>
 </div>
 
